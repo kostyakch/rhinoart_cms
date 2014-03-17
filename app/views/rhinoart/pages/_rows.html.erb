@@ -1,0 +1,13 @@
+<li style="padding-left: <%= 10 + (level*25) %>px;">
+	<% if p.ptype == 'article' || p.ptype == 'blog' %>
+		<%= link_to p.name, page_children_path(p) %>
+	<% else %>
+		<%= link_to p.name, edit_page_path(p) %>
+	<% end %>
+</li>
+
+<% if page_tree(p).present? %>
+<% page_tree(p).each do |children| %>
+	<%= render 'rows', p: children, level: level + 1 %>
+<% end %> 
+<% end %>

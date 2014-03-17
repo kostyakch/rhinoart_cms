@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%#= full_title(yield(:title)) %></title>
+	<%= stylesheet_link_tag "rhinoart/application", :media => "all" %>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css' />
+	
+	<%= csrf_meta_tags %>
+ 
+    <%= render 'layouts/rhinoart/shim' %>
+</head>
+
+<body>
+	<div class="navbar">
+	    <div class="navbar-inner">
+	        <div class="container-fluid">
+	            <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </a>
+	            <%= link_to raw('<span>Rhono CMS</span>'), root_path, class: 'brand' %>
+	        </div>
+	    </div>
+	</div>
+
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div id="content" class="span11" style="min-height: 509px;"> 
+				<%= render 'shared/flash_messages' %>  
+			
+				<div class="row-fluid"><%= yield %> </div>
+			</div>
+		</div>
+
+		<%= render 'layouts/rhinoart/footer' %>
+	</div>
+
+
+	<%= javascript_include_tag "application" %>
+
+	<% if Rails.env.development? %>
+	<div class="container">
+		<div class="row-fluid">
+			<%= debug(params) %>
+		</div>
+	</div>
+	<% end %>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+<div class="form-horizontal">
+    <div class="control-group">
+        <%= f.label :name, class: 'control-label' %>
+        <div class="controls">
+            <%= f.text_field :name, class: 'span11' %>
+        </div>
+    </div>  
+
+    <div class="control-group">
+        <%= f.label :value, class: 'control-label' %>
+        <div class="controls">
+            <%= f.text_field :value, class: 'span11' %>
+        </div>
+    </div>   
+
+    <div class="control-group">
+        <%= f.label :descr, class: 'control-label' %>
+        <div class="controls">
+            <%= f.text_area :descr, class: 'span11', rows: '4' %>
+        </div>
+    </div>   
+
+    <div class="form-actions">
+        <div class="btn-overlay">
+            <%= f.button t("_BTN_SAVE"), class: "btn btn-primary" %>
+            <%= f.button t('_BTN_SAVE_AND_CONTINUE'), class: 'btn btn-success', name: 'continue', value: 'continue' %>
+            <%= link_to t("_BTN_CANCEL"), settings_path, class: "btn" %>
+        </div>
+    </div>
+</div>
+

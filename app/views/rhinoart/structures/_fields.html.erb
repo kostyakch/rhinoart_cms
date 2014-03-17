@@ -1,0 +1,64 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+<div class="form-horizontal">
+    <div class="control-group">
+        <%= f.label :name, class: 'control-label' %>
+        <div class="controls">
+            <%= f.text_field :name, class: 'span11' %>
+        </div>
+    </div>  
+
+    <div class="control-group">
+        <%= f.label :slug, class: 'control-label' %>
+        <div class="controls">
+            <%= f.text_field :slug, class: 'span11' %>
+            <%= link_to '<span class="icon-plus-sign"></span>'.html_safe, '#mdFieldAdd', data: {toggle: "modal"} %>
+        </div>
+    </div>  
+   
+    <!-- Page fields -->
+    <%= render 'field_row', f: f %>
+
+    <div class="row">
+        <div class="span1" style="margin-left: 210px;">
+            <%= f.label :position %>
+            <%= f.number_field :position, class: 'span12' %>
+        </div>
+
+        <div class="span2">
+            <%= f.label :parent_id %>
+            <%= f.collection_select :parent_id, @pages_for_select, :id, :name, {include_blank: true}, {class: 'span11'} %>
+        </div>
+
+        <div class="span2">
+            <%= f.label :ptype %>
+            <%= f.select :ptype, [[t('Page'), 'page'], [t('Article'), 'article'], [t('Blog'), 'blog']], {include_blank: false}, {class: 'span11'} %>
+
+        </div>
+
+        <div class="span2">
+            <%= f.label :menu %>
+            <%= f.check_box :menu %>
+        </div>
+
+        <div class="span2">
+            <%= f.label :active %>
+            <%= f.check_box :active %>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- Page contents -->
+    <%= render 'content_row', f: f %>
+    
+
+    <div class="form-actions">
+        <div class="btn-overlay">
+            <%= f.button t("_BTN_SAVE"), class: "btn btn-primary" %>
+            <%= f.button t('_BTN_SAVE_AND_CONTINUE'), class: 'btn btn-success', name: 'continue', value: 'continue' %>
+            <%= link_to t("_BTN_CANCEL"), structures_path, class: "btn" %>
+        </div>
+    </div>
+</div>
+

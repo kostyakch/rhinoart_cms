@@ -1,0 +1,20 @@
+<% provide(:title, "Edit user") %>
+
+
+
+<div class="span4 offset1">
+  	<h1>Update your profile</h1>
+    <%= form_for @user, :url => user_path do |f| %>
+      <%= render 'fields', f: f %>
+
+    <br>
+    <%= gravatar_for @user %>
+    <a href="http://gravatar.com/emails">change</a>
+
+    <div class="form-actions">
+        <div class="btn-overlay">
+            <%= f.submit t("_BTN_EDIT"), class: "btn btn-primary" %> 
+        </div>
+    </div> 
+    <% end %>    
+</div>

@@ -1,0 +1,189 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  locale: En
+  _PAGE_SUCCESSFULLY_UPDATED: Page has been updated successfully.
+  _PAGE_SUCCESSFULLY_CREATED: Page created successfully.
+  _PAGE_SUCCESSFULLY_DELITED: "Page has been \"%{name}\" deleted."
+  _PAGE_COMMENT_SUCCESSFULLY_DELITED: Comment has been deleted.
+
+  _SUCCESSFULLY_CREATED: Record created.
+  _SUCCESSFULLY_UPDATED: "Record \"%{name}\" updated successfully."
+  _SUCCESSFULLY_DELITED: "Record \"%{name}\" has been deleted."
+  _PARTIAL_ERROR: Error.
+
+  _EDIT_USER_SUCCESS: User data changed
+  _WELCOME: Welcome!
+  _BTN_CREATE: New
+  _BTN_EDIT: Save
+  _BTN_SAVE: Save
+  _BTN_SUBMIT: Submit
+  _BTN_CANCEL: Cancel
+  _BTN_SAVE_AND_CONTINUE: Apply
+  _BTN_UPLOAD: Upload file
+  _BTN_PUBLIC: Public
+  _BTN_HIDDEN: Hidden
+  _BTN_MENU: Menu
+  _SIGN_IN: "Sign in, please."
+  _NO_MAIN_CONTENT: "No content tab. You may set manually."
+
+  _DELETE_CONFIRM: "Are you sure?"
+
+  _SUBJECT_SEND_EMAIL: "Message from \"%{user_name}\""
+  _EMAIL_SUCCESS_SEND: "Message is sent."
+  No permissions to perform this operation: "No permissions to perform this operation"
+
+  _CONTENT: Content
+  _SITE_STRUCTURE: Site structure
+  _USERS: Users
+  _SETTINGS: Settings
+  _SYSTEM_SETTINGS: System settings
+  _PARAMETER_NAME: Parameter name
+  _PARAMETER_VALUE: Value
+  _ACTIONS: Actions
+  _EDIT: Edit
+  _STATUS: Status
+  _NEW_PAGE: New page
+  _NEW_USER: New user
+  _NEW_SETTING: New setting
+
+  # Titles
+  _PAGES: Pages
+  _GALLERY: Gallery
+
+  # Dashboard
+  _NEWS_ARTICLES: News/Articles
+  _BLOGS: Blogs
+  _COMMENT: Comments
+  _IMAGES: Images
+
+
+  # Admin menu
+  Settings: Настройки
+  Profile: Профиль пользователя
+  Sign in: "Sign in"
+  Sign out: "Sign out"
+  Users: Пользователи
+  Help: Справка
+  Content: Контент
+  _ERROR_AUTHENTICATE: Unable to login. Try again.
+
+  # User
+  You sure?: You sure?
+  Edit profile: Edit profile
+
+  # Pages
+  main_content: Content
+  description: Mata description
+  keywords: Meta keywords
+  h1: Page title (h1)
+  title: Window title
+  Page: page
+  Article: article
+  Blog: blog
+
+  short: Short text
+  full: Full text
+  add subpage: add subpage
+  edit: edit
+  show: show
+  hide: hide
+  delete: delete
+  _MORE: more
+  _LESS: less
+
+  _SETTING_NAME_FORMAT: "Can contain numbers and symbols - and _"
+
+  # images
+  _IMAGE_SUCCESSFULLY_UPDATED: Image updated.
+  _SUCCESSFULLY_UPLOADED: Images uploaded successfully.
+  _ERROR_UPLOAD: Error uploading images.
+
+  #blog
+  _BLOG_COMMENT_SUCCESSFULLY_CREATED: Your comment is added.
+  _BLOG_COMMENT_SUCCESSFULLY_WAITING_FOR_MODERATION: Your comment is added and waiting for moderation.
+  add_blog: Add blog
+  edit_blog: Edit blog  
+
+  # gallery
+  galleries: Galleries
+  creating_gallery: Creating gallery
+  edit_gallery: Edit gallery
+  add_image: Add image
+  edit_image: Edit image
+  gallery_images: "Gallery images %{name}"
+
+  # comment
+  add_comment: Add comment
+  edit_comment: Edit comment
+
+  
+  
+  
+  created_at:
+      formats:
+        default: "%d.%m.%Y"
+        short: "%b %d"
+        long: "%B %d, %Y"
+
+  date:
+    formats:
+      default: "%m.%d.%Y"
+      short: "%b %d"
+      mid: "%d %b %Y"
+      long: "%B %d, %Y"
+
+  time:
+    formats:
+      default: "%m.%d.%Y"
+      long: "%d %B %Y"
+      short: "%d.%m.%Y %H:%M"
+      
+
+        
+  activerecord:
+    models:
+      user: User name
+    attributes:
+      user:
+        name: "User name"
+        active: Active
+        roles: Roles
+        #password: Password
+        # password_confirmation: Подтверждение пароля
+        # password_digest: Подтверждение пароля
+        # Confirmation: Подтверждение пароля
+
+      page:
+        name: Page name
+        slug: Page Url
+        position: Position      
+        menu: Show in menu
+        parent_id: Parent
+        ptype: Type
+        user: Author
+        
+      setting:
+        name: Parameter name
+        value: Value
+        descr: Description
+
+      blog_comment:
+        name: Name
+        email: E-mail
+        comment: Comment
+
+
+    errors:
+      models:
+        page:
+          attributes:            
+            slug:
+              invalid: "Can contain numbers and symbols \"-\" or \"_\""
+
+        setting:
+          attributes:            
+            name:
+              invalid: "Can contain numbers and symbols \"-\" or \"_\""
+

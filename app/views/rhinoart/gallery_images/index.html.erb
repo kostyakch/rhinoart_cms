@@ -1,0 +1,31 @@
+<h1>Listing admin_gallery_images</h1>
+
+<table>
+  <tr>
+    <th>Path</th>
+    <th>Annotation</th>
+    <th>Main</th>
+    <th>Active</th>
+    <th>Position</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @admin_gallery_images.each do |admin_gallery_image| %>
+  <tr>
+    <td><%= admin_gallery_image.path %></td>
+    <td><%= admin_gallery_image.annotation %></td>
+    <td><%= admin_gallery_image.main %></td>
+    <td><%= admin_gallery_image.active %></td>
+    <td><%= admin_gallery_image.position %></td>
+    <td><%= link_to 'Show', admin_gallery_image %></td>
+    <td><%= link_to 'Edit', edit_admin_gallery_image_path(admin_gallery_image) %></td>
+    <td><%= link_to 'Destroy', admin_gallery_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Gallery image', new_admin_gallery_image_path %>

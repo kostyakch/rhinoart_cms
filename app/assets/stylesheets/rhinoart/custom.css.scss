@@ -1,0 +1,61 @@
+@import "bootstrap";
+@import "bootstrap-responsive";
+@import "bootstrap-datepicker";
+
+/* Import Section
+=================================================================== */
+@import "acme/jquery-ui-1.8.21.custom";								/* jQuery User Interface Framework Styles */
+@import "acme/fullcalendar";										/* Calendars Styles */
+@import "acme/chosen";												/* Select Boxes Styles */  
+@import "acme/uniform.default";										/* Uniform Styles */
+@import "acme/jquery.cleditor";										/* Text Editor Styles. */  
+@import "acme/jquery.noty";											/* Noty Notifications Style */
+@import "acme/noty_theme_default";									/* Noty Notifications Style */
+@import "acme/elfinder.min";										/* File Manager Style */
+@import "acme/elfinder.theme";										/* File Manager Style */
+@import "acme/jquery.iphone.toggle";								/* Styles for iPhone */
+@import "acme/uploadify";											/* Uploadify Styles */
+@import "acme/jquery.gritter";										/* Growl Like Notifications Styles */
+@import "acme/font-awesome";										/* Font Awesome Styles */
+@import "acme/font-awesome-ie7";									/* Font Awesome Styles */
+@import "acme/glyphicons";											/* Glyphicons Font */
+@import "acme/halflings";											/* Glyphicons Halflings Font */
+
+
+@import "acme/style";
+
+@import "acme/style-responsive";
+
+
+body {background: url('/assets/bg-light.png');}
+table.tree {
+	a.title { color: #000000; font-size: 14px; font-weight: bold; padding: 10px 0 10px 33px; background: url("/assets/i_doc.png") no-repeat 0 7px; }
+}
+
+#sidebar-left2{
+	background: #ffffff;
+	_min-height: 509px;
+	margin-left: 0;
+
+	filter: none;
+	-webkit-border-radius: 0px 5px 5px 5px;
+	-moz-border-radius: 0px 5px 5px 5px;
+	border-radius: 0px 5px 5px 5px;
+	border-top: 2px solid #eee;
+	position: relative;	
+
+	.sidebar-nav > ul {
+		margin: 0 15px;
+		li {border-bottom: 1px solid silver;
+			a {text-align: left; font-size: 12px;}
+		}
+		li:last-child {border-bottom: 0;}
+		
+	}
+}
+
+
+.input-group-btn {
+	right: 74px;
+	position: absolute;	
+}

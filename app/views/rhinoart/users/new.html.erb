@@ -1,0 +1,11 @@
+<% provide(:title, t(:_USERS) ) %>
+<h1><%= t :_NEW_USER %></h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for @user, url: users_path do |f| %>
+      <%= render 'fields', f: f %>
+      <%= f.submit t("_BTN_CREATE"), class: "btn btn-primary" %> 
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<% provide(:title, t(:edit_image)) %>
+
+<% render 'admin/galleries/sidebar' %>
+
+<%= form_for @image, :url => admin_gallery_image_path do |f| %>
+    <legend><%= t(:edit_image) %></legend>   
+
+   	<%= render 'fields', f: f %>	   
+<% end %>

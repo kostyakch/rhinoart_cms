@@ -1,0 +1,76 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+<%= f.hidden_field :ptype %>
+<%= f.hidden_field :parent_id %>
+
+
+<div class="form-horizontal">
+    <div class="control-group">
+        <%= f.label :name, class: 'control-label' %>
+        <div class="controls">
+            <%= f.text_field :name, class: 'span11' %>
+        </div>
+    </div>  
+
+    <div class="control-group">
+        <%= f.label :slug, class: 'control-label' %>
+        <div class="controls">
+            <%= f.text_field :slug, class: 'span11' %>
+            <%= link_to '<span class="icon-plus-sign"></span>'.html_safe, '#mdFieldAdd', data: {toggle: "modal"} %>
+        </div>
+    </div>  
+   
+    <!-- Page fields -->
+    <%= render 'field_row', f: f %>    
+
+    <div class="row">
+        <div class="span1" style="margin-left: 210px;">
+            <%= f.label :position %>
+            <%= f.number_field :position, class: 'span12' %>
+        </div>
+
+        <div class="span2">
+            <%= f.label :publish_date %>
+            <div class="input-append pdate span11" id="dp3" data-date="12-02-2012" data-date-format="dd.mm.yyyy">
+                <%= f.text_field :publish_date, class: 'span10' %>
+                <span class="add-on"><i class="icon-calendar"></i></span>
+            </div>            
+            
+            <% content_for :javascript do %>
+            <script type="text/javascript">
+                $('#page_publish_date').datepicker({
+                    format: 'dd.mm.yyyy',
+                    language: 'ru'
+                });
+            </script>
+            <% end %>
+        </div>
+
+        <% if f.object.ptype == 'article' || f.object.ptype == 'blog' %>
+        <div class="span3">
+            <%= f.label :user %>
+            <%= f.collection_select :user_id, Rhinoart::User.where('roles = "ROLE_USER"'), :id, :name_email, {include_blank: true}, {class: 'span12'} %>
+        </div>
+        <% end %>
+
+        <div class="span2">
+            <%= f.label :active %>
+            <%= f.check_box :active %>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- Page contents -->
+    <%= render 'content_row', f: f %>
+    
+
+    <div class="form-actions">
+        <div class="btn-overlay">
+            <%= f.button t("_BTN_SAVE"), class: "btn btn-primary" %>
+            <%= f.button t('_BTN_SAVE_AND_CONTINUE'), class: 'btn btn-success', name: 'continue', value: 'continue' %>
+            <%= link_to t("_BTN_CANCEL"), pages_path, class: "btn" %>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,212 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+ru:
+  locale: Рус
+  _PAGE_SUCCESSFULLY_UPDATED: Страница успешно обновлена.
+  _PAGE_SUCCESSFULLY_CREATED: Страница успешно создана.
+  _PAGE_SUCCESSFULLY_DELITED: "Страница \"%{name}\" успешно удалена."
+  _PAGE_COMMENT_SUCCESSFULLY_DELITED: Комментарий успешно удален.
+
+  _SUCCESSFULLY_CREATED: Запись создана.
+  _SUCCESSFULLY_UPDATED: "Запись \"%{name}\" успешно обновлена."
+  _SUCCESSFULLY_DELITED: "Запись \"%{name}\" успешно удалена."
+  _PARTIAL_ERROR: Ошибка подключения шаблона.
+
+  _EDIT_USER_SUCCESS: Данные пользователя изменены
+  _WELCOME: Добро пожаловать в систему!
+  _BTN_CREATE: Создать
+  _BTN_EDIT: Сохранить
+  _BTN_SAVE: Сохранить
+  _BTN_SUBMIT: Submit
+  _BTN_CANCEL: Отменить
+  _BTN_SAVE_AND_CONTINUE: Применить
+  _BTN_UPLOAD: Загрузить файлы на сервер
+  _BTN_PUBLIC: Public
+  _BTN_HIDDEN: Hidden
+  _BTN_MENU: Menu  
+  _SIGN_IN: Пожалуйста авторизуйтесь.
+  _NO_MAIN_CONTENT: "No content tab. You may set manually."
+
+  _DELETE_CONFIRM: "Вы уверены, что хотите удалить запись?"
+
+  _SUBJECT_SEND_EMAIL: Сообщение с сайта...
+  _EMAIL_SUCCESS_SEND: "Ваше сообщение успешно отправлено, и будет рассмотрено в ближайшее время."
+  No permissions to perform this operation: "Нет разрешений на выполнение этой операции."
+
+  _CONTENT: Комментарий
+  _SITE_STRUCTURE: Site structure
+  _USERS: Users
+  _SETTINGS: Settings
+  _SYSTEM_SETTINGS: System settings
+  _PARAMETER_NAME: Наименование параметра
+  _PARAMETER_VALUE: Значение параметра
+  _ACTIONS: Действия
+  _EDIT: Редактировать
+  _STATUS: Статус
+  _NEW_PAGE: New page
+  _NEW_USER: New user
+  _NEW_SETTING: New setting
+
+    # Titles
+  _PAGES: Pages
+  _GALLERY: Gallery
+
+  # Dashboard
+  _NEWS_ARTICLES: News/Articles
+  _BLOGS: Blogs
+  _COMMENT: Комментарий
+  _IMAGES: Images
+
+  # Admin menu
+  Settings: Настройки
+  Profile: Профиль пользователя
+  Sign in: Вход
+  Sign out: Выход
+  Users: Пользователи
+  Help: Справка
+  Content: Контент
+  _ERROR_AUTHENTICATE: Не возможно авторизоваться. Попробуйте еще раз.
+
+  # User
+  You sure?: Вы уверены?
+  Edit profile: Редактировать профиль
+
+  # Pages
+  main_content: Основной контент
+  description: Мета-Описание
+  keywords: Ключевые слова
+  h1: Заголовок страницы
+  title: Заголовок окна
+  Page: страница
+  Article: статья
+  Blog: блог
+  short: Краткий текст (short)
+  full: Полный текст (full)
+  add subpage: добавить подраздел
+  edit: редактировать
+  show: отобразить
+  hide: скрыть
+  delete: удалить
+  _MORE: больше
+  _LESS: меньше
+
+  
+  _SETTING_NAME_FORMAT: "может содержать только латинские буквы, цифры и символы - или _"
+
+  # images
+  _IMAGE_SUCCESSFULLY_UPDATED: Изображение обновлено.
+  _SUCCESSFULLY_UPLOADED: Изображения успешно загружены.
+  _ERROR_UPLOAD: Ошибка при загрузке изображений.
+
+  #blog
+  _BLOG_COMMENT_SUCCESSFULLY_CREATED: Ваш комментарий добавлен.
+  _BLOG_COMMENT_SUCCESSFULLY_WAITING_FOR_MODERATION: Ваш комментарий добавлен и ждет модерации.
+  add_blog: Add blog
+  edit_blog: Edit blog  
+
+  # gallery
+  galleries: Galleries
+  creating_gallery: Creating gallery
+  edit_gallery: Edit gallery
+  add_image: Add image
+  edit_image: Edit image
+  gallery_images: "Gallery images %{name}"
+
+  # comment
+  add_comment: Add comment
+  edit_comment: Edit comment
+
+  created_at:
+      formats:
+        default: "%d.%m.%Y"
+        short: "%b %d"
+        long: "%B %d, %Y"
+
+  time:
+    formats:
+      default: "%d.%m.%Y"
+      long: "%d %B %Y"
+      short: "%d.%m.%Y %H:%M"
+
+  # message:
+  #   name: ФИО
+  #   email: E-mail
+  #   content: Сообщение
+        
+  activerecord:
+    models:
+      user: Пользователь
+    attributes:
+      user:
+        name: "Имя пользователя"
+        active: Активность
+        roles: Роли
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        password_digest: Подтверждение пароля
+        Confirmation: Подтверждение пароля
+
+      page:
+        name: Наименование
+        slug: Url страницы
+        position: Сорт.
+        publish_date: Публиковать с        
+        menu: Отображать в меню
+        active: Активность
+        parent_id: Родительский раздел
+        ptype: Тип раздела
+        user: Автор
+
+      page_field:
+        name: Наименование
+        value: Значение
+        ftype: Тип
+        
+      setting:
+        name: Наименование
+        value: Значение
+        descr: Описание
+
+      blog_comment:
+        name: Имя
+        email: E-mail
+        comment: Комментарий
+
+
+    errors:
+      models:
+        user:
+          attributes:            
+            name:
+              blank: "не должно быть пустым"
+              too_short: 'сликом короткое. Должно быть не меньше %{count} символов'
+            password_confirmation:
+              blank: "не может быть пустым"
+            password_digest:
+              blank: "не может быть пустым"
+            password:
+              confirmation: "и подтверждение не совпадает"
+              blank:  "не может быть пустым"
+              too_short: "слишком короткий. Должен быть не меньше %{count} символов."
+            email:
+              blank: "не может быть пустым"
+              invalid: "имеет не правильный формат"
+              taken: " - уже присутствует в системе"
+
+        page:
+          attributes:            
+            name:
+              blank: "не должно быть пустым"
+              too_short: 'сликом короткое. Должно быть не меньше %{count} символов'
+            slug:
+              blank:  "не может быть пустым"
+              too_short: "слишком короткий. Должен быть не меньше %{count} символов."
+              invalid: "должен содержать только цифры, латинские бквы и символы '_-'"
+              taken: должен быть уникальным. Попробуйте изменить Url.
+
+        setting:
+          attributes:            
+            name:
+              invalid: "может содержать только латинские буквы, цифры и символы - или _"
+

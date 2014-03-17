@@ -1,0 +1,51 @@
+<div class="control-group">
+    <div class="controls">
+        <div class="tabbable" style="margin-bottom: 18px;">
+            <ul class="nav nav-tabs" id="tabs">
+            <% if f.object.page_content.any? %>
+            <% f.object.page_content.each_with_index do |ob, index| %>
+                <li class="<% if index == 0 %>active<% end %>">
+                    <a href="#<%= "tab#{ob.id}" %>" data-toggle="tab" rel="tab<%= ob.id %>">
+                        <%=t ob.name %> <% if !disabled_page?(@page) %><i class="icon-remove-sign del_tab"></i><% end %>
+                    </a>
+                </li>                 
+            <% end %>
+            <% else %>
+                <li class="active">
+                    <a href="#" data-toggle="tab_0" rel="tab_0">
+                        <%= t('_NO_MAIN_CONTENT') %>
+                    </a>
+                </li>            
+            <% end %>
+                <li style="float:right"><a href="#tab_add" id="add_content"><i class="icon-plus-sign"></i></a></li>
+            </ul>
+            <div class="tab-content" style="padding-bottom: 9px; border-bottom: 1px solid #ddd;">
+            <% i = 0 %>
+            <%= f.fields_for :page_content do |c| %>
+                <div class="tab-pane <% if i == 0 %>active <% end %>" id="<%= "tab#{c.object.id}" %>">
+                    <%= c.hidden_field :id %>
+                    <%= c.hidden_field :name %>
+
+                    <%= c.text_area :content, class: 'span12' %>
+                </div>              
+                <% i += 1 %>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :javascript do %>
+    <%= stylesheet_link_tag    "redactor/redactor" %>
+    <%= javascript_include_tag "redactor/redactor" %>
+
+
+<script type="text/javascript">
+    $('.tab-pane > textarea').redactor({ 
+        minHeight: 350, 
+        'imageUpload': '<%= assets_upload_image_path %>',
+        'imageGetJson': '<%= assets_image_list_path %>',
+        'fileUpload': '<%= assets_upload_file_path %>'
+    });
+</script>   
+<% end %>

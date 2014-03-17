@@ -1,0 +1,29 @@
+<div id="sidebar-left" class="span1">
+	<div class="nav-collapse sidebar-nav">
+		<ul class="nav nav-tabs nav-stacked main-menu">
+			<% if has_role?('ROLE_ADMIN') || has_role?('ROLE_EDITOR') %>
+			<li class="<%= 'active' if controller.controller_name == 'pages' %>">
+				<%= link_to "<i class=\"fa-icon-tasks\"></i><span class=\"hidden-tablet\"> #{ t(:_CONTENTS) }</span>".html_safe, pages_path %>
+			</li>
+			<li class="<%= 'active' if controller.controller_name == 'page_comments' %>">
+				<%= link_to "<i class=\"fa-icon-comments\"></i><span class=\"hidden-tablet\"> #{ t(:_COMMENTS) }</span>".html_safe, page_comments_path %>
+			</li>
+			<li class="<%= 'active' if controller.controller_name == 'galleries' or controller.controller_name == 'gallery_images' %>">
+				<%= link_to "<i class=\"fa-icon-picture\"></i><span class=\"hidden-tablet\"> #{ t(:_GALLERY) }</span>".html_safe, galleries_path %>
+			</li>
+			<% end %>
+
+			<% if has_role?('ROLE_ADMIN') %>
+			<li class="<%= 'active' if controller.controller_name == 'structures' %>">
+				<%= link_to "<i class=\"fa-icon-sitemap\"></i><span class=\"hidden-tablet\"> #{ t(:_SITE_STRUCTURE) }</span>".html_safe, structures_path %>
+			</li>
+			<li class="<%= 'active' if controller.controller_name == 'users' %>">
+				<%= link_to "<i class=\"fa-icon-group\"></i><span class=\"hidden-tablet\"> #{ t(:_USERS) }</span>".html_safe, users_path %>
+			</li>
+			<li class="<%= 'active' if controller.controller_name == 'settings' %>">
+				<%= link_to "<i class=\"fa-icon-cogs\"></i><span class=\"hidden-tablet\"> #{ t(:_SETTINGS) }</span>".html_safe, settings_path %>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+</div>

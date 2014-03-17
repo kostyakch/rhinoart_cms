@@ -1,0 +1,50 @@
+<div id="param-fields-list" class="collapse">
+	<%= f.fields_for :page_field do |c| %>	
+		<% index = rand(100..300) %>
+		
+		<div id="field_<%= c.object.id.to_i == 0 ? index : c.object.id %>">
+			<%= c.hidden_field :id %>
+			<%= c.hidden_field :position %>
+			<%= c.hidden_field :name %>
+			<%= c.hidden_field :ftype %>
+			
+			<div class="control-group">	
+				<label class="control-label" for="page_page_fields_name"><%=t c.object.name %></label>
+			    <div class="controls">
+
+			    	<% case c.object.ftype %>
+					<% when 'textarea' %>
+			    		<%= c.text_area :value, class: 'span11', readonly: disabled_page?(@page) %>
+			    	<% when 'image' %>
+			            <%= c.text_field :value, class: 'span11', readonly: disabled_page?(@page) %> 
+			            <span class="input-group-btn"><%= link_to 'Img', '#', class: "btn" %></span>  
+			    	<% else %>
+			    		<%= c.text_field :value, class: 'span11', readonly: disabled_page?(@page) %>
+			    	<% end %> 	
+
+
+			    	<% if !disabled_page?(@page) %>
+						<%= link_to '<span class="icon-plus-sign"></span>'.html_safe, '#mdFieldAdd', data: { toggle: "modal" } %>
+						<%= link_to '<span class="icon-remove-sign"></span>'.html_safe, 
+							page_field_path(c.object.id.to_i == 0 ? index : c.object.id),             
+							method: 'delete', 
+							remote: true, 
+							data: { confirm: t('_DELETE_CONFIRM') } %>
+			        <% end %>
+			    </div>
+			</div> 
+		</div>	
+	<% end %> 
+
+	<div id="ajax_field_add"></div>
+</div>
+
+<% if f.object.page_field.any? %>
+	<div class="control-group">
+		<div id="moreless" class="controls">
+			<a data-toggle="collapse" href="#param-fields-list"><%= t('_MORE') %></a> <span class="icon-arrow-down"></span>
+		</div>
+	</div>
+<% end %>
+
+

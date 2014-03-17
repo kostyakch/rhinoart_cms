@@ -1,0 +1,28 @@
+<% provide(:title, t(:_CONTENTS)) %>
+
+<div class="box-header" data-original-title="">
+  <h2><i class="halflings-icon align-justify"></i><span class="break"></span><%= t :_CONTENTS %></h2>
+</div>
+<div class="box-content">
+  <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
+    <table class="table table-striped tree">
+      <thead>
+        <tr>
+          <th width="70%"><%= t :_CONTENTS %></th>
+          <th width="20%"><%= t :_STATUS %></th>
+          <th><%= t :_ACTIONS %></th>          
+        </tr>
+      </thead>
+      <tbody>       
+        <% @page_comments.each do |item| %>
+        <%= render 'rows', item: item, level: 0 %>
+        <% end %>       
+      </tbody>
+    </table>          
+    <div class="row-fluid">
+      <div class="span12 center">
+        <div class="dataTables_paginate paging_bootstrap pagination"><%= will_paginate %></div>
+      </div>
+    </div>
+  </div>
+</div>
