@@ -1,0 +1,25 @@
+$(function(){
+	// Автоматическое разворачивание дополнительных параметров (смотрим куки)
+	if( $.cookie('show_params') == 'true') {
+		$('.collapse').addClass('in');
+		$('.collapse').css('height', 'auto');
+		$('#moreless a').text('<%= I18n.t("_LESS") %>');
+			$('#moreless span').attr('class', 'icon-arrow-up');		
+	}
+
+});
+
+// Разворачивание дополнительных параметров
+$('.collapse').on('shown', function () {
+	$.cookie('show_params', 'true', { path: '/' });
+		$('#moreless a').text('<%= I18n.t("_LESS") %>');
+		$('#moreless span').attr('class', 'icon-arrow-up');
+		//<%= I18n.t('_LESS') %>
+});
+
+// Сворачивание дополнительных параметров
+$('.collapse').on('hidden', function () {
+	$.cookie('show_params', 'false', { path: '/' });
+		$('#moreless a').text('<%= I18n.t("_MORE") %>');
+		$('#moreless span').attr('class', 'icon-arrow-down');
+});

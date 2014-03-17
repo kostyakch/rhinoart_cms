@@ -27,6 +27,8 @@ en:
   _BTN_MENU: Menu
   _SIGN_IN: "Sign in, please."
   _NO_MAIN_CONTENT: "No content tab. You may set manually."
+  _CONTENTS: Contents
+  _COMMENTS: Comments
 
   _DELETE_CONFIRM: "Are you sure?"
 
@@ -47,6 +49,7 @@ en:
   _NEW_PAGE: New page
   _NEW_USER: New user
   _NEW_SETTING: New setting
+  _NEW: Create
 
   # Titles
   _PAGES: Pages

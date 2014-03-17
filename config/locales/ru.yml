@@ -27,6 +27,8 @@ ru:
   _BTN_MENU: Menu  
   _SIGN_IN: Пожалуйста авторизуйтесь.
   _NO_MAIN_CONTENT: "No content tab. You may set manually."
+  _CONTENTS: Контент
+  _COMMENTS: Комментарии
 
   _DELETE_CONFIRM: "Вы уверены, что хотите удалить запись?"
 
@@ -35,7 +37,7 @@ ru:
   No permissions to perform this operation: "Нет разрешений на выполнение этой операции."
 
   _CONTENT: Комментарий
-  _SITE_STRUCTURE: Site structure
+  _SITE_STRUCTURE: Структура сайта
   _USERS: Users
   _SETTINGS: Settings
   _SYSTEM_SETTINGS: System settings
@@ -44,9 +46,10 @@ ru:
   _ACTIONS: Действия
   _EDIT: Редактировать
   _STATUS: Статус
-  _NEW_PAGE: New page
+  _NEW_PAGE: Новая страница
   _NEW_USER: New user
   _NEW_SETTING: New setting
+  _NEW: Создасть
 
     # Titles
   _PAGES: Pages
@@ -78,7 +81,7 @@ ru:
   keywords: Ключевые слова
   h1: Заголовок страницы
   title: Заголовок окна
-  Page: страница
+  Page: Страница
   Article: статья
   Blog: блог
   short: Краткий текст (short)
@@ -114,6 +117,7 @@ ru:
   gallery_images: "Gallery images %{name}"
 
   # comment
+  Comment: Комментарий
   add_comment: Add comment
   edit_comment: Edit comment
 
@@ -128,15 +132,12 @@ ru:
       default: "%d.%m.%Y"
       long: "%d %B %Y"
       short: "%d.%m.%Y %H:%M"
-
-  # message:
-  #   name: ФИО
-  #   email: E-mail
-  #   content: Сообщение
+              
         
   activerecord:
     models:
       user: Пользователь
+
     attributes:
       user:
         name: "Имя пользователя"

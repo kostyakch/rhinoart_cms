@@ -1,12 +1,12 @@
 <% provide(:title, t("gallery_images", name: @gallery.name) ) %>
 
-<% render 'admin/galleries/sidebar' %>
+<% render 'rhinoart/galleries/sidebar' %>
 
 
 	<div class="btn-overlay">
 
-	<%= form_for @image, :url => admin_gallery_images_path, :html => {:multipart => true} do |f| %>
-		<%= f.hidden_field :path_cache %>
+	<%= form_for @image, :html => {:multipart => true} do |f| %>
+		<%#= f.hidden_field :path_cache %>
 		<%= f.hidden_field :gallery_id, value: @gallery.id %>
         <div class="uploader" id="uniform-fileInput">
             <%= f.file_field :path, class: 'input-file uniform_on', :multiple => true %>
@@ -27,8 +27,8 @@
         <div class="item">
         <%= image_tag image.path.thumb.url %>
             <div class="edit-bt">
-                <%= link_to raw('<i class="halflings-icon edit"></i>'), edit_admin_gallery_image_path(image) %>
-                <%= link_to raw('<i class="halflings-icon trash"></i>'), admin_gallery_image_path(image), :method => :delete, :data => { :confirm => t('_DELETE_CONFIRM') } %>
+                <%= link_to raw('<i class="halflings-icon edit"></i>'), edit_gallery_image_path(image) %>
+                <%= link_to raw('<i class="halflings-icon trash"></i>'), gallery_image_path(image), :method => :delete, :data => { :confirm => t('_DELETE_CONFIRM') } %>
             </div>
         </div>
     <% end %>

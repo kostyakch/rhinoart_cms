@@ -1,16 +1,16 @@
 <tr>
   <td class="level_<%= level %>">
-    <b><%= link_to item.comment, edit_admin_page_comment_path(item) %></b>
+    <b><%= link_to item.comment, edit_page_comment_path(item) %></b>
     <% if level == 0 %>
-    <br><small> <%= t(:blog_name) %>: <%= link_to item.page.title, edit_admin_page_path(item.page) %></small>
+    <br><small> <%= t(:blog_name) %>: <%= link_to item.page.title, edit_page_path(item.page) %></small>
     <% end %>
   </td>
   <td>
     <% if item.approved? %><span class="label label-info"><%= t(:approved) %></span><% else %><span class="label"><%= t(:not_approved) %></span><% end %>
   </td>
   <td class="center">
-    <%= link_to raw('<i class="halflings-icon edit"></i>'), edit_admin_page_comment_path(item), class: 'btn btn-info' %>
-    <%= link_to raw('<i class="halflings-icon trash"></i>'), admin_page_comment_path(item), class: 'btn btn-info', :method => :delete, :data => { :confirm => t('_DELETE_CONFIRM') } %>
+    <%= link_to raw('<i class="halflings-icon edit"></i>'), edit_page_comment_path(item), class: 'btn btn-info' %>
+    <%= link_to raw('<i class="halflings-icon trash"></i>'), page_comment_path(item), class: 'btn btn-info', :method => :delete, :data => { :confirm => t('_DELETE_CONFIRM') } %>
   </td>
 </tr>
 

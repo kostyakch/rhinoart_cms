@@ -29,7 +29,7 @@
 
         <div class="span2">
             <%= f.label :gallery_id %>
-            <%= f.collection_select :gallery_id, Gallery.all, :id, :name, {include_blank: true}, {class: 'span11'} %>
+            <%= f.collection_select :gallery_id, Rhinoart::Gallery.all, :id, :name, {include_blank: true}, {class: 'span11'} %>
         </div>
 
         <div class="span2">
@@ -53,7 +53,7 @@
     <div class="form-actions">
         <div class="btn-overlay">
             <%= f.button t("_BTN_SAVE"), class: "btn btn-primary" %>
-            <%= link_to t("_BTN_CANCEL"), admin_galleries_path, class: "btn" %>
+            <%= link_to t("_BTN_CANCEL"), galleries_path, class: "btn" %>
         </div>
     </div>
 </div>

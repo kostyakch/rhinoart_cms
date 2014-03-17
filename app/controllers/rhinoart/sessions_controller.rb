@@ -20,7 +20,7 @@ module Rhinoart
 		
 		def destroy
 			sign_out
-	    	redirect_to root_url
+	    	redirect_to main_app.root_path
 		end
 
 		def signed_user
