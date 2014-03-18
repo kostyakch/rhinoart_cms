@@ -2,7 +2,8 @@ require_dependency "rhinoart/application_controller"
 
 module Rhinoart
 	class SessionsController < ApplicationController
-		layout 'layouts/rhinoart/non_autorize' #layouts/rhinoart/header
+		layout 'layouts/rhinoart/non_autorize'
+		skip_before_filter :signed_in_user
 
 		def new
 		end

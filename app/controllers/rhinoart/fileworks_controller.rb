@@ -1,10 +1,9 @@
 require_dependency "rhinoart/application_controller"
 
 module Rhinoart
-	class AssetsController < ApplicationController
-		# before_filter :signed_in_user
-		# before_filter { access_only_roles %w[ROLE_ADMIN ROLE_EDITOR] }
-
+	class FileworksController < ApplicationController
+		require File.expand_path("../../../uploaders/rhinoart/redactor_uploader", __FILE__) 
+		
 		def upload_image
 			RedactorUploader.configure do |config|
 				config.store_dir = 'uploads/images/pages'

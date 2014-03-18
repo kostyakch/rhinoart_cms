@@ -1,6 +1,7 @@
 module Rhinoart
 	class ApplicationController < ActionController::Base
 		include SessionsHelper
+		before_filter :signed_in_user
 
 		before_filter :check_uri if Rails.configuration.redirect_to_www
 

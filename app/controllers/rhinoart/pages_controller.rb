@@ -4,7 +4,6 @@ require_dependency "rhinoart/application_controller"
 module Rhinoart
 	class PagesController < ApplicationController		
 		before_action :set_rhinoart_page, only: [:edit, :update, :destroy]
-		before_filter :signed_in_user
 		before_filter { access_only_roles %w[ROLE_ADMIN ROLE_EDITOR] }
 
 

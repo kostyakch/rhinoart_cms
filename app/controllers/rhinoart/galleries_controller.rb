@@ -65,7 +65,7 @@ module Rhinoart
             @gallery.destroy
 
             respond_to do |format|
-                format.html { redirect_to admin_galleries_url }
+                format.html { redirect_to galleries_path }
                 format.json { head :no_content }
             end
         end
@@ -73,7 +73,11 @@ module Rhinoart
         private
             # Use callbacks to share common setup or constraints between actions.
             def set_gallery
-                @gallery = Gallery.find(params[:id])
+                begin
+                   @gallery = Gallery.find(params[:id]) 
+                rescue
+                    render :template => 'site/not_found', :status => 404
+                end                
             end
 
             # Never trust parameters from the scary internet, only allow the white list through.

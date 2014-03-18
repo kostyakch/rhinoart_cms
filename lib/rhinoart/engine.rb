@@ -5,5 +5,6 @@ module Rhinoart
     require "mini_magick"
 	require 'carrierwave'
 	require 'russian'
+	require 'bootstrap-datepicker-rails'
   end
 end

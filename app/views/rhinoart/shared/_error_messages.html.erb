@@ -1,0 +1,9 @@
+<% if object.errors.any? %>
+<div class="alert alert-error">
+	<h4 class="alert-heading">Found <%= pluralize(object.errors.full_messages.count, 'error') %>!</h4>
+    <% object.errors.full_messages.each do |msg| %>
+      <%= msg %><br>
+    <% end %>
+</div>
+<% end %>
+<%#= Russian.pluralize(object.errors.full_messages.count, t('ошибку'), 'ошибки', 'ошибок') %>

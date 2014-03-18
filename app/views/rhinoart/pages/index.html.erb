@@ -28,17 +28,17 @@
 			<a href="" class="quick-button span2">
 				<i class="fa-icon-book"></i>
 				<p><%= t(:_BLOGS) %></p>
-				<span class="notification red"><%= Rhinoart::Page.where("ptype='blog'").count-1 %></span>
+				<span class="notification red"><%= Rhinoart::Page.where("ptype='blog'").count %></span>
 			</a>
 			<a href="<%= page_comments_path %>" class="quick-button span2">
 				<i class="fa-icon-comments-alt"></i>
-				<p><%= t(:_CONTENTS) %></p>
+				<p><%= t(:_COMMENTS) %></p>
 				<span class="notification green"><%= Rhinoart::PageComment.count %></span>
 			</a>
 			<a href="<%= galleries_path %>" class="quick-button span2">
 				<i class="fa-icon-picture"></i>
 				<p><%= t(:_IMAGES) %></p>
-				<span class="notification green"><%#= Rhinoart::GalleryImage.count %></span>
+				<span class="notification green"><%= Rhinoart::GalleryImage.count %></span>
 			</a>
 			<a href="<%= users_path %>" class="quick-button span2">
 				<i class="fa-icon-group"></i>

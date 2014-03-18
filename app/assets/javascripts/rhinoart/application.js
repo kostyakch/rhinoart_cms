@@ -15,10 +15,12 @@
 //= require_self
 //= require_tree .
 
-//= require bootstrap
+//= require acme/bootstrap
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.ru.js
 //= require acme/jquery.cookie
+//= require acme/jquery.masonry.min
+// require gallery_images
 
 
 $(function(){

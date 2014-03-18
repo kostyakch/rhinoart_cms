@@ -1,5 +1,5 @@
 <% if @field.errors.any? %>
-	$('#pf_errors').html('<%= escape_javascript(render("shared/error_messages", object: @field, :formats => [:html])) %>');
+	$('#pf_errors').html('<%= escape_javascript(render("rhinoart/shared/error_messages", object: @field, :formats => [:html])) %>');
 <% else %>
 	$('#ajax_field_add').append('<%= escape_javascript(render("field_row", object: @field, :formats => [:html])) %>');
 	$('#mdFieldAdd').modal('hide');

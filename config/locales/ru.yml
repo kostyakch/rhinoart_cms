@@ -35,6 +35,7 @@ ru:
   _SUBJECT_SEND_EMAIL: Сообщение с сайта...
   _EMAIL_SUCCESS_SEND: "Ваше сообщение успешно отправлено, и будет рассмотрено в ближайшее время."
   No permissions to perform this operation: "Нет разрешений на выполнение этой операции."
+  Found: Необходимо исправить
 
   _CONTENT: Комментарий
   _SITE_STRUCTURE: Структура сайта
@@ -74,6 +75,7 @@ ru:
   # User
   You sure?: Вы уверены?
   Edit profile: Редактировать профиль
+  _AUTORIZATION: Авторизация
 
   # Pages
   main_content: Основной контент

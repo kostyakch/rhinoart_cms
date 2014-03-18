@@ -2,8 +2,7 @@ require_dependency "rhinoart/application_controller"
 
 module Rhinoart
     class UsersController < ApplicationController
-        before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
-        before_filter :signed_in_user
+        before_action :set_admin_user, only: [:show, :edit, :update, :destroy]        
         before_filter { access_only_roles %w[ROLE_ADMIN] }
 
 

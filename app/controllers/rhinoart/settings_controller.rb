@@ -3,8 +3,6 @@ require_dependency "rhinoart/application_controller"
 module Rhinoart
 	class SettingsController < ApplicationController
 		before_action :set_admin_setting, only: [:edit, :update, :destroy]
-
-		before_filter :signed_in_user
 		before_filter { access_only_roles %w[ROLE_ADMIN] }
 
 		def index

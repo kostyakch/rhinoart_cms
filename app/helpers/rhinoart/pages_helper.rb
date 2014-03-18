@@ -53,7 +53,7 @@ module Rhinoart
 									'</li>';
 					var html_content = '<div class="tab-pane" id="form_contents_add___name___name_tab">'+
 									'<textarea cols="40" id="page_page_content_attributes___name___content" name="page[page_content_attributes][__name__][content]" rows="20"></textarea>'+
-									'<script type="text/javascript">$(".tab-pane > textarea").redactor({minHeight: 350, imageUpload: "#{assets_upload_image_path}", imageGetJson: "#{assets_image_list_path}", fileUpload: "#{assets_upload_file_path}"});</script>'+
+									'<script type="text/javascript">$(".tab-pane > textarea").redactor({minHeight: 350, imageUpload: "#{upload_image_path}", imageGetJson: "#{image_list_path}", fileUpload: "#{upload_file_path}"});</script>'+
 									'</div>';
 
 					html_tab     = html_tab.replace(/__name__/g, tabCount);
