@@ -1,5 +1,5 @@
-@import "bootstrap";
-@import "bootstrap-responsive";
+@import "acme/bootstrap";
+@import "acme/bootstrap-responsive";
 @import "bootstrap-datepicker";
 
 /* Import Section
@@ -27,9 +27,9 @@
 @import "acme/style-responsive";
 
 
-body {background: url('/assets/bg-light.png');}
+body {background: asset_url('rhinoart/bg-light.png');}
 table.tree {
-	a.title { color: #000000; font-size: 14px; font-weight: bold; padding: 10px 0 10px 33px; background: url("/assets/i_doc.png") no-repeat 0 7px; }
+	a.title { color: #000000; font-size: 14px; font-weight: bold; padding: 10px 0 10px 33px; background: asset_url("rhinoart/i_doc.png") no-repeat 0 7px; }
 }
 
 #sidebar-left2{
