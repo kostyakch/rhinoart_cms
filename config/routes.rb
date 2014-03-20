@@ -15,7 +15,6 @@ Rhinoart::Engine.routes.draw do
     resources :page_comments
     resources :page_fields, only: [:new, :create, :destroy], via: :js
 
-
     match '/structures/:parent_id/new' => 'structures#new', :as => :new_children_structures, via: [:get]
     resources :structures
 
@@ -25,16 +24,12 @@ Rhinoart::Engine.routes.draw do
 
     resources :galleries
 
-
     #upload files
     scope :fileworks do
         match 'upload_image' => 'fileworks#upload_image', via: [:get, :post]#, via: :js
         match 'upload_file' => 'fileworks#upload_file' , via: [:get, :post]
         match 'image_list' => 'fileworks#image_list', via: [:get]
     end
-    # match '/assetics/upload_image' => 'assets#upload_image', via: [:get]#, via: :js
-    # match '/assets/upload_file' => 'assets#upload_file' , via: [:get]
-    # match '/assets/image_list' => 'assets#image_list', via: [:get]
 
     match '/gallery_images/:gallery_id/new' => 'gallery_images#new', :as => :new_image_gallery, via: [:get]
     match '/gallery_images/:gallery_id/uppload' => 'gallery_images#uppload', :as => :uppload_images, via: [:get]
