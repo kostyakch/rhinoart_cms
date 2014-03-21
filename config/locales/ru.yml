@@ -32,7 +32,7 @@ ru:
 
   _DELETE_CONFIRM: "Вы уверены, что хотите удалить запись?"
 
-  _SUBJECT_SEND_EMAIL: Сообщение с сайта...
+  _SUBJECT_SEND_EMAIL: "Сообщение с сайта от \"%{user_name}\""
   _EMAIL_SUCCESS_SEND: "Ваше сообщение успешно отправлено, и будет рассмотрено в ближайшее время."
   No permissions to perform this operation: "Нет разрешений на выполнение этой операции."
   Found: Необходимо исправить
