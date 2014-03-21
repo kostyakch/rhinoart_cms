@@ -42,11 +42,11 @@ module Rhinoart
 		    		content_tabs(@page,  %w[main_content preview])
 		    	when 'blog'
 		    		fields =  [
-							{ :name => "title", :ftype => "title", :position => 0 },
-							{ :name => "h1", :ftype => "title", :position => 1 },
-							{ :name => "description", :ftype => "meta", :position => 2 },
-							{ :name => "keywords", :ftype => "meta", :position => 3 },
-							{ :name => "comment", :ftype => "bool", :position => 4, :value => 'no' },
+							{ :name => "title", :ftype => "title", :position => 1 },
+							{ :name => "h1", :ftype => "title", :position => 2 },
+							{ :name => "description", :ftype => "meta", :position => 3 },
+							{ :name => "keywords", :ftype => "meta", :position => 4 },
+							{ :name => "comment", :ftype => "boolean", :position => 5, :value => 'no' },
 					]
 		    		content_fields(@page, fields)
 		    		content_tabs(@page,  %w[short full])
@@ -166,10 +166,10 @@ module Rhinoart
 			def content_fields(page, fields = 'default')
 				if fields == 'default'
 					fields =  [
-							{ :name => "title", :ftype => "title", :position => 0 },
-							{ :name => "h1", :ftype => "title", :position => 1 },
-							{ :name => "description", :ftype => "meta", :position => 2 },
-							{ :name => "keywords", :ftype => "meta", :position => 3 }
+							{ :name => "title", :ftype => "title", :position => 1 },
+							{ :name => "h1", :ftype => "title", :position => 2 },
+							{ :name => "description", :ftype => "meta", :position => 3 },
+							{ :name => "keywords", :ftype => "meta", :position => 4 }
 					]
 				end
 

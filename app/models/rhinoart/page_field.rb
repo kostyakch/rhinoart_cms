@@ -20,7 +20,7 @@ module Rhinoart
 		default_scope { order 'position' }
 		acts_as_list scope: :page_id
 
-		FIELD_TYPES = { text: 'Text', textarea: 'Textarea', image: 'Image', title: 'Meta title', meta: 'Meta description' }
+		FIELD_TYPES = { text: 'Text', textarea: 'Textarea', image: 'Image', boolean: 'Bollean', title: 'Title', meta: 'Meta descr and key' }
 
 		validates :name, :ftype, presence: true
 		validates_uniqueness_of :name, :scope => :page_id

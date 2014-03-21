@@ -19,6 +19,7 @@
 #
 module Rhinoart
   class Page < ActiveRecord::Base
+
     before_validation :name_to_slug
     after_initialize :set_publish_date
 
@@ -103,12 +104,12 @@ module Rhinoart
         if !self.slug.present?
           if self.parent_id.present?
             parent = Page.find_by_id(self.parent_id)
-            self.slug = parent.slug + "/" + Rhino::Utils.to_slug(self.name)
+            self.slug = parent.slug + "/" + Rhinoart::Utils.to_slug(self.name)
           else
-            self.slug = Rhino::Utils.to_slug(self.name)
+            self.slug = Rhinoart::Utils.to_slug(self.name)
           end
         else
-          self.slug = Rhino::Utils.to_slug(self.slug)
+          self.slug = Rhinoart::Utils.to_slug(self.slug)
         end
       end
 

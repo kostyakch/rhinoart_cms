@@ -4,8 +4,6 @@ module Rhinoart
     include ActiveModel::Conversion
     extend ActiveModel::Naming
 
-    attr_accessor :name, :email, :content
-
     # Validations
     validates :name, :email, :content, presence: true
 
