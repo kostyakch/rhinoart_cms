@@ -66,7 +66,7 @@ module Rhinoart
 
 				flash[:info] = t('_PAGE_SUCCESSFULLY_CREATED')
 				if params[:continue].present? 
-					redirect_to edit_admin_structure_path(@page)
+					redirect_to edit_structure_path(@page)
 				else
 					redirect_back_or pages_path
 				end			
@@ -89,8 +89,7 @@ module Rhinoart
 				if params[:continue].present? 
 					render action: "edit"
 				else
-					#redirect_back_or pages_path
-					redirect_to pages_path
+					redirect_back_or pages_path
 				end
 			else
 				render action: "edit"

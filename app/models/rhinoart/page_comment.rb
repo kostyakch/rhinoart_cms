@@ -25,7 +25,7 @@ module Rhinoart
 
 		# Validations
 		validates :comment, presence: true
-		validates :comment, length: { minimum: 3, maximum: 255 }
+		validates :comment, length: { minimum: 3, maximum: 1500 }
 
 		after_save :update_page_date
 
