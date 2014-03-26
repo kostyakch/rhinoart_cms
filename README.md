@@ -13,7 +13,7 @@ gem 'rhinoart', git: 'https://github.com/kostyakch/rhinoart_cms.git'
 
 ### Add in Your Gemfile line like this:
 ``` ruby
-gem 'rhinoart', git: 'https://github.com/kostyakch/rhinoart_cms.git'
+gem 'rhinoart', github: 'kostyakch/rhinoart_cms'
 ```
 
 ### In routes.rb add:

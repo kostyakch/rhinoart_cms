@@ -42,7 +42,9 @@
 
 <script type="text/javascript">
     $('.tab-pane > textarea').redactor({ 
-        minHeight: 350, 
+        autoresize: true,
+        minHeight: 300, 
+        maxHeight: 650,
         'imageUpload': '<%= upload_image_path %>',
         'imageGetJson': '<%= image_list_path %>',
         'fileUpload': '<%= upload_file_path %>'

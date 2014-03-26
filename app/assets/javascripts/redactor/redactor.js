@@ -135,9 +135,10 @@ var RLANG = {
 
 			focus: false,
 			tabindex: false,
-			autoresize: true,
+			autoresize: false,
 			minHeight: false,
-			fixed: false,
+			maxHeight: false,
+			fixed: true,
 			fixedTop: 0, // pixels
 			fixedBox: false,
 			source: true,
@@ -1057,6 +1058,11 @@ var RLANG = {
 				if (this.opts.minHeight !== false)
 				{
 					this.$content.css('min-height', this.opts.minHeight + 'px');
+				}
+
+				if (this.opts.maxHeight !== false)
+				{
+					this.$content.css('max-height', this.opts.maxHeight + 'px');
 				}
 
 				if (this.opts.wym === true)
