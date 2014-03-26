@@ -2,7 +2,7 @@
 
 Rhinoart is a admin engine system. This a CMS backend
 
-Installation:
+## Installation:
 
 ``` ruby
 # Gemfile for Rails 4
