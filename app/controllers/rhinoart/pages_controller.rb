@@ -157,8 +157,8 @@ module Rhinoart
 	        end
 
 			def content_tabs(page, names=%w[main_content])
-				names.each do |name|
-					page.page_content.build(name: name) if page.page_content.where("name = '#{name}'").empty?
+				names.each_with_index do |name, i|
+					page.page_content.build(name: name, position: i+1) if page.page_content.where("name = '#{name}'").empty?
 				end
 			end
 
