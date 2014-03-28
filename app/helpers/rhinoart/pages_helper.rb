@@ -11,9 +11,9 @@ module Rhinoart
 
 		def page_tree(parent = nil)
 			if parent.blank?
-				Page.where("parent_id IS NULL")	
+				Page.where("parent_id IS NULL and active = ?", true)	
 			else
-				Page.where('parent_id = ?', parent.id) if parent.ptype == 'page'
+				Page.where('parent_id = ? and active = ?', parent.id, true) if parent.ptype == 'page'
 			end		
 		end	
 

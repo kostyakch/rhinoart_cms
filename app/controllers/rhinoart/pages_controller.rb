@@ -75,7 +75,7 @@ module Rhinoart
 			end
 		end
 
-		def edit		
+		def edit
 			@pages_for_select = pages_for_select params[:id]
 		end
 

@@ -25,8 +25,9 @@ en:
   _BTN_PUBLIC: Public
   _BTN_HIDDEN: Hidden
   _BTN_MENU: Menu
+  _BTN_DELETE: Delete
   _SIGN_IN: "Sign in, please."
-  _NO_MAIN_CONTENT: "No content tab. You may set manually."
+  _NO_MAIN_CONTENT: "No content tab. You may set it manually."
   _CONTENTS: Contents
   _COMMENTS: Comments
 

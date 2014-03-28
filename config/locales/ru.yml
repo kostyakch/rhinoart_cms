@@ -25,10 +25,11 @@ ru:
   _BTN_PUBLIC: Public
   _BTN_HIDDEN: Hidden
   _BTN_MENU: Menu  
+  _BTN_DELETE: Удалить
   _SIGN_IN: Пожалуйста авторизуйтесь.
-  _NO_MAIN_CONTENT: "No content tab. You may set manually."
+  _NO_MAIN_CONTENT: "Таб для контента на установлен."
   _CONTENTS: Контент
-  _COMMENTS: Комментарии
+  _COMMENTS: Комментарии  
 
   _DELETE_CONFIRM: "Вы уверены, что хотите удалить запись?"
 

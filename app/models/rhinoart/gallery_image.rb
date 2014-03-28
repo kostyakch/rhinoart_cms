@@ -16,7 +16,7 @@
 module Rhinoart
 	class GalleryImage < ActiveRecord::Base
 		require File.expand_path("../../../uploaders/rhinoart/gallery_image_uploader", __FILE__) 
-
+		
 		belongs_to :gallery, :inverse_of => :gallery_image
 		acts_as_list scope: :gallery_id
 
@@ -26,7 +26,6 @@ module Rhinoart
 		validates :gallery_id, presence: true
 		#validates :path, presence: true, :uniqueness => { :scope => :gallery_id }
 
-		mount_uploader :path, GalleryImageUploader
-
+		mount_uploader :path, Rhinoart::GalleryImageUploader			
 	end
 end
