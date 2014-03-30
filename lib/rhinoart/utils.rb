@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Rhinoart
     class Utils
         def self.to_slug(str)     
