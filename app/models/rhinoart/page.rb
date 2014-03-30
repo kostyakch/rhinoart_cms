@@ -78,7 +78,6 @@ module Rhinoart
       end
     end
 
-    # Сформируем заголовок страницы
     def title
       if self.field_by_name('title').present?
         self.field_by_name('title')

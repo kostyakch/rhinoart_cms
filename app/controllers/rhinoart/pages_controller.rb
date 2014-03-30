@@ -122,10 +122,7 @@ module Rhinoart
 			render :nothing => true
 		end
 
-		#Метод добавления нового поля к странице Page
 		def field_page_add
-			
-
 			@count_page = params[:count_page]
 			
 			@field_name = params[:field_name]
@@ -178,9 +175,7 @@ module Rhinoart
 				end
 			end
 
-			# Обновим page_field (добавим/удалим)
 			def update_page_field(page, params)
-				# Создадим массив существующих полей
 				originalFields = []
 				page.page_field.each { |f| originalFields << f }
 
@@ -196,9 +191,7 @@ module Rhinoart
 				originalFields.each { |f| f.destroy }
 			end
 
-			# Обновим контети страницы (добавим/удалим)
 			def update_page_content(page, params)
-				# Создадим массив существующих полей
 				originalTabs = []
 				page.page_content.each { |f| originalTabs << f }
 

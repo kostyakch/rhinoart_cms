@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Rhinoart
 	class ApplicationController < ActionController::Base
 		include SessionsHelper
@@ -45,8 +46,6 @@ module Rhinoart
 				end       
 			end  
 
-			# Проверяем пользовательские роли, переданные в массиве "roles"
-			# В случае, если роли не найдены переадресуем пользователя на страницу авторизации
 			def access_only_roles(roles)
 				access = false
 				roles.each do |r| 
@@ -57,8 +56,7 @@ module Rhinoart
 				if not access
 					store_location        
 
-					# Если пользователь имеет роль "ROLE_EDITOR", отобразим страницу ошибки
-					# Если пользователь НЕ имеет роль "ROLE_EDITOR", отправим на страницу авторизации
+
 					if current_user.roles.split(',').include? 'ROLE_EDITOR' 
 					  render :template => 'site/err_403', :status => 403
 					else
