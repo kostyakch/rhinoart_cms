@@ -27,6 +27,8 @@ module Rhinoart
 
 		validates :ftype, inclusion: { in: FIELD_TYPES.keys.map(&:to_s) }
 
+		translates :value
+
 		def select_list
 			FIELD_TYPES.map { |ft| [ft[1], ft[0]] }
 		end

@@ -23,13 +23,14 @@ Gem::Specification.new do |s|
   s.add_dependency "will_paginate"
   s.add_dependency "acts_as_list"
   s.add_dependency "jquery-rails"
-  s.add_dependency 'sass-rails', '~> 4.0.0'
+  s.add_dependency 'sass-rails'
   s.add_dependency 'bootstrap-will_paginate'
   s.add_dependency 'bootstrap-datepicker-rails'
   s.add_dependency 'russian', '~> 0.6.0'
   
   s.add_dependency "mini_magick"
   s.add_dependency "carrierwave"
+  s.add_dependency 'globalize', '~> 4.0.1'
 
   #s.add_dependency "rails-observers"
   #s.add_development_dependency "sqlite3"
