@@ -12,9 +12,15 @@
 	    	<% case @field.ftype %>
 			<% when 'textarea' %>
 	    		<%= text_area_tag "page[page_field_attributes][#{index}][value]", @field.value, rows: 3, class: "span11" %>
-	    	<% when 'image' %>
-				<%= text_field_tag("page[page_field_attributes][#{index}][value]", @field.value, class: "span11") %>
-				<span class="input-group-btn"><%= link_to 'Img', '#', class: "btn" %></span>
+	    	<% when 'file' %>
+	            <%= text_field_tag("value_#{index}", t(:_SAVE_TO_UPLOAD), class: "span11 file_str") %>
+
+	            <span class="input-group-btn">
+	            	<%#= link_to t("_BTN_IMG"), '#', class: "btn", onclick: "$(this).parent().find('input:file').trigger('click');return false;" %>
+	            	<%#= file_field_tag "page[page_field_attributes][#{index}][path]", class: 'hide' %>
+				</span>
+
+				
 	    	<% else %>
 	    		<%= text_field_tag("page[page_field_attributes][#{index}][value]", @field.value, class: "span11") %>
 	    	<% end %> 

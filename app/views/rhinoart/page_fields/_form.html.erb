@@ -21,13 +21,6 @@
 				</div>
 
 				<div class="control-group">	
-					<%= pf.label :value, class: "control-label" %>
-				    <div class="controls">		    	
-				    	<%= pf.text_field :value, class: 'span11' %>		    	
-				    </div>
-				</div>
-
-				<div class="control-group">	
 					<%= pf.label :ftype, class: "control-label" %>
 				    <div class="controls">	
 				    	<%= pf.select :ftype, @field.select_list %>
@@ -45,3 +38,7 @@
 		</div>
 	<% end %>
 </div>
+
+<% content_for :javascript do %>
+
+<% end %>
