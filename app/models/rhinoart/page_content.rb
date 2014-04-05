@@ -17,8 +17,6 @@ module Rhinoart
 
 		acts_as_list  :scope => :page_id
 		default_scope { order 'position asc' }
-		
-		translates :name, :content
 
 		private
 			def update_page_date

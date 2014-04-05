@@ -26,7 +26,5 @@ module Rhinoart
 
 		default_scope { order 'position asc' }
 		acts_as_list  :scope => [:page_id]
-
-		translates :name, :descr
 	end
 end
