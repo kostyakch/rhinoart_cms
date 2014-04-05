@@ -6,7 +6,6 @@ module Rhinoart
 	require 'carrierwave'
 	require 'russian'
 	require 'bootstrap-datepicker-rails'
-	#require 'rails-observers'
 
 	require "rhinoart/utils"
   end

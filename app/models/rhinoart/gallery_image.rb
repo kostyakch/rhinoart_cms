@@ -26,6 +26,6 @@ module Rhinoart
 		validates :gallery_id, presence: true
 		#validates :path, presence: true, :uniqueness => { :scope => :gallery_id }
 
-		mount_uploader :path, Rhinoart::GalleryImageUploader			
+		mount_uploader :path, Rhinoart::GalleryImageUploader
 	end
 end

@@ -20,9 +20,9 @@
 #
 module Rhinoart
   class Page < ActiveRecord::Base
-
     before_validation :name_to_slug
-    after_initialize :set_publish_date
+    after_initialize :set_publish_date   
+
 
     # Associations
     #has_many :page_content, :order => 'position', :autosave => true, :dependent => :destroy  

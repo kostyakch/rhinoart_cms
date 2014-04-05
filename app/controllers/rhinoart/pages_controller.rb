@@ -12,7 +12,7 @@ module Rhinoart
 			if parent.blank?
 				@pages = Page.paginate(page: params[:page]).where("parent_id IS NULL AND active = ?", true)	
 			else
-				@pages = Page.paginate(page: params[:page]).where("parent_id = ? AND active = ?", parent.id, true) if parent.ptype == 'page'
+				@pages = Page.paginate(page: params[:page]).where("parent_id = ?", parent.id) if parent.ptype == 'page'
 			end			
 		end
 

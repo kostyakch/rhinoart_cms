@@ -21,7 +21,7 @@ class CreateRhinoTables < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :rhinoart_pages, [:parent_id, :slug], :unique => true
+    add_index :rhinoart_pages, [:parent_id, :slug], :unique => true    
 
 
     create_table :rhinoart_page_contents, :force => true do |t|

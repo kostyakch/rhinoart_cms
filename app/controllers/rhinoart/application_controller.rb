@@ -2,6 +2,7 @@
 module Rhinoart
 	class ApplicationController < ActionController::Base
 		include SessionsHelper
+		before_action :set_locale
 		before_filter :signed_in_user
 
 		before_filter :check_uri if Rails.configuration.redirect_to_www
@@ -21,6 +22,18 @@ module Rhinoart
 			redirect_to request.protocol + "www." + request.host_with_port + request.fullpath if !/^www/.match(request.host)
 		end
 
+
+		def default_url_options(options={})
+			if I18n.locale != I18n.default_locale
+				{ locale: I18n.locale }
+			else
+				{ locale: nil }
+			end
+		end	
+
+		def set_locale
+			I18n.locale = params[:locale] || I18n.default_locale
+		end	
 
 		private    
 			def signed_in_user
