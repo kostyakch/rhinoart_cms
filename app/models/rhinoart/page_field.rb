@@ -20,12 +20,14 @@ module Rhinoart
 		default_scope { order 'position' }
 		acts_as_list scope: :page_id
 
-		FIELD_TYPES = { text: 'Text', textarea: 'Textarea', image: 'Image', boolean: 'Bollean', title: 'Title', meta: 'Meta descr and key' }
+		FIELD_TYPES = { text: 'Text', textarea: 'Textarea', file: 'File', boolean: 'Bollean', title: 'Title', meta: 'Meta descr and key' }
 
 		validates :name, :ftype, presence: true
 		validates_uniqueness_of :name, :scope => :page_id
 
 		validates :ftype, inclusion: { in: FIELD_TYPES.keys.map(&:to_s) }
+	
+		mount_uploader :path, Rhinoart::FileUploader
 
 		def select_list
 			FIELD_TYPES.map { |ft| [ft[1], ft[0]] }
@@ -35,6 +37,6 @@ module Rhinoart
 			def update_page_date
 				self.page.updated_at = DateTime.now
 				self.page.save
-			end		
+			end			
 	end
 end

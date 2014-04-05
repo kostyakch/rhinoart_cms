@@ -53,6 +53,9 @@ module Rhinoart
     default_scope { order 'position asc' }
     acts_as_list  :scope => [:parent_id, :publish_date]
 
+
+
+
     def content_by_name(name='main_content')
       if self.page_content.find_by(name: name).present?
         self.page_content.find_by(name: name).content 

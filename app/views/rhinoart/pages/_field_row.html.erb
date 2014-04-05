@@ -14,10 +14,14 @@
 
 			    	<% case c.object.ftype %>
 					<% when 'textarea' %>
-			    		<%= c.text_area :value, class: 'span11', readonly: disabled_page?(@page) %>
-			    	<% when 'image' %>
-			            <%= c.text_field :value, class: 'span11', readonly: disabled_page?(@page) %> 
-			            <span class="input-group-btn"><%= link_to 'Img', '#', class: "btn" %></span>  
+			    		<%= c.text_area :value, rows: 3, class: 'span11', readonly: disabled_page?(@page) %>
+			    	<% when 'file' %>
+			            <%= text_field :value, c.object.id, value: c.object.path, class: 'span11 file_str', readonly: disabled_page?(@page) %> 
+
+			            <span class="input-group-btn">
+			            	<%= link_to t("_BTN_IMG"), '#', class: "btn", onclick: "$(this).parent().find('input:file').trigger('click');return false;" %>
+			            	<%= c.file_field :path, class: 'hide' %>
+						</span>
 			    	<% else %>
 			    		<%= c.text_field :value, class: 'span11', readonly: disabled_page?(@page) %>
 			    	<% end %> 	
@@ -48,3 +52,10 @@
 <% end %>
 
 
+<% content_for :javascript do %>
+<script type="text/javascript">
+	$('input[type=file]').on('change', function() {		
+		$(this).parent().parent().find('.file_str').val( $(this).val() );
+	});	
+</script>
+<% end %>
