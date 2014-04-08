@@ -12,10 +12,14 @@
 
 module Rhinoart
 	class PageField < ActiveRecord::Base
+		self.inheritance_column = "non_sti"
 		after_save :update_page_date
 
 		belongs_to :page, :inverse_of => :page_field	
 		accepts_nested_attributes_for :page
+
+		has_one :attachment, as: :attachable, class_name: "Rhinoart::Files", :autosave => true, :dependent => :destroy
+		accepts_nested_attributes_for :attachment, allow_destroy: true #, reject_if: :all_blank
 
 		default_scope { order 'position' }
 		acts_as_list scope: :page_id
@@ -27,8 +31,6 @@ module Rhinoart
 
 		validates :ftype, inclusion: { in: FIELD_TYPES.keys.map(&:to_s) }
 	
-		mount_uploader :path, Rhinoart::FileUploader
-
 		def select_list
 			FIELD_TYPES.map { |ft| [ft[1], ft[0]] }
 		end
@@ -37,6 +39,7 @@ module Rhinoart
 			def update_page_date
 				self.page.updated_at = DateTime.now
 				self.page.save
-			end			
+			end
+
 	end
 end

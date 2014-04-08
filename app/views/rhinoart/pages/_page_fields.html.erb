@@ -1,5 +1,7 @@
 <div id="param-fields-list" class="collapse">
 	<%= f.fields_for :page_field do |c| %>	
+		<%# ff.object ||= PageField.new %>
+
 		<% index = rand(100..300) %>
 		
 		<div id="field_<%= c.object.id.to_i == 0 ? index : c.object.id %>">
@@ -10,22 +12,26 @@
 			
 			<div class="control-group">	
 				<label class="control-label" for="page_page_fields_name"><%=t c.object.name %></label>
-			    <div class="controls">
-
+			    <div class="controls">	
 			    	<% case c.object.ftype %>
 					<% when 'textarea' %>
 			    		<%= c.text_area :value, rows: 3, class: 'span11', readonly: disabled_page?(@page) %>
 			    	<% when 'file' %>
-			            <%= text_field :value, c.object.id, value: c.object.path, class: 'span11 file_str', readonly: disabled_page?(@page) %> 
-
-			            <span class="input-group-btn">
+		            	<% if c.object.attachment.present? %>
+		            		<%= text_field :value, c.object.id, readonly: true, value: c.object.attachment.file_url, class: 'span9 file_str' %> 
+		            	<% else %>			            		
+		            		<% c.object.build_attachment %>
+		            		<%= text_field :value, c.object.id, readonly: true, class: 'span9 file_str' %> 
+		            	<% end %>
+		            	<span class="input-group-btn">
 			            	<%= link_to t("_BTN_IMG"), '#', class: "btn", onclick: "$(this).parent().find('input:file').trigger('click');return false;" %>
-			            	<%= c.file_field :path, class: 'hide' %>
-						</span>
+		            		<%= c.fields_for :attachment do |a| %>
+		            			<%= a.file_field :file, class: 'hide' %>
+		            		<% end %>
+		            	</span>
 			    	<% else %>
 			    		<%= c.text_field :value, class: 'span11', readonly: disabled_page?(@page) %>
-			    	<% end %> 	
-
+			    	<% end %> 
 
 			    	<% if !disabled_page?(@page) %>
 						<%= link_to '<span class="icon-plus-sign"></span>'.html_safe, '#mdFieldAdd', data: { toggle: "modal" } %>
@@ -35,6 +41,7 @@
 							remote: true, 
 							data: { confirm: t('_DELETE_CONFIRM') } %>
 			        <% end %>
+
 			    </div>
 			</div> 
 		</div>	

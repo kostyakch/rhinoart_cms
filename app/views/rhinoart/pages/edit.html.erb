@@ -21,7 +21,7 @@
 </script>	
 <% end %>
 
-<%= form_for @page, :url => page_path do |f| %>
+<%= form_for @page, :url => page_path, :html => { :multipart => true } do |f| %>
     <legend><%= "#{t(:_EDIT)}: #{@page.name}" %></legend>
 
    	<%= render 'fields', f: f %>	    

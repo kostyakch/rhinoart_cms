@@ -146,11 +146,13 @@ module Rhinoart
 	        # Use callbacks to share common setup or constraints between actions.
 	        def set_rhinoart_page
 	            @page = Page.find(params[:id])
+	            #@page.page_field.build(attachment: Rhinoart::Files.new )
 	        end
 
 	        # Never trust parameters from the scary internet, only allow the white list through.
 	        def admin_pages_params
-	            params.require(:page).permit!
+	            #params.require(:page).permit!
+	            params[:page].permit! # TODO
 	        end
 
 			def content_tabs(page, names=%w[main_content])

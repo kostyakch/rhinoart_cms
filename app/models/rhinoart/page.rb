@@ -20,6 +20,8 @@
 #
 module Rhinoart
   class Page < ActiveRecord::Base
+    require "rhinoart/utils"
+    
     before_validation :name_to_slug
     after_initialize :set_publish_date   
 
@@ -66,13 +68,22 @@ module Rhinoart
     alias_method :content, :content_by_name
 
     def field_by_name(name)
-      if self.page_field.find_by(name: name).present?
-        self.page_field.find_by(name: name).value 
+      field = self.page_field.find_by(name: name)
+      if field.present?
+        if field.ftype != PageField::FIELD_TYPES[:file].downcase
+          field.value 
+        else
+          field.attachment.try(:file_url)
+        end
       else
         ''
       end
     end
     alias_method :field, :field_by_name
+
+    def field_obj(name)
+      self.page_field.find_by(name: name) if self.page_field.find_by(name: name).present?
+    end
 
     def children(active = true)
       if active
