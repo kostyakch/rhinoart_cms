@@ -6,8 +6,6 @@ module Rhinoart
         # include Sprockets::Helpers::IsolatedHelper
 
         include CarrierWave::MimeTypes
-        require "rhinoart/utils"
-        #CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
 
         process :set_content_type
         process :save_content_type_in_model        
@@ -27,21 +25,14 @@ module Rhinoart
         end
 
         def filename
-            if original_filename
-                original_filename.strip
-                Rhinoart::Utils.to_slug(original_filename.downcase)
-            end
+          "#{secure_token(10)}.#{file.extension}" if original_filename
         end
 
-        # def filename
-        #   "#{super.chomp(original_filename)}" if original_filename
-        # end
-
         protected
-          def secure_token(length = 16)
+          def secure_token(length = 16)            
             var = :"@#{mounted_as}_secure_token"
             model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.hex(length/2))
-          end
+          end          
 
     end
 end
