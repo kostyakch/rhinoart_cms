@@ -9,9 +9,7 @@
 
 <div class="row">
   <div class="span6 offset3">
-    <%#= form_for(:session, url: sessions_path) do |f| %>
-    <%= form_for :session do |f| %>
-
+    <%= form_for(:session, url: sessions_path) do |f| %>
       <%= f.label :email %>
       <%= f.text_field :email %>
 

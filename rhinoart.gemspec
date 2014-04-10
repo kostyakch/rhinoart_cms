@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.0.2"
   s.add_dependency "mysql2", "0.3.15"
-
+  s.add_dependency "foreigner"
   s.add_dependency "bcrypt"
   s.add_dependency "bcrypt-ruby"
   s.add_dependency "will_paginate"

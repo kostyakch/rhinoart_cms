@@ -5,7 +5,7 @@ module Rhinoart
 		before_action :set_locale
 		before_filter :signed_in_user
 
-		before_filter :check_uri if Rails.configuration.redirect_to_www
+		#before_filter :check_uri if Rails.configuration.redirect_to_www
 
 		# def set_locale
 		#   I18n.locale = params[:locale] || I18n.default_locale
