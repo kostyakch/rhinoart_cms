@@ -17,6 +17,8 @@ Rhinoart::Engine.routes.draw do
         resources :page_fields, only: [:new, :create, :destroy], via: :js
 
         match '/structures/:parent_id/new' => 'structures#new', :as => :new_children_structures, via: [:get]
+        match '/structures/:parent_id/list' => 'structures#children', :as => :structure_children, via: [:get]
+        match '/structures/:id/show_hide' => 'structures#showhide', :as => :structure_showhide, via: [:get]
         resources :structures
 
         resources :users

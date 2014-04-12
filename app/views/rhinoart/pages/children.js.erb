@@ -1,0 +1,22 @@
+if ( $('#cat_<%= params[:parent_id] %> a.toogle').hasClass('icon-chevron-down') ) {
+	<% @pages.each do |p| %>
+		$('#cat_<%= p.id %>').remove();
+		<% p.children.each do |c| %>
+			$('#cat_<%= c.id %>').remove();
+		<% end %>
+	<% end %>
+
+	$('#cat_<%= params[:parent_id] %> span a.toogle').first().addClass('icon-chevron-right');
+	$('#cat_<%= params[:parent_id] %> span a.toogle').first().removeClass('icon-chevron-down');
+
+	removeIdFromCookie(<%= params[:parent_id] %>, '/admin');
+} else {
+	<% @pages.each do |p| %>
+		$('#cat_<%= p.parent.id %>').append('<%= escape_javascript(render("rows", p: p, :formats => [:html])) %>');	
+	<% end %>	
+	
+	$('#cat_<%= params[:parent_id] %> span a.toogle').first().addClass('icon-chevron-down');
+	$('#cat_<%= params[:parent_id] %> span a.toogle').first().removeClass('icon-chevron-right');
+
+	addIdToCookie(<%= params[:parent_id] %>, '/admin');
+}

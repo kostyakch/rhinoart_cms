@@ -46,11 +46,22 @@ table.tree {
 
 	.sidebar-nav > ul {
 		margin: 0 15px;
-		li {border-bottom: 1px solid silver;
+		li {
+			/* border-bottom: 1px solid silver; */
+			text-align: left;
+			margin: 10px 0 0;
+			padding-left: 15px;
 			a {text-align: left; font-size: 12px;}
 		}
-		li:last-child {border-bottom: 0;}
-		
+		li:last-child {border-bottom: 0;}	
+
+		hr {
+			margin: 4px 0;
+		}	
+	}
+
+	.nav {
+		margin-bottom: 0;
 	}
 }
 
@@ -67,4 +78,9 @@ table.tree {
 
 form {
 	margin: 0;
+}
+
+
+.sb-item {
+	margin-left: 5px !important;
 }

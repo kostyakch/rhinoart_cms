@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency "acts_as_list"
 
   s.add_dependency "jquery-rails"
+  #s.add_dependency "json"
   s.add_dependency 'sass-rails'
   s.add_dependency 'bootstrap-will_paginate'
   s.add_dependency 'bootstrap-datepicker-rails'

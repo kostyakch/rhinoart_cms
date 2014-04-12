@@ -7,7 +7,7 @@
 	
 	<%= csrf_meta_tags %>
  
-    <%= render 'layouts/rhinoart/shim' %>
+    <%= render 'layouts/rhinoart/shim' %>    
 </head>
 
 <body>
@@ -30,8 +30,8 @@
 </div>
 
 
-<%= javascript_include_tag "rhinoart/application" %>
 
+<%= javascript_include_tag "rhinoart/application" %>
 <%= raw yield(:javascript) %>
 
 <% if Rails.env.development? %>

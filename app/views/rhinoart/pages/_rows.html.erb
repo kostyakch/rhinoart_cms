@@ -1,13 +1,31 @@
-<li style="padding-left: <%= 10 + (level*25) %>px;">
-	<% if p.ptype == 'article' || p.ptype == 'blog' %>
-		<%= link_to p.name, page_children_path(p) %>
-	<% else %>
-		<%= link_to p.name, edit_page_path(p) %>
-	<% end %>
-</li>
+<ul class="nav nav-tabs nav-stacked">
+	<li id="cat_<%= p.id %>">
+	 	<span>
+		 	<%= link_to '', pages_path(parent: p.id), remote: true, class: "toogle icon-chevron-right" if page_items(p).present? %>
 
-<% if page_tree(p).present? %>
-<% page_tree(p).each do |children| %>
-	<%= render 'rows', p: children, level: level + 1 %>
-<% end %> 
-<% end %>
+			<% if p.ptype == 'article' || p.ptype == 'blog' %>
+				<%= link_to p.name, page_children_path(p), class: 'sb-item' %>
+			<% else %>
+				<%= link_to p.name, edit_page_path(p), class: 'sb-item' %>
+			<% end %>
+		</span>
+
+		<% if @tree_ids.present? && @tree_ids.include?(p.id) %>
+			<%# if page_tree(p).present? %>
+			<% page_tree(p).each do |children| %>
+				<%= render 'rows', p: children %>	
+			<% end %> 
+			<%# end %>	
+
+			<%= content_for :javascript do %>
+			<script type="text/javascript">
+				$(function(){
+					$('#cat_<%= p.id %> span a.toogle').first().addClass('icon-chevron-down');
+					$('#cat_<%= p.id %> span a.toogle').first().removeClass('icon-chevron-right');
+				})
+			</script>
+			<% end %>
+		<% end %>	
+		<hr>
+	</li>
+</ul>

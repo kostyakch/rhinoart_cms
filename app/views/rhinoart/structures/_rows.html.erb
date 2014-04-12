@@ -1,7 +1,7 @@
-<tr class="content-t level_<%= level %>" id="cat_<%= p.id %>">
+<tr class="content-t level_<%= level %>" id="cat_<%= p.id %>" >
 	<td style="padding-left: <%= 10 + (level*25) %>px;">
-		<% if page_items(p).present? %>
-		<a class="toogle icon-chevron-down" href="#" onclick="return false;" style="margin-left: -18px;"></a>
+		<% if page_items(p).present? %>		
+			<%= link_to '', structure_children_path(p, level: level), remote: true, class: "toogle icon-chevron-right", style: "margin-left: -18px;" %>
 		<% end %>
 		<%= link_to p.name, edit_structure_path(p), class: 'title' %> <i><sup><%= p.id %></sup></i>
 		<img class="loading" src="/assets/spinner.gif" style="display: none;">		
@@ -16,7 +16,7 @@
             <ul class="dropdown-menu">
                 <li><%= link_to t('add subpage'), new_children_structures_path(p) if p.ptype != 'article' %></li>
                 <li><%= link_to t('edit'), structure_path(p) %></li>
-                <li><%= link_to p.active? ? t('hide') : t('show'), page_showhide_path(p) %></li>
+                <li><%= link_to p.active? ? t('hide') : t('show'), structure_showhide_path(p) %></li>
                 <% if !disabled_page?(p) %>
                 <li class="divider"></li>
                 <li><%= link_to t('delete'), structure_path(p), :method => :delete, :data => { :confirm => t('_DELETE_CONFIRM') } %></li>
@@ -26,8 +26,17 @@
 	</td>
 </tr>
 
-<% if page_items(p).present? %>
-<% page_items(p).each do |children| %>
-	<%= render 'rows', p: children, level: level + 1 %>
-<% end %> 
-<% end %> 
+<% if @tree_ids.present? && @tree_ids.include?(p.id) %>
+	<% page_items(p).each do |children| %>
+		<%= render 'rows', p: children, level: level + 1 %>	
+	<% end %> 
+
+	<%= content_for :javascript do %>
+	<script type="text/javascript">
+		$(function(){
+			$('#cat_<%= p.id %> a.toogle').addClass('icon-chevron-down');
+			$('#cat_<%= p.id %> a.toogle').removeClass('icon-chevron-right');
+		})
+	</script>
+	<% end %>
+<% end %>

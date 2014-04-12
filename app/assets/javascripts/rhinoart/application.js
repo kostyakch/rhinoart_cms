@@ -12,21 +12,27 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_self
 //= require_tree .
+//= require_self
 
 //= require acme/bootstrap
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.ru.js
 //= require acme/jquery.cookie
 //= require acme/jquery.masonry.min
+
 // require gallery_images
+
 
 
 $(function(){
 	if($('#content').height() > $('#sidebar-left2').height()) {
-		$('#sidebar-left2').height( $('#content').height() + 40);
+		//$('#sidebar-left2').height( $('#content').height() + 40);
 	} else {
-		$('#content').height( $('#sidebar-left2').height() - 40);
+		//$('#content').height( $('#sidebar-left2').height() - 40);
 	}	
+
+	
 })
+
+
