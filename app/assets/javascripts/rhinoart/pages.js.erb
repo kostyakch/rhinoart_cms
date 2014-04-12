@@ -25,24 +25,23 @@ $('.collapse').on('hidden', function () {
 });
 
 function addIdToCookie(id, qpath) {
-    var ids = $.cookie('tree_ids').split(',');
-    if(ids == null) {
+    if($.cookie('tree_ids') == null) {
         ids = id;
     } else {
+        ids = $.cookie('tree_ids').split(',');
         if( $.inArray(id, ids) == -1) {
             ids.push(id);
         }
     }
-
+    
     $.cookie('tree_ids', ids, {path: qpath}); 
 }
 function removeIdFromCookie(id, qpath) {
-    var ids = $.cookie('tree_ids').split(',');
-
-    if(ids != null) {
+    if($.cookie('tree_ids') != null) {
+        var ids = $.cookie('tree_ids').split(',');
         var newIds = [];
         $.each(ids, function(index, value) {
-                if(id != value) newIds.push(value);
+            if(id != value) newIds.push(value);
         });	
 
         $.cookie('tree_ids', newIds, {path: qpath});
