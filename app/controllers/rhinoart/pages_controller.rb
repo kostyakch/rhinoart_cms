@@ -76,19 +76,20 @@ module Rhinoart
 
 				flash[:info] = t('_PAGE_SUCCESSFULLY_CREATED')
 				if params[:continue].present? 
-					redirect_to structure_path([@page, :edit])
+					#redirect_to structure_path([@page, :edit])
+					redirect_to :back
 				else
 					redirect_back_or pages_path
 				end			
 			else	
-				render 'new'
+				render action: "new"
 			end
 		end
 
 		def edit
 		end
 
-		def update
+		def update			
 			if @page.update(admin_pages_params)
 				update_page_content(@page, params[:page])		
 

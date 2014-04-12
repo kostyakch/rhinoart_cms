@@ -1,6 +1,6 @@
 <% provide(:title, t(:_NEW_PAGE)) %>
 
-<%= form_for @page do |f| %>
+<%= form_for @page, url: structures_path do |f| %>
     <legend><%= t(:_NEW_PAGE) %> </legend>   
 
    	<%= render 'fields', f: f %>	   

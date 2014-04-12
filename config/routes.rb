@@ -18,7 +18,7 @@ Rhinoart::Engine.routes.draw do
         end
 
         # Page structures
-        resources :structures, only: [:index, :new, :edit, :destroy] do
+        resources :structures, only: [:index, :new, :create, :edit, :destroy] do
             member do
                 get 'new', as: :new_child
                 get 'children'

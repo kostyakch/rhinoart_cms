@@ -1,12 +1,12 @@
 <ul class="nav nav-tabs nav-stacked">
 	<li id="cat_<%= p.id %>" class="<%= params[:id].to_i == p.id.to_i ? 'active' : '' %>">
 	 	<span>
-		 	<%= link_to '', pages_path(parent: p.id), remote: true, class: "toogle icon-chevron-right" if page_items(p).present? %>
+		 	<%= link_to '', pages_path(parent: p.id), remote: true, class: "toogle icon-chevron-right" if page_tree(p).present? %>
 
 			<% if p.ptype == 'article' || p.ptype == 'blog' %>
-				<%= link_to p.name, children_page_path(p), class: page_items(p).present? ? '' : 'children' %>
+				<%= link_to p.name, children_page_path(p), class: page_tree(p).present? ? '' : 'children' %>
 			<% else %>
-				<%= link_to p.name, edit_page_path(p), class: page_items(p).present? ? '' : 'children' %>
+				<%= link_to p.name, edit_page_path(p), class: page_tree(p).present? ? '' : 'children' %>
 			<% end %>			
 		</span>
 		<hr>
