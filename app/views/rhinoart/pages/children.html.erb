@@ -1,7 +1,7 @@
 <% provide(:title, t(:_NEWS_ARTICLES)) %>
 
 <% content_for :sidebar_l2 do %>
-<div id="sidebar-left2" class="span2">
+<div id="sidebar-left2" class="span3">
 	<div class="nav-collapse sidebar-nav">
 		<ul class="nav nav-tabs nav-stacked">
 			<% page_items.each do |p| %>
@@ -14,12 +14,10 @@
 
 <div class="box-header" data-original-title="">
 	<h2><i class="halflings-icon align-justify"></i><span class="break"></span><%= @parent.name %></h2>
-	<div class="box-icon">
+<!-- 	<div class="box-icon">
 		<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
-		<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-		<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
 	</div>
-</div>
+ --></div>
 <div class="box-content">
 	<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
 		<div class="row-fluid">

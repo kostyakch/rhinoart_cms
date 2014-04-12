@@ -27,7 +27,7 @@
 
         <div class="span2">
             <%= f.label :parent_id %>
-            <%= f.collection_select :parent_id, @pages_for_select, :id, :name, {include_blank: true}, {class: 'span11'} %>
+            <%= f.collection_select :parent_id, Rhinoart::Page.article_list, :id, :name, {include_blank: true}, {class: 'span11'} %>
         </div>
 
         <div class="span2">

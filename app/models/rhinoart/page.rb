@@ -53,7 +53,7 @@ module Rhinoart
     validates_uniqueness_of :slug, :scope => :parent_id
 
     default_scope { order 'position asc' }
-    acts_as_list  :scope => [:parent_id, :publish_date]
+    acts_as_list  :scope => [:parent_id] #, :publish_date
 
 
 
@@ -107,7 +107,16 @@ module Rhinoart
 
     def comment_count
       PageComment.where('page_id = ? AND approved = true', self.id).count
-    end  
+    end 
+
+    def self.article_list(id = nil)
+      if id.present?
+        self.where("ptype != 'article' AND id != ?", id).order('name')
+      else
+        self.where("ptype != 'article'").order('name')        
+      end        
+    end 
+
 
     protected
       def set_publish_date

@@ -25,8 +25,8 @@ module Rhinoart
 		def children
 			store_location
 
-			@parent = Page.find(params[:parent_id])
-			@pages = Page.where("parent_id = ?", params[:parent_id]) #.order('publish_date DESC')
+			@parent = Page.find(params[:id])
+			@pages = Page.where("parent_id = ?", params[:id]) #.order('publish_date DESC')
 			@level = params[:level]
 			
 			respond_to do |format|
@@ -37,10 +37,9 @@ module Rhinoart
 
 		def new
 	    	@page = Page.new
-	    	@pages_for_select = pages_for_select    	
 
-	    	if params[:parent_id].present?
-		    	@page.parent_id = params[:parent_id]
+	    	if params[:id].present?
+		    	@page.parent_id = params[:id]
 		       	@page.ptype = Page.find(@page.parent_id).ptype
 	    	end
 
@@ -72,13 +71,12 @@ module Rhinoart
 
 		def create
 			@page = Page.new		
-			@pages_for_select = pages_for_select
 
 			if @page.update_attributes(admin_pages_params)
 
 				flash[:info] = t('_PAGE_SUCCESSFULLY_CREATED')
 				if params[:continue].present? 
-					redirect_to edit_structure_path(@page)
+					redirect_to structure_path([@page, :edit])
 				else
 					redirect_back_or pages_path
 				end			
@@ -88,18 +86,15 @@ module Rhinoart
 		end
 
 		def edit
-			@pages_for_select = pages_for_select params[:id]
 		end
 
 		def update
-			@pages_for_select = pages_for_select params[:id]
 			if @page.update(admin_pages_params)
-				#update_page_field(@page, params[:page]) # Обновим данные о page_field
 				update_page_content(@page, params[:page])		
 
 				flash.now[:info] = t('_PAGE_SUCCESSFULLY_UPDATED')
 				if params[:continue].present? 
-					render action: "edit"
+					redirect_to :back
 				else
 					redirect_back_or pages_path
 				end
@@ -158,7 +153,6 @@ module Rhinoart
 	        # Use callbacks to share common setup or constraints between actions.
 	        def set_rhinoart_page
 	            @page = Page.find(params[:id])
-	            #@page.page_field.build(attachment: Rhinoart::Files.new )
 	        end
 
 	        # Never trust parameters from the scary internet, only allow the white list through.
@@ -225,14 +219,5 @@ module Rhinoart
 				# remove the relationship between the param and the Content
 				originalTabs.each { |f| f.destroy }			
 			end
-
-			def pages_for_select(id = nil)
-				if id.present?
-					Page.where("ptype != 'article' AND id != ?", id).order('name')
-				else
-					Page.where("ptype != 'article'").order('name')				
-				end			
-			end
-
 	end
 end

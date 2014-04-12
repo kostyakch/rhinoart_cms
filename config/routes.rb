@@ -6,20 +6,28 @@ Rhinoart::Engine.routes.draw do
         match '/login',  to: 'sessions#new', via: [:get]
         match '/logout', to: 'sessions#destroy', via: [:delete, :get]
 
-        match '/page/:id/show_hide' => 'pages#showhide', :as => :page_showhide, via: [:get]
-        match '/page/:parent_id/list' => 'pages#children', :as => :page_children, via: [:get]
-        match '/page/:parent_id/new' => 'pages#new', :as => :new_children_page, via: [:get]
-        match '/page/tree' => 'pages#tree', :as => :pages_tree, via: [:get]
-        match '/page/field_page_add' => 'pages#field_page_add', :as => :pages_field_add, via: [:get]
-        resources :pages
+        # Pages
+        resources :pages do
+            member do
+                get 'showhide'                
+                get 'children'
+                get 'new', as: :new_children
+            end  
+            get 'tree', on: :collection
+            get 'field_page_add', on: :collection
+        end
+
+        # Page structures
+        resources :structures, only: [:index, :new, :edit, :destroy] do
+            member do
+                get 'new', as: :new_child
+                get 'children'
+                get 'showhide'
+            end            
+        end 
 
         resources :page_comments
         resources :page_fields, only: [:new, :create, :destroy], via: :js
-
-        match '/structures/:parent_id/new' => 'structures#new', :as => :new_children_structures, via: [:get]
-        match '/structures/:parent_id/list' => 'structures#children', :as => :structure_children, via: [:get]
-        match '/structures/:id/show_hide' => 'structures#showhide', :as => :structure_showhide, via: [:get]
-        resources :structures
 
         resources :users
         resources :settings

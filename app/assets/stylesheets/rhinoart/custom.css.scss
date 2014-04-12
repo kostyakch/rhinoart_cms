@@ -27,37 +27,75 @@
 @import "acme/style-responsive";
 
 
+@mixin gradient() {
+	/* Firefox 3.6+ */
+	background-image: -moz-linear-gradient(left, rgba(249, 249, 249, 0.25) 0%, #B9B9B9 50%, rgba(249, 249, 249, 0.25) 100%);
+
+	/* Safari 4+, Chrome 1+ */
+	background-image: -webkit-linear-gradient(left, rgba(249, 249, 249, 0.25) 0%, #B9B9B9 50%, rgba(249, 249, 249, 0.25) 100%);
+
+	/* Safari 5.1+, Chrome 10+ */
+	background-image: -o-linear-gradient(left, rgba(249, 249, 249, 0.25) 0%, #B9B9B9 50%, rgba(249, 249, 249, 0.25) 100%);
+
+	/* Opera 11.10+ */
+	background-image: linear-gradient(left, rgba(249, 249, 249, 0.25) 0%, #B9B9B9 50%, rgba(249, 249, 249, 0.25) 100%);
+}
+
 body {background: asset_url('rhinoart/bg-light.png');}
 table.tree {
 	a.title { color: #000000; font-size: 14px; font-weight: bold; padding: 10px 0 10px 33px; background: asset_url("rhinoart/i_doc.png") no-repeat 0 7px; }
 }
 
+/* linear-gradient(to right, rgba(249, 249, 249, 0.25) 0%, #B9B9B9 50%, rgba(249, 249, 249, 0.25) 100%) */
+
 #sidebar-left2{
 	background: #ffffff;
 	_min-height: 509px;
 	margin-left: 0;
-
+	padding-top: 10px;
 	filter: none;
 	-webkit-border-radius: 0px 5px 5px 5px;
 	-moz-border-radius: 0px 5px 5px 5px;
 	border-radius: 0px 5px 5px 5px;
 	border-top: 2px solid #eee;
 	position: relative;	
+	max-width: 270px;
 
 	.sidebar-nav > ul {
-		margin: 0 15px;
+		margin: 0 15px 0 0;
+
 		li {
 			/* border-bottom: 1px solid silver; */
 			text-align: left;
-			margin: 10px 0 0;
-			padding-left: 15px;
-			a {text-align: left; font-size: 12px;}
-		}
-		li:last-child {border-bottom: 0;}	
+			margin: 5px 0;
+			padding-left: 10px;
+			a {
+				text-align: left; 
+				font-size: 12px;
 
-		hr {
-			margin: 4px 0;
-		}	
+				&.toogle {
+					margin-top: -1px;
+					margin-left: -5px;
+				}
+			}
+
+			.children {
+				margin-left: 12px;
+			}
+
+			hr { 
+				@include gradient();
+				height: 1px;
+				margin: 9px;
+			}
+
+			&.active > span > a {
+				color: #000;
+				font-weight: bold;					
+			}
+		}
+
+
 	}
 
 	.nav {
@@ -80,7 +118,11 @@ form {
 	margin: 0;
 }
 
-
-.sb-item {
-	margin-left: 5px !important;
+.form-horizontal {
+	.controls {
+		margin-left: 125px;
+	}
+	.control-label {
+		width: 115px;
+	}	
 }
