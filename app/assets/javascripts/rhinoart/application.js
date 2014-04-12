@@ -12,8 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-//= require_self
 
 //= require acme/bootstrap
 //= require bootstrap-datepicker/core
@@ -23,6 +21,8 @@
 
 // require gallery_images
 
+//= require_tree .
+//= require_self
 
 
 $(function(){

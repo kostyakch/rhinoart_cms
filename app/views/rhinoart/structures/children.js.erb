@@ -9,7 +9,7 @@ if ( $('#cat_<%= params[:id] %> a.toogle').hasClass('icon-chevron-down') ) {
 	$('#cat_<%= params[:id] %> a.toogle').addClass('icon-chevron-right');
 	$('#cat_<%= params[:id] %> a.toogle').removeClass('icon-chevron-down');
 
-	removeIdFromCookie(<%= params[:id] %>, '/admin/structures');
+	removeIdFromCookie(<%= params[:id] %>, '/admin');
 } else {
 	<% @pages.reverse.each do |p| %>
 		$('#cat_<%= p.parent.id %>').after('<%= escape_javascript(render("rows", p: p, level: @level.to_i + 1, :formats => [:html])) %>');	
@@ -18,5 +18,6 @@ if ( $('#cat_<%= params[:id] %> a.toogle').hasClass('icon-chevron-down') ) {
 	$('#cat_<%= params[:id] %> a.toogle').addClass('icon-chevron-down');
 	$('#cat_<%= params[:id] %> a.toogle').removeClass('icon-chevron-right');
 
-	addIdToCookie(<%= params[:id] %>, '/admin/structures');
+	
+	addIdToCookie(<%= params[:id] %>, '/admin');
 }
