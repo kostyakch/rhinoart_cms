@@ -11,8 +11,11 @@
 		</span>
 		<hr>
 		<% if @tree_ids.present? && @tree_ids.include?(p.id) %>
-			<% page_tree(p).each do |children| %>
-				<%= render 'rows', p: children %>	
+			<% pages = page_tree(p) %>
+			<% if pages.present? %>
+				<% pages.each do |children| %>
+					<%= render 'rows', p: children %>	
+				<% end %> 
 			<% end %> 
 
 			<%= content_for :javascript do %>
