@@ -27,8 +27,11 @@
 </tr>
 
 <% if @tree_ids.present? && @tree_ids.include?(p.id) %>
-	<% page_items(p).each do |children| %>
-		<%= render 'rows', p: children, level: level + 1 %>	
+	<% pages = page_tree(p) %>
+	<% if pages.present? %>
+		<% pages.each do |children| %>
+			<%= render 'rows', p: children, level: level + 1 %>	
+		<% end %> 
 	<% end %> 
 
 	<%= content_for :javascript do %>
