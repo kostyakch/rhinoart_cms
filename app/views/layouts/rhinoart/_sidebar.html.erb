@@ -3,7 +3,7 @@
 		<ul class="nav nav-tabs nav-stacked main-menu">
 			<% if has_role?('ROLE_ADMIN') || has_role?('ROLE_EDITOR') %>
 			<li class="<%= 'active' if controller.controller_name == 'pages' %>">
-				<%= link_to "<i class=\"fa-icon-tasks\"></i><span class=\"hidden-tablet\"> #{ t(:_CONTENTS) }</span>".html_safe, pages_path %>
+				<%= link_to "<i class=\"fa-icon-tasks\"></i><span class=\"hidden-tablet\"> #{ t(:_CONTENT) }</span>".html_safe, pages_path %>
 			</li>
 			<li class="<%= 'active' if controller.controller_name == 'page_comments' %>">
 				<%= link_to "<i class=\"fa-icon-comments\"></i><span class=\"hidden-tablet\"> #{ t(:_COMMENTS) }</span>".html_safe, page_comments_path %>
