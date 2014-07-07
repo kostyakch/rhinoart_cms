@@ -3,9 +3,13 @@ namespace :db do
   task populate: :environment do
     Rhinoart::User.create!(name: "Admin",
                  email: "admin@test.com",
-                 roles: "ROLE_ADMIN",
+                 name: "Admin User",
+                 admin_role: "Super User",
+                 approved: 1,
                  password: "admin",
-                 password_confirmation: "admin")
+                 password_confirmation: "admin",
+                 )
+
     # 99.times do |n|
     #   name  = Faker::Name.name
     #   email = Faker::Internet.email
