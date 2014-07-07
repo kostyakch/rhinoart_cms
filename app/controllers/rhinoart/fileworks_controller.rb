@@ -1,7 +1,7 @@
 require_dependency "rhinoart/application_controller"
 
 module Rhinoart
-	class FileworksController < ApplicationController
+	class FileworksController < BaseController
 		require File.expand_path("../../../uploaders/rhinoart/redactor_uploader", __FILE__) 
 		
 		def upload_image

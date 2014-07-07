@@ -1,9 +1,9 @@
 require_dependency "rhinoart/application_controller"
 
 module Rhinoart
-	class SettingsController < ApplicationController
+	class SettingsController < BaseController
+		before_action { authorize! :manage, :all }
 		before_action :set_admin_setting, only: [:edit, :update, :destroy]
-		before_filter { access_only_roles %w[ROLE_ADMIN] }
 
 		def index
 			store_location

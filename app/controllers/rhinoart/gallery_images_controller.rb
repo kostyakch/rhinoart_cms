@@ -1,9 +1,9 @@
 require_dependency "rhinoart/application_controller"
 
 module Rhinoart
-    class GalleryImagesController < ApplicationController
+    class GalleryImagesController < BaseController
+        before_action { authorize! :manage, :content }
         before_action :set_gallery_image, only: [:edit, :update, :destroy]
-        before_filter { access_only_roles %w[ROLE_ADMIN ROLE_EDITOR] }
 
         def index
             store_location

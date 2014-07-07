@@ -1,7 +1,7 @@
 require_dependency "rhinoart/application_controller"
 
 module Rhinoart
-	class PageFieldsController < ApplicationController
+	class PageFieldsController < BaseController
 		def new
 		end
 

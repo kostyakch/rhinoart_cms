@@ -2,10 +2,10 @@
 require_dependency "rhinoart/application_controller"
 
 module Rhinoart
-	class PagesController < ApplicationController		
+	class PagesController < BaseController		
+		before_action { authorize! :manage, :content }
 		before_action :set_rhinoart_page, only: [:edit, :update, :destroy]
-		before_action :set_tree_ids, only: [:index, :children, :edit]
-		before_filter { access_only_roles %w[ROLE_ADMIN ROLE_EDITOR] }
+		before_action :set_tree_ids, only: [:index, :children, :edit]		
 
 
 		def index

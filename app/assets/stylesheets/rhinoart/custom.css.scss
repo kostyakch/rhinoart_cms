@@ -126,3 +126,26 @@ form {
 		width: 115px;
 	}	
 }
+
+
+
+/* Table sort */
+table.tablesorter thead tr .header {
+  background-image: asset_url('bg-sort.gif');
+  background-repeat: no-repeat;
+  background-position: center right;
+  cursor: pointer;
+  min-width: 100px;
+  line-height: 30px;
+
+}
+
+.headerSortUp, .headerSortDown {
+  background-color: rgb(251, 245, 229);
+}
+table.tablesorter thead tr .headerSortUp {
+  background-image: asset_url('asc.gif');
+}
+table.tablesorter thead tr .headerSortDown {
+  background-image: asset_url('desc.gif');
+}

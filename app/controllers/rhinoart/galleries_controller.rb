@@ -1,7 +1,8 @@
 require_dependency "rhinoart/application_controller"
 
 module Rhinoart
-    class GalleriesController < ApplicationController
+    class GalleriesController < BaseController
+        before_action { authorize! :manage, :content }
         before_action :set_gallery, only: [:edit, :update, :destroy]
 
         # before_filter :signed_in_user

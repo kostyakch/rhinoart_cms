@@ -1,7 +1,8 @@
 require_dependency "rhinoart/application_controller"
 
 module Rhinoart
-  class PostsController < ApplicationController
+  class PostsController < BaseController
+    before_action { authorize! :manage, :content }
     before_action :set_post, only: [:show, :edit, :update, :destroy]
 
     # GET /posts

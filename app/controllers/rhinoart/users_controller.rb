@@ -1,9 +1,9 @@
 require_dependency "rhinoart/application_controller"
 
 module Rhinoart
-    class UsersController < ApplicationController
-        before_action :set_admin_user, only: [:show, :edit, :update, :destroy]        
-        before_filter { access_only_roles %w[ROLE_ADMIN] }
+    class UsersController < BaseController
+        before_action { authorize! :manage, :users }
+        before_action :set_user, only: [:show, :edit, :update, :destroy]        
 
 
         def index
@@ -19,9 +19,8 @@ module Rhinoart
         end
 
         def create
-            @user = User.new(user_params)
+            @user = User.new(user_attributes)
             if @user.save
-                sign_in @user
                 flash[:success] = t("_WELCOME")
                 redirect_to users_path
             else
@@ -33,28 +32,40 @@ module Rhinoart
         end
 
         def update
-            if @user.update(user_params)
-                flash[:success] = t("_EDIT_USER_SUCCESS")
-                redirect_back_or users_path
+            new_attributes = user_attributes.to_hash.symbolize_keys
+            new_attributes.delete(:password) if new_attributes[:password].blank?
+
+            if new_attributes[:approved] && !new_attributes[:email].present?
             else
-                render 'edit'
+              new_attributes[:admin_role] = nil if !new_attributes[:admin_role].present? && can?(:manage, :all)
+            end 
+
+            if @user.update_attributes(new_attributes)
+              redirect_to (params[:redirect_to] || :users), success: "User created"
+            else
+              render :edit
             end
         end  
 
         def destroy
-            @user.destroy
-            redirect_to users_path
+            if params[:hard_delete]
+                @user.destroy
+            else
+                @user.update(admin_role: nil, frontend_role: nil, approved: false)
+            end
+
+            redirect_to (params[:redirect_to] || :users), success: "User soft deleted"
         end
 
         private
             # Use callbacks to share common setup or constraints between actions.
-            def set_admin_user
+            def set_user
                 @user = User.find(params[:id])
             end
 
             # Never trust parameters from the scary internet, only allow the white list through.
-            def user_params
-                params.require(:user).permit(:name, :email, :password, :password_confirmation)
+            def user_attributes
+                params.require(:user).permit! #(:name, :email, :password, :approved, :admin_role, :frontend_role)
             end 
     end
 end
