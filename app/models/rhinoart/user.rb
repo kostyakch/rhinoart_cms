@@ -65,6 +65,22 @@ module Rhinoart
         admin_role.include? role.to_s if admin_role.present?    
     end  
 
+    def has_access_to_frontend?
+        res = false
+        begin
+            FRONTEND_ROLES.each do |role|
+                return (frontend_role.include? role) if (frontend_role.include? role) == true
+            end
+        rescue
+            return false
+        end
+        return res
+    end
+    alias_method :frontend_user?, :has_access_to_frontend?
+
+    def has_frontend_role?(role)
+        frontend_role.include? role.to_s if frontend_role.present?    
+    end  
 
     private
 

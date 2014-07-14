@@ -19,7 +19,12 @@ class Ability
                         can :manage, :content
                     end
                 end
+            else    
+                if user.frontend_user?
+                    can :access, :content
+                end
             end
+
         end
     end
 end
