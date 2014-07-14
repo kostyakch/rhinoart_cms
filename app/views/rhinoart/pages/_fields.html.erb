@@ -47,7 +47,7 @@
         <% if f.object.ptype == 'article' || f.object.ptype == 'blog' %>
         <div class="span3">
             <%= f.label :user %>
-            <%= f.collection_select :user_id, Rhinoart::User.where('roles = "ROLE_USER"'), :id, :name_email, {include_blank: true}, {class: 'span12'} %>
+            <%= f.collection_select :user_id, Rhinoart::User.where('frontend_role is not null'), :id, :name_email, {include_blank: true}, {class: 'span12'} %>
         </div>
         <% end %>
 
