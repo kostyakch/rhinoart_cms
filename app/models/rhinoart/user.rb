@@ -88,6 +88,18 @@ module Rhinoart
         where("#{quoted_table_name}.admin_role LIKE ?", "%#{ADMIN_PANEL_ROLE_USERS_MANAGER}%").pluck(:email) #.join(',') #map(&:inspect)
     end
 
+    def active_for_authentication? 
+        super && approved? 
+    end 
+
+    def inactive_message 
+        if !approved? 
+            :not_approved 
+        else 
+            super # Use whatever other message 
+        end 
+    end
+
     private
 
         def create_remember_token
