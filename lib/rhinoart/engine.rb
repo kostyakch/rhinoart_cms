@@ -11,6 +11,8 @@ module Rhinoart
     require 'bootstrap-datepicker-rails'
     require 'will_paginate'
     require "devise"
-    require "cancan"    
+    require "cancan"
+
+    require "delayed_job_active_record"    
   end
 end

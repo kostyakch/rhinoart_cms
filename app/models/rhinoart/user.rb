@@ -22,6 +22,8 @@ module Rhinoart
     before_save :create_remember_token
     before_save :join_admin_roles
     after_initialize :split_admin_role
+    after_create :notify_about_new_user
+    after_update :notify_after_change_approved
 
 
     # validates :name,  length: { :in => 3..50 }
@@ -82,21 +84,38 @@ module Rhinoart
         frontend_role.include? role.to_s if frontend_role.present?    
     end  
 
+    def self.user_manager_emails  
+        where("#{quoted_table_name}.admin_role LIKE ?", "%#{ADMIN_PANEL_ROLE_USERS_MANAGER}%").pluck(:email) #.join(',') #map(&:inspect)
+    end
+
     private
 
-      def create_remember_token
-        self.remember_token = SecureRandom.urlsafe_base64 if !self.remember_token.present?
-      end
+        def create_remember_token
+            self.remember_token = SecureRandom.urlsafe_base64 if !self.remember_token.present?
+        end
 
-    def join_admin_roles
-      if self.admin_role.kind_of?(Array)
-        self.admin_role.reject! { |ar| ar.empty? }
-        self.admin_role = self.admin_role.join(',')
-      end
-    end
+        def join_admin_roles
+            if self.admin_role.kind_of?(Array)
+                self.admin_role.reject! { |ar| ar.empty? }
+                self.admin_role = self.admin_role.join(',')
+            end
+        end
 
-    def split_admin_role
-      self.admin_role = self.admin_role.split(',') if self.admin_role.present?
-    end
+        def split_admin_role
+            self.admin_role = self.admin_role.split(',') if self.admin_role.present?
+        end
+
+        def notify_about_new_user        
+            User.user_manager_emails.each do |mail_to|
+                NotificationsMailer.delay.new_user_notification(self, mail_to)
+            end
+            NotificationsMailer.delay.new_user_welcome(self)
+        end
+
+        def notify_after_change_approved   
+            NotificationsMailer.delay.user_grant_access_notification(self) if (self.approved_changed? && self.approved == true)
+        end 
+        
+
   end
 end

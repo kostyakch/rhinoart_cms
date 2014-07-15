@@ -38,4 +38,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "devise"
   s.add_dependency "cancan"
+
+  s.add_dependency 'delayed_job_active_record', "~> 4.0.0.beta2" # for background email sending
+  s.add_dependency 'daemons'  
 end
