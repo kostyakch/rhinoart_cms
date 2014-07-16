@@ -29,11 +29,11 @@
         %tr{data: {id: user.id}}
           %td{ nowrap: 'nowrap' }
             - if user.approved?
-              = link_to user_path(user, redirect_to: request.fullpath), method: :delete, data: { confirm: "Are you sure that you want to deny access that user?" }, class: "btn btn-small" do
+              = link_to user_path(user, redirect_to: request.fullpath), method: :delete, data: { confirm: "Are you sure that you want to deny access that user?" }, class: "btn btn-small btn-danger" do
                 %i.fa-icon-remove
                 Deny Access
             - else
-              = link_to user_path(user, user: {approved: true}, redirect_to: request.fullpath), method: :patch, data: { confirm: "Are you sure that you want to confirm that user?" }, class: "btn btn-small" do
+              = link_to user_path(user, user: {approved: true}, redirect_to: request.fullpath), method: :patch, data: { confirm: "Are you sure that you want to confirm that user?" }, class: "btn btn-small btn-success" do
                 %i.fa-icon-ok{ style: 'clolor:red;' }
                 Grant Access
 

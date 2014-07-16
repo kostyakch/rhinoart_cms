@@ -29,7 +29,7 @@ module Rhinoart
     # validates :name,  length: { :in => 3..50 }
 
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-    validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+    validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }, allow_blank: true
 
     # validates :password, confirmation: true, length: { :in => 3..50 }#, :on => :create
     # validates :password_confirmation, presence: true#, :on => :create
@@ -39,9 +39,9 @@ module Rhinoart
     ADMIN_PANEL_ROLE_CONTENT_MANAGER = "Content Manager"
     ADMIN_PANEL_ROLES = [ADMIN_PANEL_ROLE_USERS_MANAGER, ADMIN_PANEL_ROLE_CONTENT_MANAGER, ADMIN_PANEL_ROLE_SUPER_USER]
 
-    FRONTEND_ROLE_REPRESENTATIVE = "Representative"
-    FRONTEND_ROLE_DOCTOR = "Doctor"
-    FRONTEND_ROLES = [FRONTEND_ROLE_DOCTOR, FRONTEND_ROLE_REPRESENTATIVE]
+    FRONTEND_ROLE_USER = "User"
+    FRONTEND_ROLE_SUBSCRIBER = "Subscriber"
+    FRONTEND_ROLES = [FRONTEND_ROLE_USER, FRONTEND_ROLE_SUBSCRIBER]
 
 
     def name_email

@@ -37,22 +37,9 @@ module Rhinoart
 
 		def set_locale
 			I18n.locale = params[:locale] || I18n.default_locale
-		end	
+		end		
 
-		private    
-
-
-
-
-
-			# def signed_in_user
-			# 	unless signed_in?
-			# 		store_location
-
-			# 		flash[:error] = t('_SIGN_IN')
-			# 		redirect_to login_url
-			# 	end
-			# end   
+		private     
 
 			def correct_user
 				if params[:id]
@@ -61,37 +48,11 @@ module Rhinoart
 				end
 			end
 
-			# def admin_only      
-			# 	unless signed_in? && has_role?('ROLE_ADMIN')
-			# 		store_location
-			# 		redirect_to login_url
-			# 	end       
-			# end  
-
-			# def access_only_roles(roles)
-			# 	access = false
-			# 	roles.each do |r| 
-			# 		access = has_role?( r )
-			# 		break if access
-			# 	end
-
-			# 	if not access
-			# 		store_location        
-
-
-			# 		if current_user.roles.split(',').include? 'ROLE_EDITOR' 
-			# 		  render :template => 'site/err_403', :status => 403
-			# 		else
-			# 		  flash[:error] = t('No permissions to perform this operation.')
-			# 		  redirect_to login_url
-			# 		end
-			# 	end
-			# end 
-	protected
-		def configure_permitted_parameters
-			# params.require(:post).permit(:title, :text)
-			devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:name, :email, :admin_role) }
-			# devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:password, :password_confirmation, :email, :name) }
-		end  			
+		protected
+			def configure_permitted_parameters
+				# params.require(:post).permit(:title, :text)
+				devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:name, :email, :admin_role) }
+				# devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:password, :password_confirmation, :email, :name) }
+			end  			
 	end
 end

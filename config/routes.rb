@@ -1,5 +1,5 @@
 Rhinoart::Engine.routes.draw do  
-    devise_for :users, class_name: "Rhinoart::User", module: :devise    
+    devise_for :users, class_name: "Rhinoart::User", module: :devise, :controllers => { :sessions => "rhinoart/sessions" } 
 
     scope "(:locale)", locale: /ru|en/ do 
         scope "manage" do 
