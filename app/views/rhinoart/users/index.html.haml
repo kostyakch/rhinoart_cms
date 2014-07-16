@@ -31,11 +31,11 @@
             - if user.approved?
               = link_to user_path(user, redirect_to: request.fullpath), method: :delete, data: { confirm: "Are you sure that you want to deny access that user?" }, class: "btn btn-small" do
                 %i.fa-icon-remove
-                %span{ style: 'color:red;' } Deny Access
+                Deny Access
             - else
               = link_to user_path(user, user: {approved: true}, redirect_to: request.fullpath), method: :patch, data: { confirm: "Are you sure that you want to confirm that user?" }, class: "btn btn-small" do
                 %i.fa-icon-ok{ style: 'clolor:red;' }
-                %span{ style: 'color:green;' } Grant Access
+                Grant Access
 
             = link_to [:edit, user], class: "btn btn-small" do
               %i.fa-icon-pencil
