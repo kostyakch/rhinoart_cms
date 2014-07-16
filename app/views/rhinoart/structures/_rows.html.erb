@@ -1,7 +1,7 @@
 <tr class="content-t level_<%= level %>" id="cat_<%= p.id %>" >
 	<td style="padding-left: <%= 10 + (level*25) %>px;">
 		<% if page_items(p).present? %>		
-			<%= link_to '', children_structure_path(p, level: level), remote: true, class: "toogle icon-chevron-right", style: "margin-left: -18px;" %>
+			<%= link_to '', children_structure_path(p, level: level), remote: true, class: "toogle icon-plus", style: "margin-left: -18px;" %>
 		<% end %>
 		<%= link_to p.name, edit_structure_path(p), class: 'title' %> <i><sup><%= p.id %></sup></i>
 		<img class="loading" src="/assets/spinner.gif" style="display: none;">		
@@ -37,8 +37,8 @@
 	<%= content_for :javascript do %>
 	<script type="text/javascript">
 		$(function(){
-			$('#cat_<%= p.id %> a.toogle').addClass('icon-chevron-down');
-			$('#cat_<%= p.id %> a.toogle').removeClass('icon-chevron-right');
+			$('#cat_<%= p.id %> a.toogle').addClass('icon-minus');
+			$('#cat_<%= p.id %> a.toogle').removeClass('icon-plus');
 		})
 	</script>
 	<% end %>

@@ -1,6 +1,6 @@
 module Rhinoart
     class NotificationsMailer < ActionMailer::Base
-        default from: Rails::configuration.action_mailer.default_url_options[:default_email].present? ? Rails::configuration.action_mailer.default_url_options[:default_email] : 'no-reply@test.com'
+        default from: Rails::configuration.action_mailer.default_url_options.present? ? Rails::configuration.action_mailer.default_url_options[:default_email] : 'no-reply@test.com'
 
         def new_user_notification(user, mail_to)
             @user = user

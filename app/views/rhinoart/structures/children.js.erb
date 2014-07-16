@@ -1,4 +1,4 @@
-if ( $('#cat_<%= params[:id] %> a.toogle').hasClass('icon-chevron-down') ) {
+if ( $('#cat_<%= params[:id] %> a.toogle').hasClass('icon-minus') ) {
 	<% @pages.each do |p| %>
 		$('#cat_<%= p.id %>').remove();
 		<% p.children.each do |c| %>
@@ -6,8 +6,8 @@ if ( $('#cat_<%= params[:id] %> a.toogle').hasClass('icon-chevron-down') ) {
 		<% end %>
 	<% end %>
 
-	$('#cat_<%= params[:id] %> a.toogle').addClass('icon-chevron-right');
-	$('#cat_<%= params[:id] %> a.toogle').removeClass('icon-chevron-down');
+	$('#cat_<%= params[:id] %> a.toogle').addClass('icon-plus');
+	$('#cat_<%= params[:id] %> a.toogle').removeClass('icon-minus');
 
 	removeIdFromCookie(<%= params[:id] %>, '/admin');
 } else {
@@ -15,8 +15,8 @@ if ( $('#cat_<%= params[:id] %> a.toogle').hasClass('icon-chevron-down') ) {
 		$('#cat_<%= p.parent.id %>').after('<%= escape_javascript(render("rows", p: p, level: @level.to_i + 1, :formats => [:html])) %>');	
 	<% end %>	
 	
-	$('#cat_<%= params[:id] %> a.toogle').addClass('icon-chevron-down');
-	$('#cat_<%= params[:id] %> a.toogle').removeClass('icon-chevron-right');
+	$('#cat_<%= params[:id] %> a.toogle').addClass('icon-minus');
+	$('#cat_<%= params[:id] %> a.toogle').removeClass('icon-plus');
 
 	
 	addIdToCookie(<%= params[:id] %>, '/admin');
