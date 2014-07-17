@@ -23,5 +23,10 @@ module Rhinoart
 
             mail to: user.email, subject: "Hello #{@user.name}"
         end
+
+        def send_contact_form(message, mail_to)
+            @message = message
+            mail to: mail_to, subject: "Message from Website"
+        end        
     end
 end
