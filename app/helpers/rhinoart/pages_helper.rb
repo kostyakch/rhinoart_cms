@@ -17,6 +17,14 @@ module Rhinoart
 			end		
 		end	
 
+		def page_structure_tree(parent = nil)
+			if parent.blank?
+				Page.where("parent_id IS NULL")	
+			else
+				Page.where('parent_id = ?', parent.id) if parent.ptype == 'page'
+			end		
+		end	
+
 		def disabled_page?(page)
 			if page.present? 
 				setting_by_name('disabled_pages').split(',').include? page.id.to_s if setting_by_name('disabled_pages').present?

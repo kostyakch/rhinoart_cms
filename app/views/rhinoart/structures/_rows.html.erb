@@ -27,7 +27,7 @@
 </tr>
 
 <% if @tree_ids.present? && @tree_ids.include?(p.id) %>
-	<% pages = page_tree(p) %>
+	<% pages = page_structure_tree(p) %>
 	<% if pages.present? %>
 		<% pages.each do |children| %>
 			<%= render 'rows', p: children, level: level + 1 %>	
