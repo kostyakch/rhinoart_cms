@@ -17,7 +17,7 @@ module Rhinoart
   class User < ActiveRecord::Base
     # Include default devise modules. Others available are:
     devise :database_authenticatable, :recoverable, :registerable, :trackable, :validatable
-
+    
     before_save { |user| user.email = email.downcase }
     before_save :create_remember_token
     before_save :join_admin_roles
@@ -126,6 +126,8 @@ module Rhinoart
             NotificationsMailer.delay.user_grant_access_notification(self) if (self.approved_changed? && self.approved == true)
         end 
         
-
+        def set_default_frontend_role
+            self.frontend_role = FRONTEND_ROLES.first if !self.frontend_role.present?
+        end
   end
 end
