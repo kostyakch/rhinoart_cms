@@ -15,6 +15,8 @@
 
 module Rhinoart
   class User < ActiveRecord::Base
+    belongs_to :userable, polymorphic: true #iln 24.07.14
+
     # Include default devise modules. Others available are:
     devise :database_authenticatable, :recoverable, :registerable, :trackable, :validatable
     
