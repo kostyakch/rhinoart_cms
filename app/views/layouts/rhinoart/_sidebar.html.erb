@@ -13,6 +13,15 @@
 			</li>
 			<% end %>
 
+			<% begin %>
+			<% if can?(:manage, :all) && Rails.configuration.show_vote %>
+			<li class="<%= 'active' if controller.controller_name == 'votes' %>">
+				<%= link_to "<i class=\"fa-icon-list-alt\"></i><span class=\"hidden-tablet\"> #{ t(:_VOTES) }</span>".html_safe, votes_path %>
+			</li>
+			<% end %>
+			<% rescue %>
+			<% end %>
+
 			<% if can?(:manage, :all) %>
 			<li class="<%= 'active' if controller.controller_name == 'structures' %>">
 				<%= link_to "<i class=\"fa-icon-sitemap\"></i><span class=\"hidden-tablet\"> #{ t(:_SITE_STRUCTURE) }</span>".html_safe, structures_path %>
@@ -30,6 +39,7 @@
 				<%= link_to "<i class=\"fa-icon-cogs\"></i><span class=\"hidden-tablet\"> #{ t(:_SETTINGS) }</span>".html_safe, settings_path %>
 			</li>
 			<% end %>
+
 		</ul>
 	</div>
 </div>

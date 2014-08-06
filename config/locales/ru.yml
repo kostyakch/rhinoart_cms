@@ -43,6 +43,26 @@ ru:
   _SITE_STRUCTURE: Структура сайта
   _USERS: Users
   _SETTINGS: Settings
+
+  _VOTES: Опросы
+  _VOTE_NAME: Наименование опроса
+  _NEW_VOTE: Новый опрос
+
+  _VOTE_QUESTIONS: Вопросы опроса
+  _VOTE_QUESTION_NAME: Наименование вопроса
+  _NEW_VOTE_QUESTION: Новый вопрос
+
+  _VOTE_ANSWER_LISTS: Ответы на вопрос
+  _VOTE_ANSWER_LIST_NAME: Текст ответа
+  _NEW_VOTE_ANSWER_LIST: Новый ответ
+
+  _VOTE_ANSWERS: Список анкет
+  _VOTE_ANSWER_NAME: Дата заполнения анкеты
+
+  _VOTE_USER_ANSWERS: Список ответов
+  _VOTE_USER_ANSWER_NAME: Ответы
+  _VOTE_USER_QUESTION_NAME: Вопросы
+
   _SYSTEM_SETTINGS: System settings
   _PARAMETER_NAME: Наименование параметра
   _PARAMETER_VALUE: Значение параметра

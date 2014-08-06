@@ -41,6 +41,22 @@ Rhinoart::Engine.routes.draw do
 
         resources :galleries
 
+        resources :votes do 
+            resources :vote_questions do #, only: [:new, :create, :destroy]   
+                resources :vote_answer_lists
+         #       resources :vote_user_answers
+            end    
+        end
+
+
+        match 'vote_answers', to: 'votes#answers', via: 'get'
+        match 'vote_current_answers', to: 'votes#current_answers', via: 'get'#, as: :vote_current_answers
+
+        #resources :vote_questions do #, only: [:show] do
+        #    resources :vote_answer_list
+        #    resources :vote_user_answer
+        #end
+
         #upload files
         scope :fileworks do
             match 'upload_image' => 'fileworks#upload_image', via: [:get, :post]#, via: :js

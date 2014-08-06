@@ -1,0 +1,39 @@
+<% provide(:title, t(:_VOTE_USER_ANSWERS)) %>
+
+<div class="box-header" data-original-title="">
+	<h2><i class="icon-list-alt align-justify"></i><span class="break"></span><%= t(:_VOTE_USER_ANSWERS) %></h2>
+	<div class="box-icon">
+		<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+		<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+		<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+	</div>
+</div>
+<div class="box-content">
+	<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
+		<table class="table table-striped tree">
+			<thead>
+				<tr>
+					<th width="50%"><%= t(:_VOTE_USER_QUESTION_NAME) %></th>
+					<th><%= t(:_VOTE_USER_ANSWER_NAME) %></th>
+				</tr>
+			</thead>
+			<tbody>	
+				<% @vote_user_answers.each do |c| %>
+				<tr>
+					<td>
+						<b><%= c.vote_question.description %></b><br>
+					</td>
+					<td>
+						<b><%= c.content %></b><br>
+					</td>
+				</tr>
+				<% end %>				
+			</tbody>
+		</table>					
+		<div class="row-fluid">
+			<div class="span12 center">
+				<div class="dataTables_paginate paging_bootstrap pagination"><%= will_paginate page_items %></div>
+			</div>
+		</div>
+	</div>
+</div>

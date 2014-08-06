@@ -1,0 +1,47 @@
+<% provide(:title, t(:_VOTE_ANSWER_LISTS)) %>
+
+<div class="box-header" data-original-title="">
+	<h2><i class="icon-list-alt align-justify"></i><span class="break"></span><%= t(:_VOTE_ANSWER_LISTS) %></h2>
+	<div class="box-icon">
+		<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+		<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+		<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+	</div>
+</div>
+<div class="box-content">
+	<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
+		<div class="row-fluid">
+			<div class="btn-overlay">
+				<%= link_to "<i class=\"halflings-icon plus\"></i> #{t(:_BTN_CREATE)}".html_safe, new_vote_vote_question_vote_answer_list_path, class: 'btn btn-primary' %>
+			</div>
+		</div>
+
+		<table class="table table-striped tree">
+			<thead>
+				<tr>
+					<th width="80%"><%= t(:_VOTE_ANSWER_LIST_NAME) %></th>
+					<th><%= t(:_ACTIONS) %></th>
+				</tr>
+			</thead>
+			<tbody>	
+				<% @vote_answer_lists.each do |c| %>
+				<tr>
+					<td>
+						<i class="fa-icon-file"></i> <b><%= link_to c.answer,  edit_vote_vote_question_vote_answer_list_path(params[:vote_id], @vote_answer_lists, c) %></b><br>
+					</td>
+					<td class="center">
+						<%= link_to raw('<i class="halflings-icon edit"></i>'), edit_vote_vote_question_vote_answer_list_path(params[:vote_id], @vote_answer_lists, c), class: 'btn btn-info' %>
+						<%= link_to raw('<i class="halflings-icon trash"></i>'), vote_vote_question_vote_answer_list_path(params[:vote_id], @vote_answer_lists, c), class: 'btn btn-info', :method => :delete, :data => { :confirm => t('_DELETE_CONFIRM') } %>
+						
+					</td>
+				</tr>
+				<% end %>				
+			</tbody>
+		</table>					
+		<div class="row-fluid">
+			<div class="span12 center">
+				<div class="dataTables_paginate paging_bootstrap pagination"><%= will_paginate page_items %></div>
+			</div>
+		</div>
+	</div>
+</div>

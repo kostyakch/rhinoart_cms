@@ -1,0 +1,34 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+<div class="form-horizontal">
+    <div class="control-group">
+        <%= f.label :answer, class: 'control-label' %>
+        <div class="controls">
+            <%= f.text_field :answer, class: 'span11' %>
+        </div>
+    </div>  
+
+    <div class="control-group">
+        <%= f.label :active, class: 'control-label' %>
+        <div class="controls">
+            <%= f.check_box :active, class: 'span11' %>
+        </div>
+    </div> 
+
+    <div class="control-group">
+        <%= f.label :field_type, class: 'control-label' %>
+        <div class="controls">
+            <%= f.text_field :field_type, class: 'span11' %>
+        </div>
+    </div> 
+
+   
+    <div class="form-actions">
+        <div class="btn-overlay">
+            <%= f.button t("_BTN_SAVE"), class: "btn btn-primary" %>
+            <%= f.button t('_BTN_SAVE_AND_CONTINUE'), class: 'btn btn-success', name: 'continue', value: 'continue' %>
+            <%= link_to t("_BTN_CANCEL"), votes_path, class: "btn" %>
+        </div>
+    </div>
+</div>
+

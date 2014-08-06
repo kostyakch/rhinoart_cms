@@ -1,0 +1,7 @@
+<% provide(:title, t(:_EDIT)) %>
+
+<%= form_for @vote_answer_list, :url => vote_vote_question_vote_answer_list_path do |c| %>
+    <legend><%= t(:_EDIT) %> </legend>   
+
+   	<%= render 'fields', f: c %>	   
+<% end %>
