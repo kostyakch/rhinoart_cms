@@ -125,7 +125,8 @@ en:
   edit_comment: Edit comment
 
   
-  
+  #votes
+  _VOTE_SUCCESS: Vote send successfully 
   
   created_at:
       formats:
@@ -187,6 +188,11 @@ en:
           attributes:            
             slug:
               invalid: "Can contain numbers and symbols \"-\" or \"_\""
+
+        vote_question:
+          attributes:            
+            description:
+              blank: "Cannot be blank"
 
         setting:
           attributes:            
