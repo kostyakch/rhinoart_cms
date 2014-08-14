@@ -1,13 +1,8 @@
 module Rhinoart
 	class Vote < ActiveRecord::Base
-		# has_one :user, as: :userable, class_name: "Rhinoart::User", :autosave => true, :dependent => :destroy
-		# accepts_nested_attributes_for :user, allow_destroy: true 
-
-
-
 		has_many :vote_questions
 		accepts_nested_attributes_for :vote_questions, allow_destroy: true
 
-
+		has_many :votes_passed_users
 	end
 end

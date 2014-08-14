@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Пользователь</Data></Cell>
+        <Cell><Data ss:Type="String">Номер сессии</Data></Cell>
+        <Cell><Data ss:Type="String">IP адрес</Data></Cell>
+
+        <% @vote.vote_questions.each do |question| %>
+          <Cell><Data ss:Type="String"><%= question.question%></Data></Cell>
+        <% end %>
+
+      </Row>
+    <% @vote_users.each do |vote_user| %>
+      <Row>
+        <% if vote_user.user_id %>
+          <Cell><Data ss:Type="String"><%= vote_user.user.id %></Data></Cell>
+        <% else %>
+          <Cell><Data ss:Type="String"><%= t(:_UNREGISTRED) %></Data></Cell>
+        <% end %>
+
+        <Cell><Data ss:Type="String"><%= vote_user.num_session %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= vote_user.ip_address %></Data></Cell>
+
+        <% vote_user.vote_user_answers.each do |answer| %>
+          <Cell><Data ss:Type="String"><%= answer.content%></Data></Cell>
+        <% end %>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

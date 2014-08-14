@@ -13,13 +13,17 @@
 		<div class="row-fluid">
 			<div class="btn-overlay">
 				<%= link_to "<i class=\"halflings-icon plus\"></i> #{t(:_BTN_CREATE)}".html_safe, new_vote_vote_question_vote_answer_list_path, class: 'btn btn-primary' %>
+
+				<%= link_to "<i class=\"icon-chevron-left\"></i> #{t(:_BACK)}".html_safe, vote_vote_questions_path(@vote_id), class: 'btn btn-link btn-primary' %>	
 			</div>
 		</div>
 
 		<table class="table table-striped tree">
 			<thead>
 				<tr>
-					<th width="80%"><%= t(:_VOTE_ANSWER_LIST_NAME) %></th>
+					<th width="60%"><%= t(:_VOTE_ANSWER_LIST_NAME) %></th>
+					<th width="10%"><%= t(:_VOTE_ANSWER_LIST_TYPE) %></th>
+					<th width="10%"><%= t(:_VOTE_ANSWER_LIST_ACTIVE) %></th>
 					<th><%= t(:_ACTIONS) %></th>
 				</tr>
 			</thead>
@@ -27,7 +31,13 @@
 				<% @vote_answer_lists.each do |c| %>
 				<tr>
 					<td>
-						<i class="fa-icon-file"></i> <b><%= link_to c.answer,  edit_vote_vote_question_vote_answer_list_path(params[:vote_id], @vote_answer_lists, c) %></b><br>
+						<i class="fa-icon-file"></i> <b><%= link_to c.answer,  edit_vote_vote_question_vote_answer_list_path(params[:vote_id], @vote_answer_lists, c) %></b>
+					</td>
+					<td>
+						<b><%= Rhinoart::VoteAnswerList::FIELD_TYPES.stringify_keys[c.field_type] %></b>
+					</td>
+					<td>
+						<b><%= c.active %></b>
 					</td>
 					<td class="center">
 						<%= link_to raw('<i class="halflings-icon edit"></i>'), edit_vote_vote_question_vote_answer_list_path(params[:vote_id], @vote_answer_lists, c), class: 'btn btn-info' %>

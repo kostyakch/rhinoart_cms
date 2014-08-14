@@ -19,21 +19,33 @@
 		<table class="table table-striped tree">
 			<thead>
 				<tr>
-					<th width="80%"><%= t(:_VOTE_NAME) %></th>
-					<th><%= t(:_ACTIONS) %></th>
+					<th>ID</th>
+					<th width="55%"><%= t(:_VOTE_NAME) %></th>
+					<th width="10%"><%= t(:_VOTE_START) %></th>
+					<th width="10%"><%= t(:_VOTE_END) %></th>
+					<th width="20%"><%= t(:_ACTIONS) %></th>
 				</tr>
 			</thead>
 			<tbody>	
 				<% @votes.each do |c| %>
 				<tr>
 					<td>
-						<i class="fa-icon-file"></i> <b><%= link_to c.name, edit_vote_path(c) %></b><br>
+						<b><%= c.id %></b><br>
+					</td>
+					<td>
+						<b><%= link_to c.name, edit_vote_path(c) %></b><br>
+					</td>
+					<td>
+						<b><%= c.started_at.strftime("%d.%m.%Y") %></b><br>
+					</td>
+					<td>
+						<b><%= c.finished_at.strftime("%d.%m.%Y") %></b><br>
 					</td>
 					<td class="center">
 						<%= link_to raw('<i class="halflings-icon edit"></i>'), edit_vote_path(c), class: 'btn btn-info' %>
 						<%= link_to raw('<i class="halflings-icon trash"></i>'), vote_path(c), class: 'btn btn-info', :method => :delete, :data => { :confirm => t('_DELETE_CONFIRM') } %>
 						<%= link_to raw('<i class="halflings-icon list"></i>'), vote_vote_questions_path(c), class: 'btn btn-info' %>
-						<%= link_to raw('<i class="halflings-icon tasks"></i>'), vote_answers_path, class: 'btn btn-info' %>
+						<%= link_to raw('<i class="halflings-icon tasks"></i>'), vote_users_path(c), class: 'btn btn-info' %>
 					</td>
 				</tr>
 				<% end %>				

@@ -1,0 +1,57 @@
+<% provide(:title, t(:_VOTE_USERS)) %>
+
+<div class="box-header" data-original-title="">
+	<h2><i class="icon-list-alt align-justify"></i><span class="break"></span><%= t(:_VOTE_USERS) %></h2>
+	<div class="box-icon">
+		<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+		<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+		<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>		
+		<%= link_to content_tag(:i, nil, class: "icon-list"), vote_users_path(@vote, format: :xls), class: 'btn-link', title: t(:_VOTE_EXPORT_XLS) %>	
+	</div>
+</div>
+<div class="box-content">
+	<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
+		<table class="table table-striped tree">
+			<thead>
+				<tr>
+					<th width="20%"><%= t(:_VOTE_USER_NAME) %></th>
+					<th width="20%"><%= t(:_VOTE_USER_SESSION) %></th>
+					<th width="20%"><%= t(:_VOTE_USER_IP) %></th>
+					<th width="20%"><%= t(:_VOTE_USER_DATE) %></th>
+					<th><%= t(:_ACTIONS) %></th>
+				</tr>
+			</thead>
+			<tbody>	
+				<% @vote_users.each do |c| %>
+				<tr>
+					<td>
+						<% if c.user_id %>
+							<b><%= link_to c.user.name, vote_current_answers_path(parent: c.id) %></b>
+						<% else %>
+							<b><%= link_to t(:_UNREGISTRED), vote_current_answers_path(parent: c.id) %></b>
+						<% end %>
+					</td>
+					<td>
+						<b><%= c.num_session %></b>
+					</td>
+					<td>
+						<b><%= c.ip_address %></b>
+					</td>
+					<td>
+						<b><%= c.created_at.strftime("%d.%m.%Y") %></b>
+					</td>
+					<td class="center">
+						<%= link_to raw('<i class="halflings-icon edit"></i>'), vote_current_answers_path(parent: c.id), class: 'btn btn-info' %>
+						
+					</td>
+				</tr>
+				<% end %>				
+			</tbody>
+		</table>					
+		<div class="row-fluid">
+			<div class="span12 center">
+				<div class="dataTables_paginate paging_bootstrap pagination"><%= will_paginate page_items %></div>
+			</div>
+		</div>
+	</div>
+</div>

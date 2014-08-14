@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Documents size</Data></Cell>
+
+        <Cell><Data ss:Type="String">Intro HD Video</Data></Cell>
+        <Cell><Data ss:Type="String">Intro SD Video</Data></Cell>
+        <Cell><Data ss:Type="String">Intro HQ Video</Data></Cell>
+
+        <Cell><Data ss:Type="String">Trailer HD Video</Data></Cell>
+        <Cell><Data ss:Type="String">Trailer SD Video</Data></Cell>
+        <Cell><Data ss:Type="String">Trailer HQ Video</Data></Cell>
+
+        <Cell><Data ss:Type="String">Instuments Video</Data></Cell>
+        <Cell><Data ss:Type="String">Instuments Images</Data></Cell>
+      </Row>
+    <% @products.each do |product| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= product.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.name %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= product.documents_file_size %></Data></Cell>
+
+        <Cell><Data ss:Type="Number"><%= product.intro_hd_video_size %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= product.intro_sd_video_size %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= product.intro_hq_video_size %></Data></Cell>
+
+        <Cell><Data ss:Type="Number"><%= product.trailer_hd_video_size %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= product.trailer_sd_video_size %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= product.trailer_hq_video_size %></Data></Cell>
+
+        <Cell><Data ss:Type="Number"><%= product.instruments_video_size %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= product.instruments_image_size %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
