@@ -8,7 +8,7 @@ module Rhinoart
 		def index
       store_location
       @vote_answer_lists = VoteAnswerList.where("vote_question_id = ?", params[:vote_question_id])
-
+      @vote_id = VoteQuestion.find(params[:vote_question_id]).vote_id
 
     end
 
@@ -17,11 +17,14 @@ module Rhinoart
 
     def new
       @vote_answer_list = VoteAnswerList.new
+      @vote_answer_list.active = true
+      @vote_answer_list.position = 1
     end
 
     def create
       @vote_answer_list = VoteAnswerList.new(vote_answer_list_attributes)
       @vote_answer_list.vote_question_id = params[:vote_question_id]
+
 
       if @vote_answer_list.save
         flash[:info] = t('_SUCCESSFULLY_CREATED')

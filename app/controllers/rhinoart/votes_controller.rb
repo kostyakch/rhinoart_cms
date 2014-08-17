@@ -2,7 +2,7 @@ require_dependency "rhinoart/application_controller"
 
 module Rhinoart
 	class VotesController < BaseController
-		before_action :set_vote, only: [:show, :edit, :update, :destroy]
+		before_action :set_vote, only: [:show, :edit, :update, :destroy, :users]
         #skip_before_filter :check_if_user_has_admin_role
 
 		def index
@@ -58,14 +58,18 @@ module Rhinoart
             end
         end
 
-        def answers
-            @vote_answers = VoteUserAnswer.select(:started_at).distinct
-        end
-
         def current_answers
             # @vote_user_answers = VoteUserAnswer.where("started_at = ?", params[:parent].to_datetime).eager_load(:vote_question).to_a
-            @vote_user_answers = VoteUserAnswer.where("started_at = ?", params[:parent].to_datetime)
-            p @vote_user_answers
+            @vote_user_answers = VoteUserAnswer.where("votes_passed_user_id = ?", params[:parent])
+        end
+
+        def users
+            @vote_users = VotesPassedUser.where("vote_id = ?", @vote.id)
+
+            respond_to do |format|
+              format.html
+              format.xls
+            end  
         end
         
 	private

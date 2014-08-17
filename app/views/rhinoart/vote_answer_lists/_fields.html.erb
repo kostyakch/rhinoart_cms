@@ -15,13 +15,19 @@
         </div>
     </div> 
 
-    <div class="control-group">
-        <%= f.label :field_type, class: 'control-label' %>
-        <div class="controls">
-            <%= f.text_field :field_type, class: 'span11' %>
+    <div class="control-group"> 
+        <%= f.label :field_type, class: "control-label" %>
+        <div class="controls">  
+            <%= f.select :field_type, Rhinoart::VoteAnswerList::select_list %>
         </div>
-    </div> 
+    </div>
 
+    <div class="control-group">
+        <%= f.label :position, class: 'control-label' %>
+        <div class="controls">
+            <%= f.text_field :position, class: 'span11' %>
+        </div>
+    </div>
    
     <div class="form-actions">
         <div class="btn-overlay">

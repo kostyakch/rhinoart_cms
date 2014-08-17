@@ -21,7 +21,7 @@
 				<% @vote_user_answers.each do |c| %>
 				<tr>
 					<td>
-						<b><%= c.vote_question.description %></b><br>
+						<b><%= c.vote_answer_list.vote_question.question %></b><br>
 					</td>
 					<td>
 						<b><%= c.content %></b><br>

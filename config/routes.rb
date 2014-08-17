@@ -48,9 +48,12 @@ Rhinoart::Engine.routes.draw do
             end    
         end
 
+        resources :votes_passed_users
+
 
         match 'vote_answers', to: 'votes#answers', via: 'get'
         match 'vote_current_answers', to: 'votes#current_answers', via: 'get'#, as: :vote_current_answers
+        match 'vote_users/:id', to: 'votes#users', via: 'get', as: 'vote_users' 
 
         #resources :vote_questions do #, only: [:show] do
         #    resources :vote_answer_list

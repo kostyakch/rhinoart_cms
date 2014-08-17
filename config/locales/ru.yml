@@ -3,6 +3,9 @@
 
 ru:
   locale: Рус
+  _BACK: Назад
+  _UNREGISTRED: UNREGISTRED
+
   _PAGE_SUCCESSFULLY_UPDATED: Страница успешно обновлена.
   _PAGE_SUCCESSFULLY_CREATED: Страница успешно создана.
   _PAGE_SUCCESSFULLY_DELITED: "Страница \"%{name}\" успешно удалена."
@@ -47,14 +50,22 @@ ru:
 
   _VOTES: Опросы
   _VOTE_NAME: Наименование опроса
+  _VOTE_START: Начало опроса
+  _VOTE_END: Окончание опроса
   _NEW_VOTE: Новый опрос
 
   _VOTE_QUESTIONS: Вопросы опроса
   _VOTE_QUESTION_NAME: Наименование вопроса
+  _VOTE_QUESTION_POSITION: №
+  _VOTE_QUESTION_REQUIRED: Обязательный
+  _VOTE_QUESTION_ACTIVE: Активный
+  _VOTE_EXPORT_XLS: Выгрузить в XLS
   _NEW_VOTE_QUESTION: Новый вопрос
 
   _VOTE_ANSWER_LISTS: Ответы на вопрос
   _VOTE_ANSWER_LIST_NAME: Текст ответа
+  _VOTE_ANSWER_LIST_TYPE: Тип
+  _VOTE_ANSWER_LIST_ACTIVE: Активный
   _NEW_VOTE_ANSWER_LIST: Новый ответ
 
   _VOTE_ANSWERS: Список анкет
@@ -63,6 +74,12 @@ ru:
   _VOTE_USER_ANSWERS: Список ответов
   _VOTE_USER_ANSWER_NAME: Ответы
   _VOTE_USER_QUESTION_NAME: Вопросы
+
+  _VOTE_USERS: "Список пользователей, которые прошли данный опрос"
+  _VOTE_USER_NAME: Имя пользователя
+  _VOTE_USER_SESSION: Сессия
+  _VOTE_USER_IP: IP адрес
+  _VOTE_USER_DATE: Дата прохождения
 
   _SYSTEM_SETTINGS: System settings
   _PARAMETER_NAME: Наименование параметра

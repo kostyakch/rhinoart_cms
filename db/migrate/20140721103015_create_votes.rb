@@ -5,7 +5,6 @@ class CreateVotes < ActiveRecord::Migration
       t.boolean :active
       t.datetime :started_at
       t.datetime :finished_at
-      t.references :users, polymorphic: true 
 
       t.timestamps
     end

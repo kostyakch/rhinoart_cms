@@ -13,13 +13,18 @@
 		<div class="row-fluid">
 			<div class="btn-overlay">
 				<%= link_to "<i class=\"halflings-icon plus\"></i> #{t(:_BTN_CREATE)}".html_safe, new_vote_vote_question_path, class: 'btn btn-primary' %>
+				
+				<%= link_to "<i class=\"icon-chevron-left\"></i> #{t(:_BACK)}".html_safe, votes_path, class: 'btn btn-link btn-primary' %>	
 			</div>
 		</div>
 
 		<table class="table table-striped tree">
 			<thead>
 				<tr>
-					<th width="80%"><%= t(:_VOTE_QUESTION_NAME) %></th>
+					<th width="5%"><%= t(:_VOTE_QUESTION_POSITION) %></th>
+					<th width="55%"><%= t(:_VOTE_QUESTION_NAME) %></th>
+					<th width="10%"><%= t(:_VOTE_QUESTION_REQUIRED) %></th>
+					<th width="10%"><%= t(:_VOTE_QUESTION_ACTIVE) %></th>
 					<th><%= t(:_ACTIONS) %></th>
 				</tr>
 			</thead>
@@ -27,7 +32,16 @@
 				<% @vote_questions.each do |c| %>
 				<tr>
 					<td>
-						<i class="fa-icon-file"></i> <b><%= link_to c.description,  edit_vote_vote_question_path(@vote_questions, c) %></b><br>
+						<b><%= c.position %></b>
+					</td>
+					<td>
+						<b><%= link_to c.question,  edit_vote_vote_question_path(@vote_questions, c) %></b>
+					</td>
+					<td>
+						<b><%= c.required %></b>
+					</td>
+					<td>
+						<b><%= c.active %></b>
 					</td>
 					<td class="center">
 						<%= link_to raw('<i class="halflings-icon edit"></i>'), edit_vote_vote_question_path(@vote_questions, c), class: 'btn btn-info' %>
