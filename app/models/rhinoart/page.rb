@@ -42,7 +42,7 @@ module Rhinoart
     accepts_nested_attributes_for :user #, :allow_destroy => true
 
     # Validations
-    validates :name, :slug, :menu, presence: true
+    validates :name, :slug, :menu, :publish_date, presence: true
 
     validates :name, length: { maximum: 255 }
     validates :slug, length: { maximum: 100 }

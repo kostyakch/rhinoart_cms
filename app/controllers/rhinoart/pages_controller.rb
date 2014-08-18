@@ -26,7 +26,7 @@ module Rhinoart
 			store_location
 
 			@parent = Page.find(params[:id])
-			@pages = Page.where("parent_id = ?", params[:id]) #.order('publish_date DESC')
+			@pages = Page.unscoped.where("parent_id = ?", params[:id]).order('publish_date DESC, position asc')
 			@level = params[:level]
 			
 			respond_to do |format|

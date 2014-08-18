@@ -148,6 +148,9 @@ en:
       long: "%d %B %Y"
       short: "%d.%m.%Y %H:%M"
       
+  will_paginate:
+    previous_label: Previous
+    next_label: Next
 
         
   activerecord:

@@ -177,7 +177,11 @@ ru:
       default: "%d.%m.%Y"
       long: "%d %B %Y"
       short: "%d.%m.%Y %H:%M"
-              
+          
+  will_paginate:
+    previous_label: Предыдущая
+    next_label: Следующая
+    
         
   activerecord:
     models:
