@@ -20,14 +20,14 @@ module Rhinoart
 		end
 
 		def meta_tags(page)
-			res = ''		
+			res = "<meta name=\"generator\" content=\"RhinoArtCMS #{Rhinoart::VERSION}\">\n"		
 			if page and page.page_field
 				page.page_field.where("ftype = 'meta' and ftype is not null").each do |meta|
 					res += "<meta name=\"#{meta.name}\" content=\"#{meta.value}\" />\n"
 				end
 			end
 
-			raw res		
+			raw res
 		end  
 
 		def render_partial_if_exists(partial)
