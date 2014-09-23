@@ -1,5 +1,6 @@
 module Rhinoart
 	module ApplicationHelper
+		require "rhinoart/version"
 
 		# Returns the full title on a per-page basis.
 		def full_title(page_title)
