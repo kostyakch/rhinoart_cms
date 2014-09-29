@@ -21,11 +21,14 @@ module Rhinoart
 		end
 
 		def meta_tags(page)
-			res = "<meta name=\"generator\" content=\"RhinoArtCMS #{Rhinoart::VERSION}\">\n"		
-			if page and page.page_field
-				page.page_field.where("ftype = 'meta' and ftype is not null").each do |meta|
-					res += "<meta name=\"#{meta.name}\" content=\"#{meta.value}\" />\n"
-				end
+			begin
+				res = "<meta name=\"generator\" content=\"RhinoArtCMS #{Rhinoart::VERSION}\">\n"		
+				if page and page.page_field
+					page.page_field.where("ftype = 'meta' and ftype is not null").each do |meta|
+						res += "<meta name=\"#{meta.name}\" content=\"#{meta.value}\" />\n"
+					end
+				end				
+			rescue 				
 			end
 
 			raw res
