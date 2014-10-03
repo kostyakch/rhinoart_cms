@@ -11,9 +11,10 @@
 #
 
 module Rhinoart
-	class PageField < ActiveRecord::Base
+	class PageField < Rhinoart::Base
 		self.inheritance_column = "non_sti"
 		after_save :update_page_date
+		after_destroy :update_page_date
 
 		belongs_to :page, :inverse_of => :page_field	
 		accepts_nested_attributes_for :page
@@ -34,12 +35,5 @@ module Rhinoart
 		def select_list
 			FIELD_TYPES.map { |ft| [ft[1], ft[0]] }
 		end
-
-		private
-			def update_page_date
-				self.page.updated_at = DateTime.now
-				self.page.save
-			end
-
 	end
 end

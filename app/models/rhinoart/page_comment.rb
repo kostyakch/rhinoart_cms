@@ -13,7 +13,7 @@
 #
 
 module Rhinoart
-	class PageComment < ActiveRecord::Base
+	class PageComment < Rhinoart::Base
 		include ActionView::Helpers
 		before_validation :clear_html
 
@@ -28,6 +28,7 @@ module Rhinoart
 		validates :comment, length: { minimum: 3, maximum: 1500 }
 
 		after_save :update_page_date
+		after_destroy :update_page_date
 
 
 		def children
@@ -38,11 +39,5 @@ module Rhinoart
 		def clear_html
 			self.comment = strip_tags self.comment
 		end
-
-		private
-			def update_page_date
-				self.page.updated_at = DateTime.now
-				self.page.save
-			end	
 	end
 end

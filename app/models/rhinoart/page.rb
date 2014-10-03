@@ -19,7 +19,7 @@
 #  user_id      :integer
 #
 module Rhinoart
-  class Page < ActiveRecord::Base
+  class Page < Rhinoart::Base
     require "rhinoart/utils"
     
     before_validation :name_to_slug
