@@ -14,7 +14,7 @@ module Rhinoart
 
 		#attr_accessible :name, :value, :descr
 
-		default_scope order: 'name'
+		default_scope { order 'name' }
 
 		validates :name, uniqueness: { case_sensitive: false }, 
 			:format => { :with => /\A[-_a-zA-Z0-9]+\z/ }
