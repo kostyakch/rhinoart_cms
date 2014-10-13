@@ -12,7 +12,7 @@
             <div class="nav-no-collapse header-nav">
                 <ul class="nav pull-right">
                     <% if can? :manage, :all %>
-                    <li><%= link_to raw('<i class="halflings-icon white wrench"></i>'), settings_path %></li>
+                    <li><%= link_to raw('<i class="halflings-icon white wrench"></i>'), rhinoart.settings_path %></li>
                     <% end %>
                     <!-- start: User Dropdown -->
                     <li class="dropdown">
@@ -21,8 +21,8 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><%= link_to raw('<i class="halflings-icon white user"></i> Profile'), edit_user_path(@current_user) %></li>
-                            <li><%= link_to raw('<i class="halflings-icon white off"></i> Logout'), destroy_user_session_path, :method => :delete %></li>
+                            <li><%= link_to raw('<i class="halflings-icon white user"></i> Profile'), rhinoart.edit_user_path(current_user) %></li>
+                            <li><%= link_to raw('<i class="halflings-icon white off"></i> Logout'), rhinoart.destroy_user_session_path, :method => :delete %></li>
                         </ul>
                     </li>
                     <!-- end: User Dropdown -->

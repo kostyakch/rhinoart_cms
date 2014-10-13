@@ -2,6 +2,12 @@ Rhinoart::Engine.routes.draw do
     devise_for :users, class_name: "Rhinoart::User", module: :devise, 
         :controllers => { :sessions => "rhinoart/sessions", :passwords => "rhinoart/passwords"  } 
 
+    begin
+        mount Rhinobook::Engine, at: "library"    
+    rescue
+    end
+    
+
     scope "(:locale)", locale: /ru|en/ do 
         scope "manage" do 
             resources :users
