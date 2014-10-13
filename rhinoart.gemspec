@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency "will_paginate"
   s.add_dependency "acts_as_list"
 
-  s.add_dependency "haml", '~> 4.0.0'
+  s.add_dependency "haml-rails", "~> 0.4.0"
 
   s.add_dependency "jquery-rails"
   #s.add_dependency "json"
