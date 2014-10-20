@@ -2,20 +2,20 @@
 	<div class="nav-collapse sidebar-nav">
 		<ul class="nav nav-tabs nav-stacked main-menu">
 			<% if can?(:manage, :content) %>
-			<li class="<%= 'active' if controller.controller_name == 'pages' %>">
+			<li class="<%= 'active' if controller.class.name == 'Rhinoart::PagesController' %>">
 				<%= link_to "<i class=\"fa-icon-tasks\"></i><span class=\"hidden-tablet\"> #{ t(:_CONTENT) }</span>".html_safe, rhinoart.pages_path %>
 			</li>
-			<li class="<%= 'active' if controller.controller_name == 'page_comments' %>">
+			<li class="<%= 'active' if controller_name == 'page_comments' %>">
 				<%= link_to "<i class=\"fa-icon-comments\"></i><span class=\"hidden-tablet\"> #{ t(:_COMMENTS) }</span>".html_safe, rhinoart.page_comments_path %>
 			</li>
-			<li class="<%= 'active' if controller.controller_name == 'galleries' or controller.controller_name == 'gallery_images' %>">
+			<li class="<%= 'active' if controller_name == 'galleries' or controller_name == 'gallery_images' %>">
 				<%= link_to "<i class=\"fa-icon-picture\"></i><span class=\"hidden-tablet\"> #{ t(:_GALLERY) }</span>".html_safe, rhinoart.galleries_path %>
 			</li>
 			<% end %>
 
 			<% begin %>
 			<% if can?(:manage, :all) && Rails.configuration.show_vote %>
-			<li class="<%= 'active' if controller.controller_name == 'votes' %>">
+			<li class="<%= 'active' if controller_name == 'votes' %>">
 				<%= link_to "<i class=\"fa-icon-list-alt\"></i><span class=\"hidden-tablet\"> #{ t(:_VOTES) }</span>".html_safe, rhinoart.votes_path %>
 			</li>
 			<% end %>
@@ -24,7 +24,7 @@
 
 			<% begin %>
 				<% Rhinobook::Engine %>	
-				<li class="<%= 'active' if controller.controller_name == 'books' || controller.controller_name == 'chapters' %>">
+				<li class="<%= 'active' if controller_name == 'books' || controller_name == 'chapters' || controller.class.name == 'Rhinobook::PagesController' %>">
 					<%= link_to "<i class=\"fa-icon-book\"></i><span class=\"hidden-tablet\"> #{ t(:_BOOKS) }</span>".html_safe, rhinobook.books_path %>
 				</li>
 			<% rescue %>
@@ -32,19 +32,19 @@
 			
 
 			<% if can?(:manage, :all) %>
-			<li class="<%= 'active' if controller.controller_name == 'structures' %>">
+			<li class="<%= 'active' if controller_name == 'structures' %>">
 				<%= link_to "<i class=\"fa-icon-sitemap\"></i><span class=\"hidden-tablet\"> #{ t(:_SITE_STRUCTURE) }</span>".html_safe, rhinoart.structures_path %>
 			</li>
 			<% end %>
 
 			<% if can?(:manage, :users) %>
-			<li class="<%= 'active' if controller.controller_name == 'users' %>">
+			<li class="<%= 'active' if controller_name == 'users' %>">
 				<%= link_to "<i class=\"fa-icon-group\"></i><span class=\"hidden-tablet\"> #{ t(:_USERS) }</span>".html_safe, rhinoart.users_path %>
 			</li>
 			<% end %>
 
 			<% if can?(:manage, :all) %>
-			<li class="<%= 'active' if controller.controller_name == 'settings' %>">
+			<li class="<%= 'active' if controller_name == 'settings' %>">
 				<%= link_to "<i class=\"fa-icon-cogs\"></i><span class=\"hidden-tablet\"> #{ t(:_SETTINGS) }</span>".html_safe, rhinoart.settings_path %>
 			</li>
 			<% end %>
