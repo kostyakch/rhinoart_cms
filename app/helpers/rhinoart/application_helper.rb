@@ -1,7 +1,5 @@
 module Rhinoart
 	module ApplicationHelper
-		require "rhinoart/version"
-
 		# Returns the full title on a per-page basis.
 		def full_title(page_title)
 			base_title = setting_by_name('site_name') ? setting_by_name('site_name') : 'Rhino Rails CMS'
@@ -21,6 +19,7 @@ module Rhinoart
 		end
 
 		def meta_tags(page)
+			require "rhinoart/version"
 			begin
 				res = "<meta name=\"generator\" content=\"RhinoArtCMS #{Rhinoart::VERSION}\">\n"		
 				if page and page.page_field
@@ -40,6 +39,11 @@ module Rhinoart
 			# rescue
 			# 	t('_PARTIAL_ERROR', name: partial)
 
-		end  	
+		end 
+
+		def sys_version
+			require "rhinoart/version"
+		 	Rhinoart::VERSION
+		end 	
 	end
 end
