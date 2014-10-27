@@ -46,8 +46,8 @@ ru:
 
   _CONTENT: Контент
   _SITE_STRUCTURE: Структура сайта
-  _USERS: Users
-  _SETTINGS: Settings
+  _USERS: Пользователи
+  _SETTINGS: Параметры системы
 
   _VOTES: Опросы
   _VOTE_NAME: Наименование опроса
@@ -95,13 +95,15 @@ ru:
 
     # Titles
   _PAGES: Pages
-  _GALLERY: Gallery
+  _GALLERY: Галереи
 
   # Dashboard
   _NEWS_ARTICLES: News/Articles
-  _BLOGS: Blogs
+  _BLOGS: Блоги
   _COMMENT: Комментарий
-  _IMAGES: Images
+  _IMAGES: Изображения
+
+  _BOOKS: Книги
 
   # Admin menu
   Settings: Настройки
