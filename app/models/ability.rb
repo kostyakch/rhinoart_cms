@@ -18,6 +18,13 @@ class Ability
                     if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_CONTENT_MANAGER)
                         can :manage, :content
                     end
+
+                    begin
+                        if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_MANAGER)
+                            can :manage, :books
+                        end
+                    rescue                        
+                    end
                 end
             else    
                 if user.frontend_user?

@@ -24,9 +24,11 @@
 
 			<% begin %>
 				<% Rhinobook::Engine %>	
-				<li class="<%= 'active' if controller_name == 'books' || controller_name == 'chapters' || controller.class.name == 'Rhinobook::PagesController' %>">
-					<%= link_to "<i class=\"fa-icon-book\"></i><span class=\"hidden-tablet\"> #{ t(:_BOOKS) }</span>".html_safe, rhinobook.books_path %>
-				</li>
+				<% if can?(:manage, :books) %>
+					<li class="<%= 'active' if controller_name == 'books' || controller_name == 'chapters' || controller.class.name == 'Rhinobook::PagesController' %>">
+						<%= link_to "<i class=\"fa-icon-book\"></i><span class=\"hidden-tablet\"> #{ t(:_BOOKS) }</span>".html_safe, rhinobook.books_path %>
+					</li>
+				<% end %>
 			<% rescue %>
 			<% end %>
 			
