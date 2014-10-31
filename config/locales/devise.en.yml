@@ -17,6 +17,8 @@ en:
       unauthenticated: "You need to sign in or sign up before continuing."
       unconfirmed: "You have to confirm your account before continuing."
       not_approved: 'Your account has not been approved by your administrator yet.'
+      user:
+        not_approved: "You are not approved yet."
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"
