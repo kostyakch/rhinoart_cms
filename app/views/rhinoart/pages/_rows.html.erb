@@ -5,6 +5,9 @@
 
 			<% if p.ptype == 'article' || p.ptype == 'blog' %>
 				<%= link_to p.name, children_page_path(p), class: page_tree(p).present? ? '' : 'children' %>
+				<%= link_to edit_page_path(p), class: 'edit-article-item' do %>
+					<span class="halflings-icon edit"></span>
+				<% end %>
 			<% else %>
 				<%= link_to p.name, edit_page_path(p), class: page_tree(p).present? ? '' : 'children' %>
 			<% end %>			

@@ -158,3 +158,12 @@ table.tablesorter thead tr .headerSortDown {
 		text-shadow: none;
 	}
 }
+
+.edit-article-item {
+	float: right; 
+	opacity: 0.3;
+
+	&:hover {
+		opacity: 1;		
+	}
+}
