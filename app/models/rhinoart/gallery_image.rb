@@ -11,7 +11,7 @@
 #  position   :integer          default(0), not null
 #  created_at :datetime
 #  updated_at :datetime
-#
+#  params     :text
 
 module Rhinoart
 	class GalleryImage < ActiveRecord::Base
@@ -27,5 +27,8 @@ module Rhinoart
 		#validates :path, presence: true, :uniqueness => { :scope => :gallery_id }
 
 		mount_uploader :path, Rhinoart::GalleryImageUploader
+
+		SAFE_INFO_ACCESSORS = [ :url ]
+		store :params, accessors: SAFE_INFO_ACCESSORS, coder: JSON
 	end
 end
