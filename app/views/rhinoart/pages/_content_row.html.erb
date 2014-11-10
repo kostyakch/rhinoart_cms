@@ -45,9 +45,9 @@
         autoresize: true,
         minHeight: 300, 
         maxHeight: 650,
-        'imageUpload': '<%= upload_image_path %>',
+        'imageUpload': '<%= upload_image_path(id: @page.id) %>',
         'imageGetJson': '<%= image_list_path %>',
-        'fileUpload': '<%= upload_file_path %>'
+        'fileUpload': '<%= upload_file_path(id: @page.id) %>'
     });
 </script>   
 <% end %>

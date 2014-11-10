@@ -6,7 +6,7 @@ module Rhinoart
 		
 		def upload_image
 			RedactorUploader.configure do |config|
-				config.store_dir = 'uploads/images/pages'
+				config.store_dir = "uploads/images/pages/#{params[:id].present? ? params[:id] : 0}"
 			end				
 			uploader = RedactorUploader.new
 			uploader.store!(params[:file])
@@ -16,7 +16,7 @@ module Rhinoart
 
 		def upload_file
 			RedactorUploader.configure do |config|
-				config.store_dir = 'uploads/files/pages'
+				config.store_dir = "uploads/files/pages/#{params[:id].present? ? params[:id] : 0}"
 			end		
 			uploader = RedactorUploader.new
 			uploader.store!(params[:file])
