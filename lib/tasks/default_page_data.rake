@@ -9,12 +9,5 @@ namespace :db do
     page.page_field.build(name: "description", ftype: "meta", position: 2, value: 'This is a home page')
     page.page_field.build(name: "keywords", ftype: "meta", position: 3, value: 'home, page')
     page.save
-
-    # 99.times do |n|
-    #   name  = Faker::Name.name
-    #   slug = Faker::Base.flexible(name).downcase.gsub(' ', '-').gsub('.', '')
-    #   Page.create!(name: name,
-    #                slug: slug)
-    # end
   end
 end
