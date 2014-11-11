@@ -19,7 +19,7 @@ module Rhinoart
 		validates :name, uniqueness: { case_sensitive: false }, 
 			:format => { :with => /\A[-_a-zA-Z0-9]+\z/ }
 		validates :name, :length => { :in => 2..150 }
-		validates :value, :length => { :in => 2..250 }
+		# validates :value
 		
 		private
 

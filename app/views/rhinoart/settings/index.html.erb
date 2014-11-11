@@ -19,8 +19,8 @@
 		<table class="table table-striped tree">
 			<thead>
 				<tr>
-					<th width="60%"><%= t(:_PARAMETER_NAME) %></th>
-					<th width="20%"><%= t(:_PARAMETER_VALUE) %></th>
+					<th width="20%"><%= t(:_PARAMETER_NAME) %></th>
+					<th width="60%"><%= t(:_PARAMETER_VALUE) %></th>
 					<th><%= t(:_ACTIONS) %></th>
 				</tr>
 			</thead>
@@ -31,7 +31,7 @@
 						<i class="fa-icon-file"></i> <b><%= link_to c.name, edit_setting_path(c) %></b><br>
 						<i><small><%= c.descr %></small></i>
 					</td>
-					<td><%= c.value %></td>
+					<td><%= c.value[0..200] if c.value.present? %></td>
 					<td class="center">
 						<%= link_to raw('<i class="halflings-icon edit"></i>'), edit_setting_path(c), class: 'btn btn-info' %>
 						<%= link_to raw('<i class="halflings-icon trash"></i>'), setting_path(c), class: 'btn btn-info', :method => :delete, :data => { :confirm => t('_DELETE_CONFIRM') } %>
