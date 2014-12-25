@@ -3,7 +3,7 @@ require_dependency "rhinoart/application_controller"
 
 module Rhinoart
 	class PagesController < BaseController		
-		before_action { authorize! :manage, :content }
+		before_action { authorize!(:manage, :content) }
 		before_action :set_rhinoart_page, only: [:edit, :update, :destroy]
 		before_action :set_tree_ids, only: [:index, :children, :edit]		
 
