@@ -31,7 +31,7 @@
 
         <div class="span2">
             <%= f.label :publish_date %>
-            <div class="input-append pdate span11" id="dp3" data-date="12-02-2012" data-date-format="dd.mm.yyyy">
+            <div class="input-append pdate span11" id="dp3" data-date="12-02-2012" data-date-format="mm/dd/yyyy">
                 <%= f.text_field :publish_date, class: 'span10' %>
                 <span class="add-on"><i class="icon-calendar"></i></span>
             </div>            
@@ -39,7 +39,7 @@
             <% content_for :javascript do %>
             <script type="text/javascript">
                 $('#page_publish_date').datepicker({
-                    format: 'dd.mm.yyyy'
+                    format: 'mm/dd/yyyy'
                 });
             </script>
             <% end %>

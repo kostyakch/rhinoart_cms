@@ -52,7 +52,7 @@ module Rhinoart
     validates :slug, uniqueness: { case_sensitive: false }, format: { with: VALID_SLUG_REGEX }
     validates_uniqueness_of :slug, :scope => :parent_id
 
-    default_scope { order 'position asc' }
+    # default_scope { order 'position asc' }
     acts_as_list  :scope => [:parent_id] #, :publish_date
 
 

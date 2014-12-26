@@ -134,7 +134,7 @@ en:
   
   created_at:
       formats:
-        default: "%d.%m.%Y"
+        default: "%m/%d/%Y"
         short: "%b %d"
         long: "%B %d, %Y"
 
@@ -147,9 +147,9 @@ en:
 
   time:
     formats:
-      default: "%m.%d.%Y"
-      long: "%d %B %Y"
-      short: "%d.%m.%Y %H:%M"
+      default: "%m/%d/%Y"
+      long: "%B %d %Y"
+      short: "%m/%d/%Y %H:%M"
       
   will_paginate:
     previous_label: Previous
