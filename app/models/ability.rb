@@ -24,6 +24,9 @@ class Ability
                         if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_MANAGER)
                             can :manage, :books
                         end
+                        if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_AUTHOR)
+                            can :access, :sign_books
+                        end
                     rescue                        
                     end
                 end
