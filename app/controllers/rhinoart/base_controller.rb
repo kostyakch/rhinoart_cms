@@ -10,8 +10,12 @@ module Rhinoart
 				if !can? :access, :admin_panel
 					redirect_to main_app.root_path, alert: exception.message
 				else
-					flash.now[:info] = "Access denied."
-					render :template => 'rhinoart/shared/no_approved', :status => 403
+					if can?(:manage, :books)
+						redirect_to rhinobook.root_path
+					else
+						flash.now[:info] = "Access denied."
+						render :template => 'rhinoart/shared/no_approved', :status => 403
+					end
 				end
 			else
 				redirect_to new_user_session_path, alert: exception.message

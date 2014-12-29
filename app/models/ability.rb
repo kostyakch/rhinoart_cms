@@ -25,6 +25,7 @@ class Ability
                             can :manage, :books
                         end
                         if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_AUTHOR)
+                            can :manage, :books
                             can :access, :sign_books
                         end
                     rescue                        
