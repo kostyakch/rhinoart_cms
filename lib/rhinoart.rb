@@ -1,6 +1,8 @@
 require 'devise'
 require "rhinoart/engine"
-
+require 'globalize'
+require 'globalize-accessors'
+require 'globalize-versioning'
 
 module Rhinoart
 	class Engine < ::Rails::Engine
