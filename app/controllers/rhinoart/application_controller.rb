@@ -10,10 +10,12 @@ module Rhinoart
 		#before_filter :check_uri if Rails.configuration.redirect_to_www
 
 		def set_locale
-		  I18n.locale = params[:locale] || I18n.default_locale
-		end  
-
-
+			if current_user.present? && current_user.locales.present? && current_user.locales.count == 1
+				I18n.locale = params[:locale] || current_user.locales.first || I18n.default_locale
+			else
+				I18n.locale = params[:locale] || I18n.default_locale
+			end
+		end	
 
 
 		# Force signout to prevent CSRF attacks
@@ -35,9 +37,6 @@ module Rhinoart
 			end
 		end	
 
-		def set_locale
-			I18n.locale = params[:locale] || I18n.default_locale
-		end		
 
 		private     
 

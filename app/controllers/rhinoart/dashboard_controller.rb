@@ -6,8 +6,13 @@ module Rhinoart
 		# before_filter { access_only_roles %w[ROLE_ADMIN ROLE_EDITOR ROLE_SALLER] }	
 
 		def index
-			store_location
-			@orders = Order.where('status = ?', 'new').limit(20)
+			# User activity
+			if can?(:manage, :all)
+				@users = Rhinoart::User.joins('LEFT JOIN versions ON versions.whodunnit = rhinoart_users.id ').where('versions.created_at > ?', 1.week.ago).group('rhinoart_users.id').limit(5)
+			else
+				@users = Rhinoart::User.joins('LEFT JOIN versions ON versions.whodunnit = rhinoart_users.id ').where('rhinoart_users.id = ? and versions.created_at > ?', current_user, 1.week.ago).group('rhinoart_users.id').limit(5)
+			end
+
 		end
 	end
 end

@@ -30,7 +30,6 @@ module Rhinoart
 		after_save :update_page_date
 		after_destroy :update_page_date
 
-
 		def children
 			PageComment.where('parent_id = ?', self.id)
 		end

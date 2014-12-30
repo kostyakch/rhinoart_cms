@@ -1,0 +1,16 @@
+- if works.any?			
+	%table.table.table-striped
+		%thead
+			%tr
+				%th Name 
+				%th Action
+				%th{ nowrap: :nowrap } Date Change
+
+		- works.each do |work|
+			%tr
+				%td= render 'rhinoart/shared/work_links', work: work
+				%td= work.event
+				%td{ nowrap: :nowrap }= l work.created_at, format: :short
+
+- else
+	= t('no_activity')

@@ -28,7 +28,8 @@ module Rhinoart
     after_update :notify_after_change_approved
 
 
-    # validates :name,  length: { :in => 3..50 }
+    SAFE_INFO_ACCESSORS = [:locales]
+    store :info, accessors: SAFE_INFO_ACCESSORS, coder: JSON
 
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }, allow_blank: true

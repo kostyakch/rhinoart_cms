@@ -3,6 +3,7 @@ require "rhinoart/engine"
 require 'globalize'
 require 'globalize-accessors'
 require 'globalize-versioning'
+require 'paper_trail'
 
 module Rhinoart
 	class Engine < ::Rails::Engine

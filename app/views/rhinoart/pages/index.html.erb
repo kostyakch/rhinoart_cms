@@ -23,7 +23,7 @@
 			<a class="quick-button span2">
 				<i class="fa-icon-tasks"></i>
 				<p><%= t(:_NEWS_ARTICLES) %></p>
-				<span class="notification"><%= Rhinoart::Page.where("ptype='article'").count-1 %></span>
+				<span class="notification"><%= Rhinoart::Page.count %></span>
 			</a>
 			<a href="" class="quick-button span2">
 				<i class="fa-icon-book"></i>

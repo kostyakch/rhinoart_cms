@@ -25,7 +25,6 @@ module Rhinoart
 		before_validation :name_to_slug
 		after_initialize :set_publish_date   
 
-
 		# Associations
 		#has_many :page_content, :order => 'position', :autosave => true, :dependent => :destroy  
 		has_many :page_content, -> { order 'position' }, :autosave => true, :dependent => :destroy  
@@ -55,8 +54,7 @@ module Rhinoart
 		# default_scope { order 'position asc' }
 		acts_as_list  :scope => [:parent_id] #, :publish_date
 
-
-
+		has_paper_trail :only => [:name, :ptype, :publish_date, :page_comment]
 
 		def content_by_name(name='main_content')
 			if self.page_content.find_by(name: name).present?

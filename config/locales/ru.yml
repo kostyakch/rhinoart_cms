@@ -165,6 +165,7 @@ ru:
   Comment: Комментарий
   add_comment: Add comment
   edit_comment: Edit comment
+  last_change_by: Изменения внес
 
   #votes
   _VOTE_SUCCESS: Анкета успешно заполнена

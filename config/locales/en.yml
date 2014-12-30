@@ -127,6 +127,7 @@ en:
   # comment
   add_comment: Add comment
   edit_comment: Edit comment
+  last_change_by: Changed by
 
   
   #votes

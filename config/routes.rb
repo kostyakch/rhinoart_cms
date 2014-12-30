@@ -3,15 +3,16 @@ Rhinoart::Engine.routes.draw do
         :controllers => { :sessions => "rhinoart/sessions", :passwords => "rhinoart/passwords"  } 
 
     scope "(:locale)", locale: /ru|en/ do 
-        begin
-            mount Rhinobook::Engine, at: "library"    
-        rescue
-        end
+        # begin
+        #     mount Rhinobook::Engine, at: "library"    
+        # rescue
+        # end
         scope "manage" do 
             resources :users
         end
 
-        root :to => 'pages#index'
+        # root :to => 'pages#index'
+        root :to => 'dashboard#index'
         
         # resources :sessions, only: [:new, :create, :destroy]
         # match '/login',  to: 'sessions#new', via: [:get]
