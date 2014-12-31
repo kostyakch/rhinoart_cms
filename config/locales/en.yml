@@ -128,6 +128,7 @@ en:
   add_comment: Add comment
   edit_comment: Edit comment
   last_change_by: Changed by
+  confirm_to_delete_record: "Are you sure?"
 
   
   #votes

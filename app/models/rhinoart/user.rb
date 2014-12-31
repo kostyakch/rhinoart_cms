@@ -45,6 +45,14 @@ module Rhinoart
     FRONTEND_ROLES = RhinoartConfig.config.frontend_roles
 
 
+    def self.current
+        Thread.current[:user]
+    end
+
+    def self.current=(user)
+        Thread.current[:user] = user
+    end
+    
     def name_email
       "#{self.name } (#{self.email})"    
     end
@@ -101,6 +109,11 @@ module Rhinoart
         end 
     end
 
+    def ability
+        @ability ||= Ability.new(self)
+    end
+    delegate :can?, :cannot?, :to => :ability
+    
     private
 
         def create_remember_token

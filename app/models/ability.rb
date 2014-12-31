@@ -19,15 +19,29 @@ class Ability
                         can :manage, :content
                         can :manage, :settings
                     end
-
+                
                     begin
-                        if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_MANAGER)
+                        # Content managers
+                        if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_CONTENT_CREATOR)
+                            can :manage, :create_docs
                             can :manage, :books
                         end
-                        if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_AUTHOR)
+                        if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_CONTENT_EDITOR)
+                            can :manage, :edit_docs
                             can :manage, :books
-                            can :access, :sign_books
                         end
+                        if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_CONTENT_PUBLISHER)
+                            can :manage, :public_docs
+                            can :manage, :books
+                        end
+                        
+                        # if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_MANAGER)
+                        #     can :manage, :books
+                        # end
+                        # if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_AUTHOR)
+                        #     can :manage, :books
+                        #     can :access, :sign_books
+                        # end
                     rescue                        
                     end
                 end

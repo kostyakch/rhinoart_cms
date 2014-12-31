@@ -4,7 +4,7 @@ module Rhinoart
 		include SessionsHelper
 		before_action :set_locale
 		before_filter :configure_permitted_parameters, if: :devise_controller?
-		# before_filter :signed_in_user
+		before_filter :set_current_user
 		
 
 		#before_filter :check_uri if Rails.configuration.redirect_to_www
@@ -37,7 +37,9 @@ module Rhinoart
 			end
 		end	
 
-
+		def set_current_user
+			User.current = current_user
+		end
 		private     
 
 			def correct_user

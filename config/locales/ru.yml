@@ -166,6 +166,7 @@ ru:
   add_comment: Add comment
   edit_comment: Edit comment
   last_change_by: Изменения внес
+  confirm_to_delete_record: "Вы действительно хотите удалить запись?"
 
   #votes
   _VOTE_SUCCESS: Анкета успешно заполнена

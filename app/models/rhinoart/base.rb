@@ -13,7 +13,25 @@ module Rhinoart
 				translation.versions.last.created_at
 			end
 		end
-			
+
+		def can_edit?(locale=nil)
+			if locale.present?
+				exists_statuses = self.statuses.where(locale: locale )
+			else
+				exists_statuses = self.statuses
+			end
+
+			if exists_statuses.count == 0 && (Rhinoart::User.current.can?(:manage, :create_docs) || Rhinoart::User.current.can?(:manage, :edit_docs) || Rhinoart::User.current.can?(:manage, :public_docs))
+				true
+			elsif exists_statuses.count == 1 && (Rhinoart::User.current.can?(:manage, :edit_docs) || Rhinoart::User.current.can?(:manage, :public_docs))
+				true
+			elsif Rhinoart::User.current.can?(:manage, :public_docs)
+				true
+			else
+				false
+			end		
+		end
+		
 		private
 			def update_page_date
 				begin
