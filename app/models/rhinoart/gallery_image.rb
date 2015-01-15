@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: gallery_images
+# Table name: rhinoart_gallery_images
 #
 #  id         :integer          not null, primary key
 #  gallery_id :integer
@@ -8,10 +8,11 @@
 #  annotation :text
 #  main       :boolean          default(FALSE), not null
 #  active     :boolean          default(TRUE), not null
-#  position   :integer          default(0), not null
+#  position   :integer          not null
 #  created_at :datetime
 #  updated_at :datetime
 #  params     :text
+#
 
 module Rhinoart
 	class GalleryImage < ActiveRecord::Base

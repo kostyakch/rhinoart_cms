@@ -1,10 +1,10 @@
 # == Schema Information
 #
-# Table name: settings
+# Table name: rhinoart_settings
 #
 #  id    :integer          not null, primary key
 #  name  :string(120)      default(""), not null
-#  value :string(255)      default(""), not null
+#  value :text
 #  descr :text
 #
 

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: page_comments
+# Table name: rhinoart_page_comments
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer

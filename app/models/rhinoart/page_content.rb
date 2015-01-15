@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: page_contents
+# Table name: rhinoart_page_contents
 #
 #  id       :integer          not null, primary key
 #  page_id  :integer

@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: rhinoart_files
+#
+#  id                :integer          not null, primary key
+#  attachable_id     :integer
+#  attachable_type   :string(255)
+#  file              :string(255)
+#  file_content_type :string(255)
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 module Rhinoart
 	class Files < ActiveRecord::Base
 		self.inheritance_column = "non_sti"

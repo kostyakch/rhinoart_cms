@@ -1,7 +1,7 @@
 #encoding: utf-8
 # == Schema Information
 #
-# Table name: pages
+# Table name: rhinoart_pages
 #
 #  id           :integer          not null, primary key
 #  parent_id    :integer
@@ -18,6 +18,7 @@
 #  publish_date :date             not null
 #  user_id      :integer
 #
+
 module Rhinoart
 	class Page < Rhinoart::Base
 		require "rhinoart/utils"

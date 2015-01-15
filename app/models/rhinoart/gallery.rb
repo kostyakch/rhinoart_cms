@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: galleries
+# Table name: rhinoart_galleries
 #
 #  id         :integer          not null, primary key
 #  page_id    :integer
@@ -8,7 +8,7 @@
 #  name       :string(255)      not null
 #  descr      :text
 #  active     :boolean          default(TRUE)
-#  position   :integer          default(0)
+#  position   :integer          not null
 #  created_at :datetime
 #  updated_at :datetime
 #
