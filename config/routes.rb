@@ -3,20 +3,11 @@ Rhinoart::Engine.routes.draw do
         :controllers => { :sessions => "rhinoart/sessions", :passwords => "rhinoart/passwords"  } 
 
     scope "(:locale)", locale: /ru|en/ do 
-        # begin
-        #     mount Rhinobook::Engine, at: "library"    
-        # rescue
-        # end
         scope "manage" do 
             resources :users
         end
 
-        # root :to => 'pages#index'
         root :to => 'dashboard#index'
-        
-        # resources :sessions, only: [:new, :create, :destroy]
-        # match '/login',  to: 'sessions#new', via: [:get]
-        # match '/logout', to: 'sessions#destroy', via: [:delete, :get]
 
         # Pages
         resources :pages do
@@ -45,25 +36,6 @@ Rhinoart::Engine.routes.draw do
         resources :dashboard
 
         resources :galleries
-
-        resources :votes do 
-            resources :vote_questions do #, only: [:new, :create, :destroy]   
-                resources :vote_answer_lists
-         #       resources :vote_user_answers
-            end    
-        end
-
-        resources :votes_passed_users
-
-
-        match 'vote_answers', to: 'votes#answers', via: 'get'
-        match 'vote_current_answers', to: 'votes#current_answers', via: 'get'#, as: :vote_current_answers
-        match 'vote_users/:id', to: 'votes#users', via: 'get', as: 'vote_users' 
-
-        #resources :vote_questions do #, only: [:show] do
-        #    resources :vote_answer_list
-        #    resources :vote_user_answer
-        #end
 
         #upload files
         scope :fileworks do
