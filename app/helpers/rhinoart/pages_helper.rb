@@ -3,9 +3,9 @@ module Rhinoart
 	module PagesHelper
 		def page_items(parent = nil)
 			if parent.blank?
-				Page.paginate(page: params[:page]).where('parent_id IS NULL').order(:position)
+				Page.paginate(page: params[:page]).where('parent_id IS NULL').order(:position, :name)
 			else
-				Page.paginate(page: params[:page]).where('parent_id = ?', parent.id).order(:position) if parent.ptype == 'page'
+				Page.paginate(page: params[:page]).where('parent_id = ?', parent.id).order(:position, :name) if parent.ptype == 'page'
 			end		
 		end	
 

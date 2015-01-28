@@ -12,9 +12,9 @@ module Rhinoart
 
 		def top_menu_items(parent = nil)
 			if parent.blank?
-				Page.where("active = true AND menu = true AND parent_id IS NULL")	
+				Page.where("active = true AND menu = true AND parent_id IS NULL").order(:position, :name)
 			else
-				Page.where("active = true AND menu = true AND parent_id = #{parent.id}") if parent.ptype == 'page'
+				Page.where("active = true AND menu = true AND parent_id = #{parent.id}").order(:position, :name) if parent.ptype == 'page'
 			end		
 		end
 

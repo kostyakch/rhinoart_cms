@@ -11,9 +11,9 @@ module Rhinoart
 		def index
 			store_location
 			if params[:parent].present?
-				@pages = Page.paginate(page: params[:page]).where("parent_id = ? AND active = ?", params[:parent], true) #if parent.ptype == 'page'
+				@pages = Page.paginate(page: params[:page]).where("parent_id = ? AND active = ?", params[:parent], true).order(:position, :name) #if parent.ptype == 'page'
 			else
-				@pages = Page.paginate(page: params[:page]).where("parent_id IS NULL AND active = ?", true)	
+				@pages = Page.paginate(page: params[:page]).where("parent_id IS NULL AND active = ?", true).order(:position, :name)	
 			end		
 
 			respond_to do |format|
