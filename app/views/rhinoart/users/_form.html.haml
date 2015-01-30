@@ -1,52 +1,57 @@
 = form_for @user, {html: {class: 'form-horizontal'}} do |f|
-  = render 'shared/error_messages', object: f.object
+	= render 'shared/error_messages', object: f.object
 
-  .control-group
-    = f.label :email, class: 'control-label'
-    .controls
-      = f.email_field :email, required: true
+	.control-group
+		= f.label :email, class: 'control-label'
+		.controls
+			= f.email_field :email, required: true
 
-  .control-group
-    = f.label :name, class: 'control-label'
-    .controls
-      = f.text_field :name
-
-
-  .control-group
-    = f.label :password, class: 'control-label'
-    .controls
-      = f.password_field :password
-      %small.help-inline
-        8+ characters
-
-  - if can? :manage, :user_roles
-    .control-group
-      = f.label :admin_role, class: 'control-label'
-      .controls
-        - Rhinoart::User::ADMIN_PANEL_ROLES.each do |ar| 
-          = label_tag ar do
-            = check_box_tag "user[admin_role][]", ar, @user.admin_role.present? ? @user.admin_role.include?(ar) : nil
-            = ar
-
-        /= f.select :admin_role, User::ADMIN_PANEL_ROLES, { :prompt => true }, { :multiple => true, :size => 4 }
-  - if can? :manage, :users
-    .control-group
-      = f.label :frontend_role, class: 'control-label'
-      .controls
-        = f.select :frontend_role, Rhinoart::User::FRONTEND_ROLES, include_blank: true
+	.control-group
+		= f.label :name, class: 'control-label'
+		.controls
+			= f.text_field :name
 
 
-  .control-group
-    = f.label :approved, class: 'control-label'
-    .controls
-      = f.check_box :approved
+	.control-group
+		= f.label :password, class: 'control-label'
+		.controls
+			= f.password_field :password
+			%small.help-inline
+				8+ characters
+
+	- if can? :manage, :user_roles
+		.control-group
+			= f.label :admin_role, class: 'control-label'
+			.controls
+				- Rhinoart::User::ADMIN_PANEL_ROLES.each do |ar| 
+					= label_tag ar do
+						= check_box_tag "user[admin_role][]", ar, @user.admin_role.present? ? @user.admin_role.include?(ar) : nil
+						= ar
+
+				/= f.select :admin_role, User::ADMIN_PANEL_ROLES, { :prompt => true }, { :multiple => true, :size => 4 }
+	- if can? :manage, :users
+		.control-group
+			= f.label :frontend_role, class: 'control-label'
+			.controls
+				= f.select :frontend_role, Rhinoart::User::FRONTEND_ROLES, include_blank: true
 
 
+	.control-group
+		= f.label :approved, class: 'control-label'
+		.controls
+			= f.check_box :approved
 
-  .form-actions
-    = f.submit 'Save', class: 'btn btn-primary', data: { disable_with: 'Saving...'}
-    - if f.object.persisted?
-      %span.muted or
-      = link_to 'Clear all access rights', [f.object], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+	- if I18n.available_locales.count > 1
+		.control-group
+			= f.label :locales, class: "control-label"
+			.controls
+				= f.select :locales, I18n.available_locales, {}, { :multiple => true, :size => 4 }
+
+
+	.form-actions
+		= f.submit 'Save', class: 'btn btn-primary', data: { disable_with: 'Saving...'}
+		- if f.object.persisted?
+			%span.muted or
+			= link_to 'Clear all access rights', [f.object], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
 
 

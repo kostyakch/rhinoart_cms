@@ -68,7 +68,11 @@ module Rhinoart
       "#{self.name } (#{self.email})"    
     end
 
-
+    def locales=(value)
+        value.reject! { |l| l.empty? }
+        super
+    end
+    
     def has_access_to_admin_panel?
         res = false
         begin

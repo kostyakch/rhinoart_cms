@@ -32,10 +32,12 @@
                                     %i.halflings-icon.white.off
                                     Logout
 
-                            - if available_locales.count > 1
+                            / = available_locales
+                            - if available_locales.present? && available_locales.count > 1
                                 - available_locales.each do |locale| 
-                                    %li
-                                        = link_to rhinoart.root_path(locale: locale) do 
-                                            %i.halflings-icon.white.flag
-                                            = t(locale)
+                                    - if locale.present?
+                                        %li
+                                            = link_to rhinoart.root_path(locale: locale) do 
+                                                %i.halflings-icon.white.flag
+                                                = t(locale) 
 

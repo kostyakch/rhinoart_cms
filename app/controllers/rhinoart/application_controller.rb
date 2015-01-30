@@ -1,6 +1,7 @@
 # encoding: utf-8
 module Rhinoart
 	class ApplicationController < ActionController::Base
+		include ApplicationHelper
 		include SessionsHelper
 		before_action :set_locale
 		before_filter :configure_permitted_parameters, if: :devise_controller?
