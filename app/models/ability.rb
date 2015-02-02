@@ -17,7 +17,7 @@ class Ability
                     end
                     if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_CONTENT_MANAGER)
                         can :manage, :content
-                        can :manage, :settings
+                        # can :manage, :settings
                     end
                 
                     begin

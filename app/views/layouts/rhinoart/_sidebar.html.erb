@@ -45,7 +45,7 @@
 			</li>
 			<% end %>
 
-			<% if can?(:manage, :all) || can?(:manage, :settings) %>
+			<% if can?(:manage, :settings) %>
 			<li class="<%= 'active' if controller_name == 'settings' %>">
 				<%= link_to "<i class=\"fa-icon-cogs\"></i><span class=\"hidden-tablet\"> #{ t(:_SETTINGS) }</span>".html_safe, rhinoart.settings_path %>
 			</li>

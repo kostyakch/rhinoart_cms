@@ -1,44 +1,44 @@
 - provide(:title, "Sidebar")
 
-.row-fluid.sortable.ui-sortable
-	.box.span12
-		.box-header
-			%h2
-				%i.halflings-icon.hand-top
-				%span.break
-				Quick Buttons
+/ .row-fluid.sortable.ui-sortable
+/ 	.box.span12
+/ 		.box-header
+/ 			%h2
+/ 				%i.halflings-icon.hand-top
+/ 				%span.break
+/ 				Quick Buttons
 
-		.box-content
-			= link_to pages_path, class: 'quick-button span2' do 
-				%i.fa-icon-tasks
-				%p= t(:_NEWS_ARTICLES) 
-				%span.notification= Rhinoart::Page.count
+/ 		.box-content
+/ 			= link_to pages_path, class: 'quick-button span2' do 
+/ 				%i.fa-icon-tasks
+/ 				%p= t(:_NEWS_ARTICLES) 
+/ 				%span.notification= Rhinoart::Page.count
 
-			= link_to '#', class: 'quick-button span2' do 
-				%i.fa-icon-book
-				%p= t(:_BLOGS) 
-				%span.notification.red= Rhinoart::Page.where("ptype='blog'").count
+/ 			= link_to '#', class: 'quick-button span2' do 
+/ 				%i.fa-icon-book
+/ 				%p= t(:_BLOGS) 
+/ 				%span.notification.red= Rhinoart::Page.where("ptype='blog'").count
 
-			= link_to page_comments_path, class: 'quick-button span2' do 
-				%i.fa-icon-comments-alt
-				%p= t(:_COMMENTS) 
-				%span.notification.green= Rhinoart::PageComment.count
+/ 			= link_to page_comments_path, class: 'quick-button span2' do 
+/ 				%i.fa-icon-comments-alt
+/ 				%p= t(:_COMMENTS) 
+/ 				%span.notification.green= Rhinoart::PageComment.count
 
-			= link_to galleries_path, class: 'quick-button span2' do 
-				%i.fa-icon-picture
-				%p= t(:_IMAGES) 
-				%span.notification.green= Rhinoart::GalleryImage.count
+/ 			= link_to galleries_path, class: 'quick-button span2' do 
+/ 				%i.fa-icon-picture
+/ 				%p= t(:_IMAGES) 
+/ 				%span.notification.green= Rhinoart::GalleryImage.count
 
-			= link_to users_path, class: 'quick-button span2' do 
-				%i.fa-icon-group
-				%p= t(:_USERS) 
-				%span.notification= Rhinoart::User.count
+/ 			= link_to users_path, class: 'quick-button span2' do 
+/ 				%i.fa-icon-group
+/ 				%p= t(:_USERS) 
+/ 				%span.notification= Rhinoart::User.count
 
-			= link_to settings_path, class: 'quick-button span2' do 
-				%i.fa-icon-cogs
-				%p= t(:_SETTINGS) 
-				%span.notification.yellow= Rhinoart::Setting.count
-			.clearfix
+/ 			= link_to settings_path, class: 'quick-button span2' do 
+/ 				%i.fa-icon-cogs
+/ 				%p= t(:_SETTINGS) 
+/ 				%span.notification.yellow= Rhinoart::Setting.count
+/ 			.clearfix
 
 .row-fluid
 	.box.span12
