@@ -19,7 +19,7 @@ class Ability
                         can :manage, :content
                         can :manage, :settings
                     end
-                
+                    
                     begin
                         # Content managers
                         if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_CONTENT_CREATOR)
@@ -34,16 +34,16 @@ class Ability
                             can :manage, :public_docs
                             can :manage, :books
                         end
-                        
-                        # if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_MANAGER)
-                        #     can :manage, :books
-                        # end
-                        # if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_AUTHOR)
-                        #     can :manage, :books
-                        #     can :access, :sign_books
-                        # end
                     rescue                        
                     end
+
+                    begin
+                        if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_CATALOG_MANAGER)
+                            can :manage, :catalog
+                        end
+                    rescue                        
+                    end
+
                 end
             else    
                 if user.frontend_user?

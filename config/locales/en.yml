@@ -60,12 +60,14 @@ en:
   _GALLERY: Gallery
 
   # Dashboard
+  _DASHBOARD: Dashboard
   _NEWS_ARTICLES: News/Articles
   _BLOGS: Blogs
   _COMMENT: Comments
   _IMAGES: Images
 
   _BOOKS: Books
+  _CATALOG: Catalog
 
 
   # Admin menu

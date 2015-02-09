@@ -98,12 +98,14 @@ ru:
   _GALLERY: Галереи
 
   # Dashboard
+  _DASHBOARD: Дашбоард
   _NEWS_ARTICLES: News/Articles
   _BLOGS: Блоги
   _COMMENT: Комментарий
   _IMAGES: Изображения
 
   _BOOKS: Книги
+  _CATALOG: Каталог
 
   # Admin menu
   Settings: Настройки

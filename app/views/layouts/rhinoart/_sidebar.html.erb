@@ -1,16 +1,27 @@
 <div id="sidebar-left" class="span1">
 	<div class="nav-collapse sidebar-nav">
 		<ul class="nav nav-tabs nav-stacked main-menu">
+			<li class="<%= 'active' if controller.class.name == 'Rhinoart::DashboardController' %>">
+				<%= link_to "<i class=\"fa-icon-home\"></i><span class=\"hidden-tablet\"> #{ t(:_DASHBOARD) }</span>".html_safe, rhinoart.root_path %>
+			</li>
+
 			<% if can?(:manage, :content) %>
-			<li class="<%= 'active' if controller.class.name == 'Rhinoart::PagesController' %>">
-				<%= link_to "<i class=\"fa-icon-tasks\"></i><span class=\"hidden-tablet\"> #{ t(:_CONTENT) }</span>".html_safe, rhinoart.pages_path %>
-			</li>
-			<li class="<%= 'active' if controller_name == 'page_comments' %>">
-				<%= link_to "<i class=\"fa-icon-comments\"></i><span class=\"hidden-tablet\"> #{ t(:_COMMENTS) }</span>".html_safe, rhinoart.page_comments_path %>
-			</li>
-			<li class="<%= 'active' if controller_name == 'galleries' or controller_name == 'gallery_images' %>">
-				<%= link_to "<i class=\"fa-icon-picture\"></i><span class=\"hidden-tablet\"> #{ t(:_GALLERY) }</span>".html_safe, rhinoart.galleries_path %>
-			</li>
+				<li class="<%= 'active' if controller.class.name == 'Rhinoart::PagesController' %>">
+					<%= link_to "<i class=\"fa-icon-tasks\"></i><span class=\"hidden-tablet\"> #{ t(:_CONTENT) }</span>".html_safe, rhinoart.pages_path %>
+				</li>
+				<% begin %>
+					<% if Rails.configuration.show_comments %>
+						<li class="<%= 'active' if controller_name == 'page_comments' %>">
+							<%= link_to "<i class=\"fa-icon-comments\"></i><span class=\"hidden-tablet\"> #{ t(:_COMMENTS) }</span>".html_safe, rhinoart.page_comments_path %>
+						</li>
+					<% end %>
+					<% if Rails.configuration.show_gallery %>
+						<li class="<%= 'active' if controller_name == 'galleries' or controller_name == 'gallery_images' %>">
+							<%= link_to "<i class=\"fa-icon-picture\"></i><span class=\"hidden-tablet\"> #{ t(:_GALLERY) }</span>".html_safe, rhinoart.galleries_path %>
+						</li>
+					<% end %>
+				<% rescue %>
+				<% end %>				
 			<% end %>
 
 			<% begin %>
@@ -32,7 +43,16 @@
 			<% rescue %>
 			<% end %>
 			
-
+			<% begin %>
+				<% Rhinocatalog::Engine %>	
+				<% if can?(:manage, :catalog) %>
+					<li class="<%= 'active' if controller.class.name == 'Rhinocatalog::CategoriesController' || controller.class.name == 'Rhinocatalog::ProductsController' %>">
+						<%= link_to "<i class=\"fa-icon-shopping-cart\"></i><span class=\"hidden-tablet\"> #{ t(:_CATALOG) }</span>".html_safe, rhinocatalog.root_path %>
+					</li>
+				<% end %>
+			<% rescue %>
+			<% end %>
+			
 			<% if can?(:manage, :all) %>
 			<li class="<%= 'active' if controller_name == 'structures' %>">
 				<%= link_to "<i class=\"fa-icon-sitemap\"></i><span class=\"hidden-tablet\"> #{ t(:_SITE_STRUCTURE) }</span>".html_safe, rhinoart.structures_path %>
