@@ -2,7 +2,8 @@
 
 <p>
 	User email: <%= @user.email %><br>
-	User name is: <%= @user.name %>
+	User name is: <%= @user.name %><br>
+	User role: <%= @user.api_role.join(' / ') %>
 </p>
 
-<p>Please grant access to this user or delete him</p>
+<p>Please grant access to this user or delete him at <%= link_to 'user page', rhinoart.edit_admin_user_url(@user) %></p>
