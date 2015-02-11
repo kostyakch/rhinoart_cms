@@ -23,7 +23,7 @@ module Rhinoart
                 if params[:q].present?
                     @users = User.where('email LIKE ? or info LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%").paginate(page: params[:page], per_page: 30).order(order_str)
                 else
-                    @users = User.paginate(page: params[:page], per_page: 30).order(order_str)
+                    @users = User.paginate(page: params[:page], per_page: 30).order(:name, :email)
                 end
             end 
         end
