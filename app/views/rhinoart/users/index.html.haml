@@ -1,74 +1,74 @@
 - provide(:title, "All #{t(:_USERS)}")
 
 .box-header
-  %h2
-    %i.fa-icon-group.align-justify
-    %span.break
-    = t(:_USERS)
+	%h2
+		%i.fa-icon-group.align-justify
+		%span.break
+		= t(:_USERS)
 
 
 
 .box-content
-  = render 'nav'
+	= render 'nav'
 
 
-  - if @users.any?
-    %table.table.table-condensed.table-bordered.table-striped.table-hover.tablesorter
-      /.table.table-condensed.table-striped.tablesorter
-      %thead
-        %tr
-          %th{style: "border-top:0; background: none; width: 10%;"}
-          %th{style: "border-top:0;"} Name 
-          %th{style: "border-top:0;"} E-Mail
-          %th{style: "border-top:0;"} User Type
-          %th{style: "border-top:0;"} Last sign in
-          %th{style: "border-top:0; background: none; min-width: 30px;"}
-       
+	- if @users.any?
+		%table.table.table-condensed.table-bordered.table-striped.table-hover.tablesorter
+			/.table.table-condensed.table-striped.tablesorter
+			%thead
+				%tr
+					%th{style: "border-top:0; background: none; width: 10%;"}
+					%th{style: "border-top:0;"} Name 
+					%th{style: "border-top:0;"} E-Mail
+					%th{style: "border-top:0;"} User Type
+					%th{style: "border-top:0;"} Last sign in
+					%th{style: "border-top:0; background: none; min-width: 30px;"}
+			 
 
-      - @users.each do |user|
-        %tr{data: {id: user.id}}
-          %td{ nowrap: 'nowrap' }
-            - if user.approved?
-              = link_to user_path(user, redirect_to: request.fullpath), method: :delete, data: { confirm: "Are you sure that you want to deny access that user?" }, class: "btn btn-small btn-danger" do
-                %i.fa-icon-remove
-                Deny Access
-            - else
-              = link_to user_path(user, user: {approved: true}, redirect_to: request.fullpath), method: :patch, data: { confirm: "Are you sure that you want to confirm that user?" }, class: "btn btn-small btn-success" do
-                %i.fa-icon-ok{ style: 'clolor:red;' }
-                Grant Access
+			- @users.each do |user|
+				%tr{data: {id: user.id}}
+					%td{ nowrap: 'nowrap' }
+						- if user.approved?
+							= link_to user_path(user, redirect_to: request.fullpath), method: :delete, data: { confirm: "Are you sure that you want to deny access that user?" }, class: "btn btn-small btn-danger" do
+								%i.fa-icon-remove
+								Deny Access
+						- else
+							= link_to user_path(user, user: {approved: true}, redirect_to: request.fullpath), method: :patch, data: { confirm: "Are you sure that you want to confirm that user?" }, class: "btn btn-small btn-success" do
+								%i.fa-icon-ok{ style: 'clolor:red;' }
+								Grant Access
 
-            = link_to [:edit, user], class: "btn btn-small" do
-              %i.fa-icon-pencil
-              Edit
+						= link_to [:edit, user], class: "btn btn-small" do
+							%i.fa-icon-pencil
+							Edit
 
-          %td= link_to user.name, [:edit, user]
-          %td= user.email
-          %td
-            %small= [user.admin_role, user.frontend_role].map(&:presence).compact.join(", ")
+					%td= link_to user.name, [:edit, user]
+					%td= user.email
+					%td
+						%small= [user.admin_role, user.frontend_role].map(&:presence).compact.join(", ")
 
-          %td{ nowrap: 'nowrap' }
-            %small
-              - if user.last_sign_in_at.present?
-                = user.last_sign_in_at.strftime("%m/%d/%Y %I:%M%p").html_safe
-              - else
-                Never        
+					%td{ nowrap: 'nowrap' }
+						%small
+							- if user.last_sign_in_at.present?
+								= user.last_sign_in_at.strftime("%m/%d/%Y %I:%M%p").html_safe
+							- else
+								Never        
 
-          %td
-            = link_to user_path(user, hard_delete: true, redirect_to: request.fullpath), method: :delete, data: { confirm: "Are you sure that you want to delete that user?" }, class: "btn btn-danger btn-small" do
-              %i.icon-trash
-              
-    = will_paginate @users
-  - else
-    %i There's no users.
+					%td
+						= link_to user_path(user, hard_delete: true, redirect_to: request.fullpath), method: :delete, data: { confirm: "Are you sure that you want to delete that user?" }, class: "btn btn-danger btn-small" do
+							%i.icon-trash
+							
+		= will_paginate @users
+	- else
+		%i There's no users.
 
 
 - content_for :javascript do
-  = javascript_include_tag "jquery-latest.js"
-  = javascript_include_tag "jquery.tablesorter.js"
+	= javascript_include_tag "jquery-latest.js"
+	= javascript_include_tag "jquery.tablesorter.js"
 
-  :javascript
-    $(function(){
-      $("table").tablesorter();
-    });
+	:javascript
+		$(function(){
+			$("table").tablesorter();
+		});
 
 

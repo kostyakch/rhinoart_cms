@@ -1,48 +1,43 @@
-.row-fluid
-  .btn-overlay
-    %a.btn.btn-primary{ href: new_user_path } 
-      %i.halflings-icon.plus 
-      Create new
-
 / .row-fluid
-/   .span12
-/     .navbar.navbar-internal.navbar-inverse
-/       .navbar-inner
-/         .container
-/           %ul.nav
-/             %li
-/               .btn-toolbar
-/                 %a.btn.btn-primary{ href: new_user_path}
-/                   %i.icon-plus.icon-white
-/                   Create new
+/   .btn-overlay
+/     %a.btn.btn-primary{ href: new_user_path } 
+/       %i.halflings-icon.plus 
+/       Create new
 
-/             %li.divider-vertical
+.row-fluid
+	.span12
+		.navbar.navbar-internal.navbar-inverse
+			.navbar-inner
+				.container
+					%ul.nav
+						%li
+							.btn-toolbar
+								%a.btn.btn-primary{ href: new_user_path}
+									%i.halflings-icon.plus 
+									Create new
 
-/             %li.nav-sub-item{ class: params[:role] == 'new' ? 'active' : '' }
-/               %a.action-switch-section{ href: "#{users_path role: 'new'}" }
-/                 New Waiting
-/                 %span.badge.stat-published= Rhinoart::User.where(approved: false).count
+						%li.divider-vertical
 
-/             %li.nav-sub-item{ class: params[:role] == 'frontend' ? 'active' : '' }
-/               %a.action-switch-section{ href: "#{users_path role: 'frontend'}" }
-/                 Frontend users
-/                 %span.badge.stat-draft= Rhinoart::User.where('frontend_role is not null && frontend_role != ""').count
+						%li.nav-sub-item{ class: params[:role] == 'new' ? 'active' : '' }
+							%a.action-switch-section{ href: "#{users_path role: 'new'}" }
+								New Waiting
+								%span.badge.stat-published= Rhinoart::User.where(approved: false).count
 
-/             %li.nav-sub-item{ class: params[:role] == 'admin' ? 'active' : '' }
-/               %a.action-switch-section{ href: "#{users_path role: 'admin'}" }
-/                 Admin users
-/                 %span.badge.stat-draft= Rhinoart::User.where('admin_role is not null && admin_role != ""').count
+						%li.nav-sub-item{ class: params[:role] == 'admin' ? 'active' : '' }
+							%a.action-switch-section{ href: "#{users_path role: 'admin'}" }
+								Admin users
+								%span.badge.stat-draft= Rhinoart::User.where('approved = 1 and (admin_role is not null or admin_role != "")').count
 
-/             %li.nav-sub-item{ class: !params[:role].present? ? 'active' : '' }
-/               %a.action-switch-section{ href: "#{users_path}" }
-/                 All
-/                 %span.badge.stat-published= Rhinoart::User.all.count
+						%li.nav-sub-item{ class: !params[:role].present? ? 'active' : '' }
+							%a.action-switch-section{ href: "#{users_path}" }
+								All
+								%span.badge.stat-published= Rhinoart::User.all.count
 
-/           %ul.nav.pull-right
-/             %li.nav-item
-/               .btn-toolbar.pull-right
-/                 = form_tag '#', method: :get, style: 'margin: 0;' do
-/                   = text_field_tag 'q', params[:q], placeholder: 'Search by email or name', style: 'margin-bottom: 0;margin-right: 10px;'
-/                   = submit_tag 'Search', class: 'btn btn-default', data: { disable_with: 'Searching...'}
+					%ul.nav.pull-right
+						%li.nav-item
+							.btn-toolbar.pull-right
+								= form_tag '#', method: :get, style: 'margin: 0;' do
+									= text_field_tag 'q', params[:q], placeholder: 'Search by email or name', style: 'margin-bottom: 0;margin-right: 10px;'
+									= submit_tag 'Search', class: 'btn btn-default', data: { disable_with: 'Searching...'}
 
 
