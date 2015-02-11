@@ -14,6 +14,9 @@
 			<div class="btn-overlay">
 				<%= link_to "<i class=\"halflings-icon plus\"></i> #{t(:_BTN_CREATE)}".html_safe, new_setting_path, class: 'btn btn-primary' %>
 			</div>
+			<div class="btn-overlay">
+				<%= link_to "<i class=\"halflings-icon trash\"></i> #{t(:_BTN_CLEAR_CACHE)}".html_safe, caches_clear_path(redirect_to: request.fullpath), class: 'btn btn-primary' %>
+			</div>
 		</div>
 
 		<table class="table table-striped tree">
