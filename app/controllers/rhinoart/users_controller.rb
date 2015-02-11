@@ -6,12 +6,12 @@ module Rhinoart
         before_action :set_user, only: [:show, :edit, :update, :destroy]        
 
         def index
-            order_str = params[:sort].present? ? "#{params[:sort]} #{params[:dir]}" : '' #'first_name, last_name asc'
+            order_str = params[:sort].present? ? "#{params[:sort]} #{params[:dir]}" : 'name, email' #'first_name, last_name asc'
 
             if params[:role].present?
                 case params[:role]
                 when 'new'
-                    @users = User.where(approved: false).paginate(page: params[:page], per_page: 30)#.order(order_str)
+                    @users = User.where(approved: false).paginate(page: params[:page], per_page: 30).order(order_str)
                 
                 when 'admin'
                     @users = User.where("approved = 1 and (admin_role is not null or admin_role != '')").paginate(page: params[:page], per_page: 30).order(order_str)
@@ -23,7 +23,7 @@ module Rhinoart
                 if params[:q].present?
                     @users = User.where('email LIKE ? or info LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%").paginate(page: params[:page], per_page: 30).order(order_str)
                 else
-                    @users = User.paginate(page: params[:page], per_page: 30).order(:name, :email)
+                    @users = User.paginate(page: params[:page], per_page: 30).order(order_str)
                 end
             end 
         end
