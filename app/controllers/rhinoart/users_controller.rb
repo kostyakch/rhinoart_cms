@@ -14,11 +14,7 @@ module Rhinoart
                     @users = User.where(approved: false).paginate(page: params[:page], per_page: 30)#.order(order_str)
                 
                 when 'admin'
-                    @users = User.where("approved = 1 and (admin_role LIKE ? or admin_role LIKE ? or admin_role LIKE ?)", 
-                        "%#{User::ADMIN_PANEL_ROLE_SUPER_USER}%",
-                        "%#{User::ADMIN_PANEL_ROLE_USERS_MANAGER}%",
-                        "%#{User::ADMIN_PANEL_ROLE_CONTENT_MANAGER}%"
-                        ).paginate(page: params[:page], per_page: 30).order(order_str)
+                    @users = User.where("approved = 1 and (admin_role is not null or admin_role != '')").paginate(page: params[:page], per_page: 30).order(order_str)
                 
                 else
                     @users = User.all.paginate(page: params[:page], per_page: 30).order(order_str)
