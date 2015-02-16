@@ -25,7 +25,9 @@ mount Rhinoart::Engine, at: "/admin"
 After it:
 
 ``` ruby
+$ rake db:create
 $ rake rhinoart:install:migrations
+$ rake db:migrate
 
 #and
 $ rake db:populate
