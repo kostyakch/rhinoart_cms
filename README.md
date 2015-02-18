@@ -35,3 +35,8 @@ $ rake db:populate
 Now You cat login: http://0.0.0.0:3000/admin
 login: admin@test.com
 password: admin
+
+You may need change line in config/environments/development.rb
+``` ruby
+config.eager_load = true
+```
