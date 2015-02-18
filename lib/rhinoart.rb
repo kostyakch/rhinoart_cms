@@ -1,5 +1,5 @@
-require 'devise'
 require "rhinoart/engine"
+require 'devise'
 require 'globalize'
 require 'globalize-accessors'
 require 'globalize-versioning'

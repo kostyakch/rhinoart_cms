@@ -2,7 +2,7 @@
 require_dependency "rhinoart/application_controller"
 
 module Rhinoart
-	class PagesController < BaseController		
+	class PagesController < BaseController	
 		before_action { authorize!(:manage, :content) }
 		before_action :set_rhinoart_page, only: [:edit, :update, :destroy]
 		before_action :set_tree_ids, only: [:index, :children, :edit]		
@@ -153,7 +153,11 @@ module Rhinoart
 		private
 	        # Use callbacks to share common setup or constraints between actions.
 	        def set_rhinoart_page
-	            @page = Page.find(params[:id])
+				begin
+					@page = Page.find(params[:id])
+				rescue
+					render template: 'rhinoart/shared/error404', status: :not_found
+				end 
 	        end
 
 	        # Never trust parameters from the scary internet, only allow the white list through.

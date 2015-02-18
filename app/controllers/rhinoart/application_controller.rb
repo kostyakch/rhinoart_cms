@@ -1,6 +1,6 @@
 # encoding: utf-8
 module Rhinoart
-	class ApplicationController < ActionController::Base
+	class ApplicationController < ActionController::Base		
 		include ApplicationHelper
 		include SessionsHelper
 		before_action :set_locale

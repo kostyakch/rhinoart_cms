@@ -6,4 +6,4 @@
 	User role: <%= @user.api_role.join(' / ') %>
 </p>
 
-<p>Please grant access to this user or delete him at <%= link_to 'user page', rhinoart.edit_admin_user_url(@user) %></p>
+<p>Please grant access to this user or delete him at <%= link_to 'user page', rhinoart.edit_user_url(id: @user.id) %></p>

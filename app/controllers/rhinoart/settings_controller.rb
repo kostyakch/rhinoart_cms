@@ -58,7 +58,11 @@ module Rhinoart
 	    private
 	        # Use callbacks to share common setup or constraints between actions.
 	        def set_admin_setting
-	            @setting = Setting.find(params[:id])
+				begin
+					@setting = Setting.find(params[:id])
+				rescue
+					render template: 'rhinoart/shared/error404', status: :not_found
+				end 
 	        end
 
 	        # Never trust parameters from the scary internet, only allow the white list through.

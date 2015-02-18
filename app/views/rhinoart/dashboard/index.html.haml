@@ -52,7 +52,7 @@
 			- if @users.present?
 				- @users.each do |user| 	
 					- works = PaperTrail::Version.where('whodunnit = ? and created_at > ?', user, 1.week.ago).order(created_at: :desc).limit(10)
-					%legend= link_to user.name, rhinoart.user_path(user)
+					%legend= link_to user.name, rhinoart.user_path(locale: :en, id: user)
 					= render 'user_activity', works: works
 			- else
 				= t('no_activity')		
