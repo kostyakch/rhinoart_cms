@@ -29,6 +29,7 @@ module Rhinoart
 		end
 
 		def show
+			@works = PaperTrail::Version.where(whodunnit: @user).order(created_at: :desc).paginate(:page => params[:page], :per_page => 40)
 		end	
 
 		def new

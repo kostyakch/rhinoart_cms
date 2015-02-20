@@ -55,7 +55,7 @@ module Rhinoart
 		# default_scope { order 'position asc' }
 		acts_as_list  :scope => [:parent_id] #, :publish_date
 
-		has_paper_trail :only => [:name, :ptype, :publish_date, :page_comment]
+		has_paper_trail
 
 		def content_by_name(name='main_content')
 			if self.page_content.find_by(name: name).present?

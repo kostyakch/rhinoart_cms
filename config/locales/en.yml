@@ -136,6 +136,13 @@ en:
   
   #votes
   _VOTE_SUCCESS: Vote send successfully 
+
+  # dashboard
+  User: User
+  Page: Page
+  Page Content: Page content 
+  Page Field: Page field
+  Setting: Setting
   
   created_at:
       formats:

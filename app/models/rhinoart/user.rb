@@ -55,6 +55,8 @@ module Rhinoart
 
     FRONTEND_ROLES = RhinoartConfig.config.frontend_roles
 
+    has_paper_trail :ignore => [:api_token, :updated_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip]
+
 
     def self.current
         Thread.current[:user]

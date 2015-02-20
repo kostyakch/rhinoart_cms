@@ -20,6 +20,7 @@ module Rhinoart
 			:format => { :with => /\A[-_a-zA-Z0-9]+\z/ }
 		validates :name, :length => { :in => 2..150 }
 		# validates :value
+		has_paper_trail
 		
 		private
 
