@@ -1,4 +1,4 @@
-<%= render 'shared/error_messages', object: f.object %>
+<%= render 'rhinoart/shared/error_messages', object: f.object %>
 
 <div class="form-horizontal">
     <div class="control-group">
@@ -6,28 +6,28 @@
         <div class="controls">
             <%= f.text_field :name, class: 'span11' %>
         </div>
-    </div>  
+    </div>
 
     <div class="control-group">
         <%= f.label :url, class: 'control-label' %>
         <div class="controls">
             <%= f.text_field :url, class: 'span11' %>
         </div>
-    </div>  
+    </div>
 
     <div class="control-group">
         <%= f.label :descr, class: 'control-label' %>
         <div class="controls">
             <%= f.text_area :descr, class: 'span11', rows: 4 %>
         </div>
-    </div>  
+    </div>
 
     <div class="control-group">
         <%= f.label :active, class: 'control-label' %>
         <div class="controls">
             <%= f.check_box :active, class: 'span11' %>
         </div>
-    </div>  
+    </div>
 
     <div class="form-actions">
         <div class="btn-overlay">

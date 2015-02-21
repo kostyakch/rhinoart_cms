@@ -1,4 +1,4 @@
-<%= render 'shared/error_messages', object: f.object %>
+<%= render 'rhinoart/shared/error_messages', object: f.object %>
 
 <div class="form-horizontal">
     <%= f.hidden_field :path_cache %>
@@ -32,8 +32,8 @@
         <div class="controls">
             <%= f.text_field :url, class: 'span10' %>
         </div>
-    </div>  
-    
+    </div>
+
     <div class="control-group">
         <%= f.label :annotation, class: 'control-label' %>
         <div class="controls">
@@ -42,10 +42,10 @@
             </div>
             <div class="span2">
                 <%= image_tag(f.object.path.thumb.url) if f.object.path.thumb.url.present? %>
-            </div>            
+            </div>
         </div>
-    </div>  
-    
+    </div>
+
     <div class="form-actions">
         <div class="btn-overlay">
             <%= f.button t("_BTN_SAVE"), class: "btn btn-primary" %>
@@ -61,10 +61,10 @@
 
 
 <script type="text/javascript">
-    $('textarea').redactor({ 
+    $('textarea').redactor({
         autoresize: true,
-        minHeight: 150, 
+        minHeight: 150,
         maxHeight: 550,
     });
-</script>   
+</script>
 <% end %>
