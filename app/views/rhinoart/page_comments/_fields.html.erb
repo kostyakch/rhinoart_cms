@@ -1,19 +1,19 @@
-<%= render 'shared/error_messages', object: f.object %>
+<%= render 'rhinoart/shared/error_messages', object: f.object %>
 
-<div class="form-horizontal"> 
+<div class="form-horizontal">
     <div class="control-group">
         <%= f.label :approved, class: 'control-label' %>
         <div class="controls">
             <%= f.check_box :approved, class: 'span11' %>
         </div>
-    </div>       
+    </div>
 
     <div class="control-group">
         <%= f.label :comment, class: 'control-label' %>
         <div class="controls">
             <%= f.text_area :comment, class: 'span11', rows: 4 %>
         </div>
-    </div>      
+    </div>
 
     <div class="form-actions">
         <div class="btn-overlay">

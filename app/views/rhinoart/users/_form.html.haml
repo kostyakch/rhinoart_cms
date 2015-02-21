@@ -1,5 +1,5 @@
 = form_for @user, {html: {class: 'form-horizontal'}} do |f|
-	= render 'shared/error_messages', object: f.object
+	= render 'rhinoart/shared/error_messages', object: f.object
 
 	.control-group
 		= f.label :email, class: 'control-label'
@@ -23,7 +23,7 @@
 		.control-group
 			= f.label :admin_role, class: 'control-label'
 			.controls
-				- Rhinoart::User::ADMIN_PANEL_ROLES.each do |ar| 
+				- Rhinoart::User::ADMIN_PANEL_ROLES.each do |ar|
 					= label_tag ar do
 						= check_box_tag "user[admin_role][]", ar, @user.admin_role.present? ? @user.admin_role.include?(ar) : nil
 						= ar
