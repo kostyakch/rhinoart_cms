@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Rhinoart::VERSION
   s.authors     = ["Konstantin Chernyaev"]
   s.email       = ["kch@list.ru"]
-  s.homepage    = "http://rhinoart.ru"
-  s.summary     = "Admin CMS"
-  s.description = "Admin engine for make CMS"
+  s.homepage    = "http://rhinocms.ru/"
+  s.summary     = "Rhinoart CMS"
+  s.description = "Rhinoart CMS. This is a backend engine for making site"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
@@ -23,10 +23,9 @@ Gem::Specification.new do |s|
   s.add_dependency "will_paginate"
   s.add_dependency "acts_as_list"
 
-  s.add_dependency "haml-rails", "~> 0.4.0"
+  s.add_dependency "haml-rails"
 
   s.add_dependency "jquery-rails"
-  #s.add_dependency "json"
   s.add_dependency 'sass-rails'
   s.add_dependency 'bootstrap-will_paginate'
   s.add_dependency 'bootstrap-datepicker-rails'
