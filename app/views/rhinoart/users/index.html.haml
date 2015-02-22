@@ -13,15 +13,15 @@
 
 
 	- if @users.any?
+		- dir = params[:dir].present? ? (params[:dir] == 'asc' ? 'desc' : 'asc') : 'asc'
 		%table.table.table-condensed.table-bordered.table-striped.table-hover.tablesorter
-			/.table.table-condensed.table-striped.tablesorter
 			%thead
 				%tr
 					%th{style: "border-top:0; background: none; width: 10%;"}
-					%th{style: "border-top:0;"} Name 
-					%th{style: "border-top:0;"} E-Mail
-					%th{style: "border-top:0;"} User Type
-					%th{style: "border-top:0;"} Last sign in
+					%th.header.name.not-sortable{style: "border-top:0;"}= link_to 'Name', params[:role].present? ? "?role=#{params[:role]}&sort=name&dir=#{dir}" : "?sort=name&dir=#{dir}"
+					%th.header.email.not-sortable{style: "border-top:0;"}= link_to 'E-Mail', params[:role].present? ? "?role=#{params[:role]}&sort=email&dir=#{dir}" : "?sort=email&dir=#{dir}"
+					%th.header User Type
+					%th.header.last_sign_in_at.not-sortable{style: "border-top:0;"}= link_to 'Last sign in', params[:role].present? ? "?role=#{params[:role]}&sort=last_sign_in_at&dir=#{dir}" : "?sort=last_sign_in_at&dir=#{dir}"
 					%th{style: "border-top:0; background: none; min-width: 30px;"}
 			 
 
@@ -63,7 +63,6 @@
 
 
 - content_for :javascript do
-	= javascript_include_tag "jquery-latest.js"
 	= javascript_include_tag "jquery.tablesorter.js"
 
 	:javascript
@@ -71,4 +70,36 @@
 			$("table").tablesorter();
 		});
 
-
+	- if params[:sort].present? && params[:sort] == 'name'
+		- if params[:dir] == 'desc'
+			:javascript
+				$(function(){
+					$('.name').addClass('header headerSortUp');
+				});
+		- else
+			:javascript
+				$(function(){
+					$('.name').addClass('header headerSortDown');
+				});
+	- elsif params[:sort].present? && params[:sort] == 'email'
+		- if params[:dir] == 'desc'
+			:javascript
+				$(function(){
+					$('.email').addClass('header headerSortUp');
+				});
+		- else
+			:javascript
+				$(function(){
+					$('.email').addClass('header headerSortDown');
+				});
+	- elsif params[:sort].present? && params[:sort] == 'last_sign_in_at'
+		- if params[:dir] == 'desc'
+			:javascript
+				$(function(){
+					$('.last_sign_in_at').addClass('header headerSortUp');
+				});
+		- else
+			:javascript
+				$(function(){
+					$('.last_sign_in_at').addClass('header headerSortDown');
+				});

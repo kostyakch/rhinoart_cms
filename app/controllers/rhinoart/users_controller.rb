@@ -6,7 +6,7 @@ module Rhinoart
 		before_action :set_user, only: [:show, :edit, :update, :destroy]        
 
 		def index
-			order_str = params[:sort].present? ? "#{params[:sort]} #{params[:dir]}" : 'name, email' #'first_name, last_name asc'
+			order_str = params[:sort].present? ? "#{params[:sort]} #{params[:dir]}" : 'name, email'
 
 			if params[:role].present?
 				case params[:role]
