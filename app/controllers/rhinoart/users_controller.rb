@@ -56,6 +56,10 @@ module Rhinoart
 			if new_attributes[:approved] && !new_attributes[:email].present?
 			else
 			  new_attributes[:admin_role] = nil if !new_attributes[:admin_role].present? && can?(:manage, :all)
+			  begin
+			  		new_attributes[:api_role] = nil if !new_attributes[:api_role].present? && can?(:manage, :all)
+			  rescue			  	
+			  end			  
 			end 
 
 			if @user.update_attributes(new_attributes)

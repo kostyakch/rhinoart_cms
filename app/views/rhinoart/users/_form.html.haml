@@ -1,5 +1,6 @@
 = form_for @user, {html: {class: 'form-horizontal'}} do |f|
 	= render 'rhinoart/shared/error_messages', object: f.object
+	= hidden_field_tag :redirect_to, params[:redirect_to] if params[:redirect_to].present?
 
 	.control-group
 		= f.label :email, class: 'control-label'
