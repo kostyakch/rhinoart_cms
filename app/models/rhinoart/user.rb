@@ -42,8 +42,8 @@ module Rhinoart
     SAFE_INFO_ACCESSORS = [:locales]
     store :info, accessors: SAFE_INFO_ACCESSORS, coder: JSON
 
-    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-    validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }, allow_blank: true
+    # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+    # validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }, allow_blank: true
 
     # validates :password, confirmation: true, length: { :in => 3..50 }#, :on => :create
     # validates :password_confirmation, presence: true#, :on => :create
