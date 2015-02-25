@@ -57,6 +57,7 @@ module Rhinoart
 			else
 			  new_attributes[:admin_role] = nil if !new_attributes[:admin_role].present? && can?(:manage, :all)
 			  begin
+			  		@user.api_role
 			  		new_attributes[:api_role] = nil if !new_attributes[:api_role].present? && can?(:manage, :all)
 			  rescue			  	
 			  end			  
