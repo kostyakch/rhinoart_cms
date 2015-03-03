@@ -17,7 +17,7 @@ module Rhinoart
 	class Gallery < ActiveRecord::Base
 		#3attr_accessible :active, :descr, :name, :url
 
-		has_many :gallery_images, :order => 'position', :autosave => true, :dependent => :destroy
+		has_many :gallery_images, ->{order 'position asc'}, :autosave => true, :dependent => :destroy
 		accepts_nested_attributes_for :gallery_images, :allow_destroy => true
 
 		# Validations
