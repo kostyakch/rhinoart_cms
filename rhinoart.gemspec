@@ -43,5 +43,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'globalize', '~> 4.0.1'
   s.add_dependency 'globalize-accessors'
   s.add_dependency 'paper_trail', '~> 3.0.3'
-  s.add_dependency 'globalize-versioning', '~> 0.1.0.alpha.1' 
+  s.add_dependency 'globalize-versioning', '~> 0.1.0.alpha.1'
+  s.add_development_dependency 'pry'
 end

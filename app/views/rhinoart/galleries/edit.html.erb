@@ -1,9 +1,0 @@
-<% provide(:title, t(:edit_gallery)) %>
-
-<% render 'sidebar' %>
-
-<%= form_for @gallery do |f| %>
-    <legend><%= t(:edit_gallery) %></legend>   
-
-   	<%= render 'fields', f: f %>	   
-<% end %>

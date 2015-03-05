@@ -19,37 +19,13 @@
 			<h2><i class="halflings-icon hand-top"></i><span class="break"></span>Quick Buttons</h2>
 		</div>
 		<div class="box-content">
-			
-			<a class="quick-button span2">
-				<i class="fa-icon-tasks"></i>
-				<p><%= t(:_NEWS_ARTICLES) %></p>
-				<span class="notification"><%= Rhinoart::Page.count %></span>
-			</a>
-			<a href="" class="quick-button span2">
-				<i class="fa-icon-book"></i>
-				<p><%= t(:_BLOGS) %></p>
-				<span class="notification red"><%= Rhinoart::Page.where("ptype='blog'").count %></span>
-			</a>
-			<a href="<%= page_comments_path %>" class="quick-button span2">
-				<i class="fa-icon-comments-alt"></i>
-				<p><%= t(:_COMMENTS) %></p>
-				<span class="notification green"><%= Rhinoart::PageComment.count %></span>
-			</a>
-			<a href="<%= galleries_path %>" class="quick-button span2">
-				<i class="fa-icon-picture"></i>
-				<p><%= t(:_IMAGES) %></p>
-				<span class="notification green"><%= Rhinoart::GalleryImage.count %></span>
-			</a>
-			<a href="<%= users_path %>" class="quick-button span2">
-				<i class="fa-icon-group"></i>
-				<p><%= t(:_USERS) %></p>
-				<span class="notification"><%= Rhinoart::User.count %></span>
-			</a>
-			<a href="<%= settings_path %>" class="quick-button span2">
-				<i class="fa-icon-cogs"></i>
-				<p><%= t(:_SETTINGS) %></p>
-				<span class="notification yellow"><%= Rhinoart::Setting.count %></span>
-			</a>
+			<%- Rhinoart::Menu::ContentMenu.items.each do |item| %>
+              <a class="quick-button span2" href="<%=item.link%>">
+                <i class="<%= item.icon %>"></i>
+                <p><%= t item.label %></p>
+                <span class="notification"><%= item.notification.try(:call) %></span>
+              </a>
+            <%- end %>
 			<div class="clearfix"></div>
 		</div>	
 	</div>

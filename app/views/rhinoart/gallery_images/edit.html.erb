@@ -1,9 +1,0 @@
-<% provide(:title, t(:edit_image)) %>
-
-<% render 'rhinoart/galleries/sidebar' %>
-
-<%= form_for @image do |f| %>
-    <legend><%= t(:edit_image) %></legend>   
-
-   	<%= render 'fields', f: f %>	   
-<% end %>

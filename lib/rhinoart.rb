@@ -1,14 +1,12 @@
-require "rhinoart/engine"
-require 'devise'
-require 'globalize'
-require 'globalize-accessors'
-require 'globalize-versioning'
-require 'paper_trail'
+require 'rhinoart/engine'
 
 module Rhinoart
-	class Engine < ::Rails::Engine
-		config.to_prepare do
-			Devise::SessionsController.layout "application"
-		end
-	end	
+  extend ActiveSupport::Autoload
+
+  eager_autoload do
+    autoload :Menu
+  end
+
 end
+
+require 'rhinoart/railtie' if defined?(Rails)
