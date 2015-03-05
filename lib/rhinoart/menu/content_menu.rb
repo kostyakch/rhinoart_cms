@@ -10,35 +10,35 @@ module Rhinoart
 
       add_item({
           icon: 'fa-icon-tasks',
-          link: rhinoart.new_page_path,
+          link: proc{ rhinoart.new_page_path },
           label: :_NEWS_ARTICLES,
           notification: ->{ Rhinoart::Page.count }
         })
 
       add_item({
           icon: 'fa-icon-book',
-          link: rhinoart.new_page_path,
+          link: proc{ rhinoart.new_page_path },
           label: :_BLOGS,
           notification: ->{ Rhinoart::Page.where("ptype='blog'").count }
         })
 
       add_item({
           icon: 'fa-icon-comments-alt',
-          link: rhinoart.page_comments_path,
+          link: proc{ rhinoart.page_comments_path },
           label: :_COMMENTS,
           notification: ->{ Rhinoart::PageComment.count }
         })
 
       add_item({
           icon: 'fa-icon-group',
-          link: rhinoart.users_path,
+          link: proc{ rhinoart.users_path },
           label: :_USERS,
           notification: ->{ Rhinoart::User.count }
         })
 
       add_item({
           icon: 'fa-icon-cogs',
-          link: rhinoart.settings_path,
+          link: proc{ rhinoart.settings_path },
           label: :_SETTINGS,
           notification: ->{ Rhinoart::Setting.count }
       })

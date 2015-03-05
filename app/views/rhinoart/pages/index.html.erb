@@ -20,7 +20,7 @@
 		</div>
 		<div class="box-content">
 			<%- Rhinoart::Menu::ContentMenu.items.each do |item| %>
-              <a class="quick-button span2" href="<%=item.link%>">
+              <a class="quick-button span2" href="<%=menu_item_link(item)%>">
                 <i class="<%= item.icon %>"></i>
                 <p><%= t item.label %></p>
                 <span class="notification"><%= item.notification.try(:call) %></span>
