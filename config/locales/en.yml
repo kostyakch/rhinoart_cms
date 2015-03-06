@@ -3,6 +3,7 @@
 
 en:
   locale: En
+  _BACK: Back
   _PAGE_SUCCESSFULLY_UPDATED: Page has been updated successfully.
   _PAGE_SUCCESSFULLY_CREATED: Page created successfully.
   _PAGE_SUCCESSFULLY_DELITED: "Page has been \"%{name}\" deleted."
