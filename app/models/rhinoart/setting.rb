@@ -24,8 +24,13 @@ module Rhinoart
 		
 		private
 
-			def name_downcase
-				self.name = self.name.downcase
-			end
+    def name_downcase
+      self.name = self.name.downcase
+    end
+
+    def self.get(name)
+      find_by_name(name).try(:value)
+    end
+
 	end
 end

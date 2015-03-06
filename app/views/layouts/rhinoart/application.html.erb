@@ -3,6 +3,7 @@
 <head>
 	<title><%= full_title(yield(:title)) %></title>
 	<%= stylesheet_link_tag "rhinoart/application", :media => "all" %>
+    <%= appended_stylesheets %>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css' />
 	
 	<meta name="generator" content="RhinoArtCMS <%#= sys_version %>">
@@ -33,6 +34,7 @@
 
 
 <%= javascript_include_tag "rhinoart/application" %>
+<%= appended_javascripts %>
 <%= raw yield(:javascript) %>
 
 <% if Rails.env.development? %>

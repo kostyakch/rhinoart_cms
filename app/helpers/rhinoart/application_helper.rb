@@ -52,6 +52,31 @@ module Rhinoart
 			else
 				I18n.available_locales
 			end
-		end	
+    end
+
+    def append_javascript(path)
+      @javascripts ||= []
+      @javascripts << path
+      nil
+    end
+
+    def append_stylesheet(path)
+      @stylesheets ||= []
+      @stylesheets << path
+      nil
+    end
+
+    def appended_javascripts
+      (@javascripts || []).map do |js|
+        javascript_include_tag(js)
+      end.join("\n").html_safe
+    end
+
+    def appended_stylesheets
+      (@stylesheets || []).map do |css|
+        stylesheet_link_tag css, :media => "all"
+      end.join("\n").html_safe
+    end
+
 	end
 end
