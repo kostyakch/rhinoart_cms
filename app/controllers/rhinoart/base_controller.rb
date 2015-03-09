@@ -24,9 +24,9 @@ module Rhinoart
 
 		private
 
-    def check_if_user_has_admin_role
-      authorize! :access, :admin_panel
-    end
+			def check_if_user_has_admin_role
+			  authorize! :access, :admin_panel
+			end
 
 	end
 end
