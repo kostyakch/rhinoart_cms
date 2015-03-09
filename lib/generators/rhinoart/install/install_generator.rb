@@ -9,9 +9,9 @@ module Rhinoart
     end
 
     def add_route
-      route 'mount Rhinoart::Engine, at: "/admin"'
-      route "root 'pages#index'"
       route "match '*url' => 'pages#internal', :as => :page, via: [:get]"
+      route "root 'pages#index'"
+      route 'mount Rhinoart::Engine, at: "/admin"'
     end
 
     def create_tables
