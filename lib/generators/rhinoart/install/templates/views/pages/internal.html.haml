@@ -1,0 +1,17 @@
+- provide(:title, @page.title) 
+- provide(:metatags, meta_tags(@page)) 
+
+
+- if @page.field('template').present? || (@page.parent.present? && @page.parent.field('template').present? )    
+	= render_partial_if_exists @page.field('template') if @page.field('template').present? 
+	= render_partial_if_exists @page.parent.field('template') + '_children' if @page.parent.present? && @page.parent.field('template').present? 
+- else 
+	- cache(@page) do
+		%h1= @page.field('h1') 
+		= @page.content('sidebar').html_safe if @page.content('sidebar').present?
+
+		= @page.content.html_safe 
+
+	- if @page.field('feedback') 
+		= render 'messages/message_form', content: @page.content('address').present? ? @page.content('address').html_safe : '' 
+

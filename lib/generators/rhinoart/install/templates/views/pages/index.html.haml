@@ -1,0 +1,6 @@
+- provide(:title, @page.title)
+- provide(:metatags, meta_tags(@page))
+
+%h1= @page.field('h1')
+
+= @page.content('main_content').html_safe if @page.content('main_content').present?
