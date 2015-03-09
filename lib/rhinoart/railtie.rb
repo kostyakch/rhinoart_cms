@@ -4,7 +4,11 @@ module Rhinoart
     VIEW_HELPERS_PATH = 'lib/rhinoart/view_helpers/'
 
     initializer "rhinoart_railtie.add_precompile_assets" do |app|
-      app.config.assets.precompile += %w( jquery.tablesorter.js )
+      app.config.assets.precompile += %w[
+        jquery.tablesorter.js
+        redactor/redactor.css
+        redactor/redactor.js
+      ]
     end
 
   end
