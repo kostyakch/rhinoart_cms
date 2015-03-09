@@ -16,21 +16,13 @@ gem 'rhinoart', git: 'https://github.com/kostyakch/rhinoart_cms.git'
 gem 'rhinoart', github: 'kostyakch/rhinoart_cms'
 ```
 
-### In routes.rb add:
-``` ruby
-# Admin URLs
-mount Rhinoart::Engine, at: "/admin"
-```
-
 After it:
 
 ``` ruby
-$ rake db:create
-$ rake rhinoart:install:migrations
-$ rake db:migrate
+$ rails g rhinoart:install
 
 #and
-$ rake db:populate
+$ rake db:populate #if need
 ```
 Now You cat login: http://0.0.0.0:3000/admin
 login: admin@test.com

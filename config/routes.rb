@@ -44,10 +44,6 @@ Rhinoart::Engine.routes.draw do
             match 'image_list' => 'fileworks#image_list', via: [:get]
         end
 
-        match '/gallery_images/:gallery_id/new' => 'gallery_images#new', :as => :new_image_gallery, via: [:get]
-        match '/gallery_images/:gallery_id/uppload' => 'gallery_images#uppload', :as => :uppload_images, via: [:get]
-        resources :gallery_images
-
         get 'caches/clear' => 'caches#clear'
     end
 end

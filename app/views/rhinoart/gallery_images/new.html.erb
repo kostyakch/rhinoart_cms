@@ -1,9 +1,0 @@
-<% provide(:title, t(:add_image)) %>
-
-<% render 'rhinoart/galleries/sidebar' %>
-
-<%= form_for @image, :html => {:multipart => true} do |f| %>
-    <legend><%= t(:add_image) %></legend>   
-
-   	<%= render 'fields', f: f %>	   
-<% end %>

@@ -19,7 +19,7 @@ ru:
   _EDIT_USER_SUCCESS: Данные пользователя изменены
   _WELCOME: Добро пожаловать в систему!
   _BTN_CREATE: Создать
-  _BTN_EDIT: Сохранить
+  _BTN_EDIT: Изменить
   _BTN_SAVE: Сохранить
   _BTN_SUBMIT: Отправить
   _BTN_CANCEL: Отменить
@@ -96,14 +96,12 @@ ru:
 
     # Titles
   _PAGES: Pages
-  _GALLERY: Галереи
 
   # Dashboard
   _DASHBOARD: Панель
   _NEWS_ARTICLES: News/Articles
   _BLOGS: Блоги
   _COMMENT: Комментарий
-  _IMAGES: Изображения
 
   _BOOKS: Книги
   _CATALOG: Каталог
@@ -145,24 +143,11 @@ ru:
   
   _SETTING_NAME_FORMAT: "может содержать только латинские буквы, цифры и символы - или _"
 
-  # images
-  _IMAGE_SUCCESSFULLY_UPDATED: Изображение обновлено.
-  _SUCCESSFULLY_UPLOADED: Изображения успешно загружены.
-  _ERROR_UPLOAD: Ошибка при загрузке изображений.
-
   #blog
   _BLOG_COMMENT_SUCCESSFULLY_CREATED: Ваш комментарий добавлен.
   _BLOG_COMMENT_SUCCESSFULLY_WAITING_FOR_MODERATION: Ваш комментарий добавлен и ждет модерации.
   add_blog: Add blog
-  edit_blog: Edit blog  
-
-  # gallery
-  galleries: Galleries
-  creating_gallery: Creating gallery
-  edit_gallery: Edit gallery
-  add_image: Add image
-  edit_image: Edit image
-  gallery_images: "Gallery images %{name}"
+  edit_blog: Edit blog
 
   # comment
   Comment: Комментарий
