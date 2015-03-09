@@ -26,30 +26,6 @@ module Rhinoart
         active: proc{ controller_name == 'page_comments' }
       })
 
-      # add_item({
-      #   icon: 'fa-icon-list-alt',
-      #   link: rhinoart.votes_path,
-      #   label: :_VOTES,
-      #   allowed: ->{ can?(:manage, :all) && Rails.configuration.try(:show_vote) },
-      #   active: ->{ controller_name == 'votes' }
-      # })
-
-      add_item({
-        icon: 'fa-icon-book',
-        link: proc{ rhinobook.books_path },
-        label: :_BOOKS,
-        allowed: proc{ can?(:manage, :books) },
-        active: proc{ controller_name == 'books' || controller_name == 'chapters' || controller.class.name == 'Rhinobook::PagesController' }
-      }) if defined?(Rhinobook)
-
-      add_item({
-        icon: 'fa-icon-shopping-cart',
-        link: proc{ rhinocatalog.root_path },
-        label: :_CATALOG,
-        allowed: proc{ can?(:manage, :catalog) },
-        active: proc{ controller.class.name == 'Rhinocatalog::CategoriesController' || controller.class.name == 'Rhinocatalog::ProductsController' }
-      }) if defined?(Rhinocatalog)
-
       add_item({
         icon: 'fa-icon-sitemap',
         link: proc{ rhinoart.structures_path },

@@ -1,6 +1,6 @@
 module Rhinoart
   class InstallGenerator < Rails::Generators::Base
-
+    source_root File.expand_path('../templates', __FILE__)
     desc 'Rhinoart CMS installation'
 
     def copy_files
@@ -14,8 +14,7 @@ module Rhinoart
       route "match '*url' => 'pages#internal', :as => :page, via: [:get]"
     end
 
-    def create_db
-      rake 'db:create'
+    def create_tables
       rake 'rhinoart:install:migrations'
       rake 'db:migrate'
     end
