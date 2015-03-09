@@ -14,8 +14,7 @@ module Rhinoart
       route "match '*url' => 'pages#internal', :as => :page, via: [:get]"
     end
 
-    def create_db
-      rake 'db:create'
+    def create_tables
       rake 'rhinoart:install:migrations'
       rake 'db:migrate'
     end
