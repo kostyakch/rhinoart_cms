@@ -22,6 +22,7 @@ module Rhinoart
     def create_tables
       rake 'rhinoart:install:migrations'
       rake 'db:migrate'
+      rake 'db:populate'
     end
   end
 end

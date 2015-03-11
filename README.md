@@ -24,7 +24,7 @@ $ rails g rhinoart:install
 #and
 $ rake db:populate #if need
 ```
-Now You cat login: http://0.0.0.0:3000/admin
+Now You cat login: http://127.0.0.1:3000/admin
 login: admin@test.com
 password: admin
 
