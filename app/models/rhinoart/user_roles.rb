@@ -1,10 +1,9 @@
 module Rhinoart
   module UserRoles
-      extend ActiveSupport::Concern
+    extend ActiveSupport::Concern
 
     included do
       ADMIN_PANEL_ROLES = []
-      FRONTEND_ROLES = RhinoartConfig.config.frontend_roles
     end
 
     module ClassMethods

@@ -5,6 +5,7 @@ module Rhinoart
 
   eager_autoload do
     autoload :Menu
+    autoload :ViewHelpers
   end
 
 end

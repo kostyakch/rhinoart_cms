@@ -1,12 +1,11 @@
 # encoding: utf-8
 module Rhinoart
-	class ApplicationController < ActionController::Base		
-		include ApplicationHelper
-		include SessionsHelper
+	class ApplicationController < ActionController::Base
+		include ViewHelpers::SessionHelper
+
 		before_action :set_locale
 		before_filter :configure_permitted_parameters, if: :devise_controller?
 		before_filter :set_current_user
-		
 
 		#before_filter :check_uri if Rails.configuration.redirect_to_www
 
@@ -40,7 +39,8 @@ module Rhinoart
 
 		def set_current_user
 			User.current = current_user
-		end
+    end
+
 		private     
 
 			def correct_user
