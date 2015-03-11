@@ -6,9 +6,7 @@ require 'carrierwave'
 require 'russian'
 require 'bootstrap-datepicker-rails'
 require 'will_paginate'
-# require "devise"
 require 'cancan'
-
 require 'delayed_job_active_record'
 require 'devise'
 require 'globalize'
