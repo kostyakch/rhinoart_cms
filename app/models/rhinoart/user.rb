@@ -26,6 +26,8 @@
 
 module Rhinoart
   class User < ActiveRecord::Base
+    include UserRoles
+
     belongs_to :userable, polymorphic: true #iln 24.07.14
 
     # Include default devise modules. Others available are:
@@ -48,10 +50,9 @@ module Rhinoart
     # validates :password, confirmation: true, length: { :in => 3..50 }#, :on => :create
     # validates :password_confirmation, presence: true#, :on => :create
 
-    ADMIN_PANEL_ROLE_SUPER_USER = "Super User"
-    ADMIN_PANEL_ROLE_USERS_MANAGER = "Users Manager"
-    ADMIN_PANEL_ROLE_CONTENT_MANAGER = "Content Manager"
-    ADMIN_PANEL_ROLES = [ADMIN_PANEL_ROLE_USERS_MANAGER, ADMIN_PANEL_ROLE_CONTENT_MANAGER, ADMIN_PANEL_ROLE_SUPER_USER]
+    add_admin_role 'Super User'
+    add_admin_role 'Users Manager'
+    add_admin_role 'Content Manager'
 
     FRONTEND_ROLES = RhinoartConfig.config.frontend_roles
 

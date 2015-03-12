@@ -1,6 +1,6 @@
 # encoding: utf-8
 module Rhinoart
-	class BaseController < ApplicationController		
+	class BaseController < Rhinoart::ApplicationController
 		before_filter :check_if_user_has_admin_role
 		
 

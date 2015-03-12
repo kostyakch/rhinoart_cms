@@ -28,8 +28,8 @@ module Rhinoart
       self.name = self.name.downcase
     end
 
-    def self.get(name)
-      find_by_name(name).try(:value)
+    def self.get(name, default = nil)
+      find_by_name(name).try(:value) || default
     end
 
 	end

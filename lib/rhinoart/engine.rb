@@ -22,6 +22,16 @@ module Rhinoart
       Devise::SessionsController.layout "application"
     end
 
+    initializer 'rhinoart.extend_action_view' do
+      ActiveSupport.on_load :action_view do
+        include ViewHelpers::ApplicationHelper
+        include ViewHelpers::MenuHelper
+        include ViewHelpers::PagesHelper
+        include ViewHelpers::SessionHelper
+        include ViewHelpers::UsersHelper
+      end
+    end
+
   end
 end
 
