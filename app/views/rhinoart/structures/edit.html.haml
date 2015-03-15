@@ -1,0 +1,13 @@
+- provide(:title, "#{t(:_EDIT)}: #{@page.name}")
+= form_for @page do |f|
+  %legend
+    = t(:_EDIT)
+    \: #{@page.name}
+  = render 'fields', f: f
+= render 'rhinoart/page_fields/form', page: @page
+- content_for :javascript do
+  :javascript
+    <!--
+    	#{raw(field_javascript)}
+    	#{raw(tab_javascript)}
+    -->

@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title= full_title(yield(:title))
+    = stylesheet_link_tag "rhinoart/custom", :media => "all"
+    = csrf_meta_tags
+    = render 'layouts/rhinoart/shim'
+  %body
+    .navbar
+      .navbar-inner
+        .container-fluid
+          %a.btn.btn-navbar{"data-target" => ".top-nav.nav-collapse,.sidebar-nav.nav-collapse", "data-toggle" => "collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to raw('<span>Rhono CMS</span>'), root_path, class: 'brand'
+    .container-fluid
+      .row-fluid
+        .offset3.span6{style: "min-height: 400px;padding-top: 100px"}
+          = render 'rhinoart/shared/flash_messages'
+          .row-fluid
+            = yield
+      = render 'layouts/rhinoart/footer'
+    = javascript_include_tag "application"
+    - if Rails.env.development?
+      .container
+        .row-fluid
+          = debug(params)

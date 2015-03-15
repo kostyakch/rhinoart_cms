@@ -1,0 +1,42 @@
+- provide(:title, "#{t(:_SYSTEM_SETTINGS)}")
+.box-header{"data-original-title" => ""}
+  %h2
+    %i.halflings-icon.align-justify
+    %span.break
+    = t(:_SYSTEM_SETTINGS)
+  .box-icon
+    %a.btn-setting{href: "#"}
+      %i.halflings-icon.wrench
+    %a.btn-minimize{href: "#"}
+      %i.halflings-icon.chevron-up
+    %a.btn-close{href: "#"}
+      %i.halflings-icon.remove
+.box-content
+  #DataTables_Table_0_wrapper.dataTables_wrapper{role: "grid"}
+    .row-fluid
+      .btn-overlay
+        = link_to "<i class=\"halflings-icon plus\"></i> #{t(:_BTN_CREATE)}".html_safe, new_setting_path, class: 'btn btn-primary'
+      .btn-overlay
+        = link_to "<i class=\"halflings-icon trash\"></i> #{t(:_BTN_CLEAR_CACHE)}".html_safe, caches_clear_path(redirect_to: request.fullpath), class: 'btn btn-primary'
+    %table.table.table-striped.tree
+      %thead
+        %tr
+          %th{width: "20%"}= t(:_PARAMETER_NAME)
+          %th{width: "60%"}= t(:_PARAMETER_VALUE)
+          %th= t(:_ACTIONS)
+      %tbody
+        - @settings.each do |c|
+          %tr
+            %td
+              %i.fa-icon-file
+              %b= link_to c.name, edit_setting_path(c)
+              %br/
+              %i
+                %small= c.descr
+            %td= c.value[0..200] if c.value.present?
+            %td.center
+              = link_to raw('<i class="halflings-icon edit"></i>'), edit_setting_path(c), class: 'btn btn-info'
+              = link_to raw('<i class="halflings-icon trash"></i>'), setting_path(c), class: 'btn btn-info', :method => :delete, :data => { :confirm => t('_DELETE_CONFIRM') }
+    .row-fluid
+      .span12.center
+        .dataTables_paginate.paging_bootstrap.pagination= will_paginate page_items

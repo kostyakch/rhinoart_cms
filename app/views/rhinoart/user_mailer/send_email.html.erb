@@ -1,6 +1,0 @@
-<h1>Message from site: <%= Rails.configuration.action_mailer.default_url_options[:host] %></h1>
-
-<%= "<p>Name: #{@message.name}</p>".html_safe if @message.name %>
-<%= "<p>Email: #{@message.email}</p>".html_safe if @message.email %>
-<hr>
-<%= "<p>Message: #{@message.content}</p>".html_safe if @message.content %>

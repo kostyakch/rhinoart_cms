@@ -1,0 +1,45 @@
+= render 'rhinoart/shared/error_messages', object: f.object
+= f.hidden_field :ptype
+= f.hidden_field :parent_id
+.form-horizontal
+  .control-group
+    = f.label :name, class: 'control-label'
+    .controls
+      = f.text_field :name, class: 'span11'
+  .control-group
+    = f.label :slug, class: 'control-label'
+    .controls
+      = f.text_field :slug, class: 'span11'
+      = link_to '<span class="icon-plus-sign"></span>'.html_safe, '#mdFieldAdd', data: {toggle: "modal"}
+  / Page fields
+  = render "page_fields", f: f
+  .row
+    .span1{style: "margin-left: 210px;"}
+      = f.label :position
+      = f.number_field :position, class: 'span12'
+    .span2
+      = f.label :publish_date
+      #dp3.input-append.pdate.span11{"data-date" => "12-02-2012", "data-date-format" => "mm/dd/yyyy"}
+        = f.text_field :publish_date, class: 'span10'
+        %span.add-on
+          %i.icon-calendar
+      - content_for :javascript do
+        :javascript
+          $('#page_publish_date').datepicker({
+              format: 'mm/dd/yyyy'
+          });
+    - if f.object.ptype == 'article' || f.object.ptype == 'blog'
+      .span3
+        = f.label :user
+        = f.collection_select :user_id, Rhinoart::User.where('frontend_role is not null'), :id, :name_email, {include_blank: true}, {class: 'span12'}
+    .span2
+      = f.label :active
+      = f.check_box :active
+  %br/
+  / Page contents
+  = render 'content_row', f: f
+  .form-actions
+    .btn-overlay
+      = f.button t("_BTN_SAVE"), class: "btn btn-primary"
+      = f.button t('_BTN_SAVE_AND_CONTINUE'), class: 'btn btn-success', name: 'continue', value: 'continue'
+      = link_to t("_BTN_CANCEL"), pages_path, class: "btn"

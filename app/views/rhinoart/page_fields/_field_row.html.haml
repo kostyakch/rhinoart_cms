@@ -1,0 +1,23 @@
+- index = rand(100..300)
+%div{id: "field_#{index}"}
+  = hidden_field_tag "page[page_field_attributes][#{index}][id]", @field.id
+  = hidden_field_tag "page[page_field_attributes][#{index}][name]", @field.name
+  = hidden_field_tag "page[page_field_attributes][#{index}][ftype]", @field.ftype
+  / %= render partial: "row", locals: {field: @field, index: index}%
+  .control-group
+    %label.control-label{for: "page_page_fields_name"}= t @field.name
+    .controls
+      - case @field.ftype
+      - when 'textarea'
+        = text_area_tag "page[page_field_attributes][#{index}][value]", @field.value, rows: 3, class: "span11"
+      - when 'file'
+        = text_field_tag("value_#{index}", t(:_SAVE_TO_UPLOAD), readonly: true, class: "span11 file_str")
+        %span.input-group-btn
+      - else
+        = text_field_tag("page[page_field_attributes][#{index}][value]", @field.value, class: "span11")
+      = link_to '<span class="icon-plus-sign"></span>'.html_safe, '#mdFieldAdd', data: {toggle: "modal"}
+      = link_to '<span class="icon-remove-sign"></span>'.html_safe, |
+        page_field_path(@field.id.to_i == 0 ? index : @field.id),   |
+        method: 'delete',                                           |
+        remote: true,                                               |
+        data: { confirm: t('_DELETE_CONFIRM') }                     |

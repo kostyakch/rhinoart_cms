@@ -1,0 +1,15 @@
+= render 'rhinoart/shared/error_messages', object: f.object
+.form-horizontal
+  .control-group
+    = f.label :approved, class: 'control-label'
+    .controls
+      = f.check_box :approved, class: 'span11'
+  .control-group
+    = f.label :comment, class: 'control-label'
+    .controls
+      = f.text_area :comment, class: 'span11', rows: 4
+  .form-actions
+    .btn-overlay
+      = f.button t("_BTN_SAVE"), class: "btn btn-primary"
+      = f.button t('_BTN_SAVE_AND_CONTINUE'), class: 'btn btn-success', name: 'continue', value: 'continue'
+      = link_to t("_BTN_CANCEL"), pages_path, class: "btn"

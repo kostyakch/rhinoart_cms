@@ -1,0 +1,22 @@
+%ul.nav.nav-tabs.nav-stacked
+  %li{class: "#{params[:id].to_i == p.id.to_i ? 'active' : ''}", id: "cat_#{p.id}"}
+    %span
+      = link_to '', pages_path(parent: p.id), remote: true, class: "toogle icon-plus" if page_tree(p).present?
+      - if p.ptype == 'article' || p.ptype == 'blog'
+        = link_to p.name, children_page_path(p), class: page_tree(p).present? ? '' : 'children'
+        = link_to edit_page_path(p), class: 'edit-article-item' do
+          %span.halflings-icon.edit
+      - else
+        = link_to p.name, edit_page_path(p), class: page_tree(p).present? ? '' : 'children'
+    %hr/
+    - if @tree_ids.present? && @tree_ids.include?(p.id)
+      - pages = page_tree(p)
+      - if pages.present?
+        - pages.each do |children|
+          = render 'rows', p: children
+      = content_for :javascript do
+        :javascript
+          $(function(){
+          	$('#cat_#{p.id} span a.toogle').first().addClass('icon-minus');
+          	$('#cat_#{p.id} span a.toogle').first().removeClass('icon-plus');
+          })

@@ -1,0 +1,17 @@
+- provide(:title, t(:_NEW_PAGE))
+- content_for :sidebar_l2 do
+  #sidebar-left2.span3
+    .nav-collapse.sidebar-nav
+      %ul.nav.nav-tabs.nav-stacked
+        - page_tree.each do |p|
+          = render 'rows', p: p, level: 0
+= form_for @page, :multipart => true do |f|
+  %legend= t(:_NEW_PAGE)
+  = render 'fields', f: f
+= render 'rhinoart/page_fields/form', page: @page
+- content_for :javascript do
+  :javascript
+    <!--
+    	#{raw(field_javascript)}
+    	#{raw(tab_javascript)}
+    -->

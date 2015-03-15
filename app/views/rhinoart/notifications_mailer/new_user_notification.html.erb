@@ -1,9 +1,0 @@
-<p><b>New user registered</b></p>
-
-<p>
-	User email: <%= @user.email %><br>
-	User name is: <%= @user.name %><br>
-	User role: <%= @user.api_role.join(' / ') %>
-</p>
-
-<p>Please grant access to this user or delete him at <%= link_to 'user page', rhinoart.edit_user_url(id: @user.id) %></p>

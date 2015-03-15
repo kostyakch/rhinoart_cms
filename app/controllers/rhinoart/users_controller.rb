@@ -3,7 +3,7 @@ require_dependency "rhinoart/application_controller"
 module Rhinoart
 	class UsersController < BaseController
 		before_action { authorize! :manage, :users }
-		before_action :set_user, only: [:show, :edit, :update, :destroy]        
+		before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 		def index
 			order_str = params[:sort].present? ? "#{params[:sort]} #{params[:dir]}" : 'name, email'

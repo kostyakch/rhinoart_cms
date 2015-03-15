@@ -1,0 +1,4 @@
+- provide(:title, t(:edit_comment))
+= form_for @page_comment do |f|
+  %legend= t(:edit_comment)
+  = render 'fields', f: f

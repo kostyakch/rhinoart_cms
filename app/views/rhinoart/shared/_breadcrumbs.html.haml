@@ -1,0 +1,9 @@
+- count = breadcrumbs(@page).count
+%ul.breadcrumbs
+  %li
+    %a{href: "/"} Главная
+  - breadcrumbs(@page).each_with_index do |item, index|
+    - if count -1 != index
+      %li= link_to item.name, page_path(item.slug)
+    - else
+      %li= item.name

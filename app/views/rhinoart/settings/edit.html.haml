@@ -1,0 +1,5 @@
+- provide(:title, t(:_EDIT))
+= form_for @setting, :url => setting_path do |c|
+  %legend
+    = t(:_EDIT)
+  = render 'fields', f: c
