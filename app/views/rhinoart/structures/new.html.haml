@@ -1,0 +1,11 @@
+- provide(:title, t(:_NEW_PAGE))
+= form_for @page, url: structures_path do |f|
+  %legend
+    = t(:_NEW_PAGE)
+  = render 'fields', f: f
+- content_for :javascript do
+  :javascript
+    <!--
+    	#{raw(field_javascript)}
+    	#{raw(tab_javascript)}
+    -->

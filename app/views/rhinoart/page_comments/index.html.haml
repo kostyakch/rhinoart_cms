@@ -1,0 +1,20 @@
+- provide(:title, t(:_COMMENTS))
+.box-header{"data-original-title" => ""}
+  %h2
+    %i.halflings-icon.align-justify
+    %span.break
+    = t :_COMMENTS
+.box-content
+  #DataTables_Table_0_wrapper.dataTables_wrapper{role: "grid"}
+    %table.table.table-striped.tree
+      %thead
+        %tr
+          %th{width: "70%"}= t 'Comment'
+          %th{width: "20%"}= t :_STATUS
+          %th= t :_ACTIONS
+      %tbody
+        - @page_comments.each do |item|
+          = render 'rows', item: item, level: 0
+    .row-fluid
+      .span12.center
+        .dataTables_paginate.paging_bootstrap.pagination= will_paginate

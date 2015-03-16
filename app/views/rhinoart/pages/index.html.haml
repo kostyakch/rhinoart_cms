@@ -1,0 +1,22 @@
+- provide(:title, t(:_PAGES))
+- content_for :sidebar_l2 do
+  #sidebar-left2.span3{style: "min-height: 500px;"}
+    .nav-collapse.sidebar-nav
+      / <ul class="nav nav-tabs nav-stacked">
+      - page_tree.each do |p|
+        = render 'rows', p: p
+      / </ul>
+.row-fluid.sortable.ui-sortable
+  .box.span12
+    .box-header
+      %h2
+        %i.halflings-icon.hand-top
+        = succeed "Quick" do
+          %span.break
+    .box-content
+      - Rhinoart::Menu::ContentMenu.items.each do |item|
+        %a.quick-button.span2{href: "#{menu_item_link(item)}"}
+          %i{class: "#{item.icon}"}
+          %p= t item.label
+          %span.notification= item.notification.try(:call)
+      .clearfix

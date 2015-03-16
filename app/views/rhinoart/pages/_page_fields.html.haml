@@ -1,0 +1,44 @@
+#param-fields-list.collapse
+  = f.fields_for :page_field do |c|
+    - index = rand(100..300)
+    %div{id: "field_#{c.object.id.to_i == 0 ? index : c.object.id}"}
+      = c.hidden_field :id
+      = c.hidden_field :position
+      = c.hidden_field :name
+      = c.hidden_field :ftype
+      .control-group
+        %label.control-label{for: "page_page_fields_name"}= t c.object.name
+        .controls
+          - case c.object.ftype
+          - when 'textarea'
+            = c.text_area :value, rows: 3, class: 'span11', readonly: disabled_page?(@page)
+          - when 'file'
+            - if c.object.attachment.present?
+              = text_field :value, c.object.id, readonly: true, value: c.object.attachment.file_url, class: 'span9 file_str'
+            - else
+              - c.object.build_attachment
+              = text_field :value, c.object.id, readonly: true, class: 'span9 file_str'
+            %span.input-group-btn
+              = link_to t("_BTN_IMG"), '#', class: "btn", onclick: "$(this).parent().find('input:file').trigger('click');return false;"
+              = c.fields_for :attachment do |a|
+                = a.file_field :file, class: 'hide'
+          - else
+            = c.text_field :value, class: 'span11', readonly: disabled_page?(@page)
+          - if !disabled_page?(@page)
+            = link_to '<span class="icon-plus-sign"></span>'.html_safe, '#mdFieldAdd', data: { toggle: "modal" }
+            = link_to '<span class="icon-remove-sign"></span>'.html_safe,   |
+              page_field_path(c.object.id.to_i == 0 ? index : c.object.id), |
+              method: 'delete',                                             |
+              remote: true,                                                 |
+              data: { confirm: t('_DELETE_CONFIRM') }                       |
+  #ajax_field_add
+- if f.object.page_field.any?
+  .control-group
+    #moreless.controls
+      %a{"data-toggle" => "collapse", href: "#param-fields-list"}= t('_MORE')
+      %span.icon-arrow-down
+- content_for :javascript do
+  :javascript
+    $('input[type=file]').on('change', function() {		
+    	$(this).parent().parent().find('.file_str').val( $(this).val() );
+    });

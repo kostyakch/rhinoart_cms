@@ -1,0 +1,37 @@
+- provide(:title, t(:_NEWS_ARTICLES))
+- content_for :sidebar_l2 do
+  #sidebar-left2.span3
+    .nav-collapse.sidebar-nav
+      %ul.nav.nav-tabs.nav-stacked
+        - page_tree.each do |p|
+          = render 'rows', p: p, level: 0
+.box-header{"data-original-title" => ""}
+  %h2
+    %i.halflings-icon.align-justify
+    %span.break
+    = @parent.name
+  /
+    <div class="box-icon">
+    <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+    </div>
+.box-content
+  #DataTables_Table_0_wrapper.dataTables_wrapper{role: "grid"}
+    .row-fluid
+      .btn-overlay
+        = link_to "<i class=\"halflings-icon plus\"></i> #{ t(:_NEW) }".html_safe, new_children_page_path(@parent), class: 'btn btn-primary'
+    %table.table.table-striped.tree
+      %thead
+        %tr
+          %th{width: "60%"}= t :_PAGES
+          %th{width: "20%"}= t :_STATUS
+          %th= t :_ACTIONS
+      %tbody
+        - @pages.each do |p|
+          = render 'children_rows', p: p
+    .row-fluid
+      /
+        <div class="span12">
+        <div class="dataTables_info" id="DataTables_Table_0_info">Showing 1 to 10 of 32 entries</div>
+        </div>
+      .span12.center
+        .dataTables_paginate.paging_bootstrap.pagination= will_paginate page_items

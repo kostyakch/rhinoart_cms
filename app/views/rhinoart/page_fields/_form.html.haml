@@ -1,0 +1,24 @@
+#mdFieldAdd.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  - @field = Rhinoart::PageField.new
+  - @field.page ||= page
+  = form_for @field, url: page_fields_path, remote: true do |pf|
+    = pf.hidden_field :page_id
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel= t('Add field')
+    .modal-body
+      #pf_errors
+      .form-horizontal
+        .control-group
+          = pf.label :name, class: "control-label"
+          .controls
+            = pf.text_field :name, class: 'span11'
+        .control-group
+          = pf.label :ftype, class: "control-label"
+          .controls
+            = pf.select :ftype, @field.select_list
+    .modal-footer
+      .control-group
+        .controls
+          = pf.button t("_BTN_SAVE"), class: "btn btn-primary"
+- content_for :javascript do
