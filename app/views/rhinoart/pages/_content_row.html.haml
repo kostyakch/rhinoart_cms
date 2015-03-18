@@ -4,7 +4,7 @@
       %ul#tabs.nav.nav-tabs
         - if f.object.page_content.any?
           - f.object.page_content.each_with_index do |ob, index|
-            %li{class: "if index == 0 active"}
+            %li{class: index == 0 ? 'active' : ''}
               %a{"data-toggle" => "tab", href: "##{"tab#{ob.id}"}", rel: "tab#{ob.id}"}
                 = t ob.name
                 - if !disabled_page?(@page)
@@ -19,7 +19,7 @@
       .tab-content{style: "padding-bottom: 9px; border-bottom: 1px solid #ddd;"}
         - i = 0
         = f.fields_for :page_content do |c|
-          %div{class: "tab-pane  if i == 0 active", id: "tab#{c.object.id}"}
+          %div.tab-pane{ class: i == 0 ? 'active' : '', id: "tab#{c.object.id}" }
             = c.hidden_field :id
             = c.hidden_field :name
             = c.text_area :content, class: 'span12'
