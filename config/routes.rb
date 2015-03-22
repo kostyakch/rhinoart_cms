@@ -1,6 +1,5 @@
 Rhinoart::Engine.routes.draw do  
-    devise_for :users, class_name: "Rhinoart::User", module: :devise, 
-        :controllers => { :sessions => "rhinoart/sessions", :passwords => "rhinoart/passwords"  } 
+    devise_for Rhinoart.device_namespace, Rhinoart.devise_routes
 
     scope "(:locale)", locale: /ru|en/ do 
         scope "manage" do 
