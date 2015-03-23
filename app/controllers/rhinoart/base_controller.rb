@@ -4,7 +4,7 @@ module Rhinoart
 		before_filter :check_if_user_has_admin_role
 		
 
-    rescue_from CanCan::AccessDenied, :access_denied_handler
+    rescue_from CanCan::AccessDenied, :with => :access_denied_handler
 
 		private
 
