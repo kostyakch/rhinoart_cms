@@ -21,7 +21,7 @@ module Rhinoart
           end
         end
       else
-        redirect_to new_user_session_path, alert: exception.message
+        redirect_to rhinoart.new_user_session_path, alert: exception.message
       end
     end
 
