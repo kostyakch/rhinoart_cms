@@ -1,5 +1,4 @@
 require 'haml'
-require 'foreigner'
 require 'acts_as_list'
 require 'mini_magick'
 require 'carrierwave'

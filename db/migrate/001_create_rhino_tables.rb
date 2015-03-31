@@ -7,8 +7,8 @@ class CreateRhinoTables < ActiveRecord::Migration
     add_index :rhinoart_settings, [:name, :value], :unique => true 
 
     create_table :rhinoart_pages do |t|
-      t.integer :parent_id
-      t.foreign_key :rhinoart_pages, column: 'parent_id', options: 'ON DELETE CASCADE'
+      t.references :parent, index: true
+      # t.foreign_key :rhinoart_pages, column: 'parent_id', options: 'ON DELETE CASCADE'
 
       t.string :name, :null => false
       t.string :slug, :null => false
@@ -26,25 +26,27 @@ class CreateRhinoTables < ActiveRecord::Migration
 
     create_table :rhinoart_page_contents, :force => true do |t|
       t.integer :page_id
-      t.foreign_key :rhinoart_pages, column: 'page_id', options: 'ON DELETE CASCADE'
+      # t.foreign_key :rhinoart_pages, column: 'page_id', options: 'ON DELETE CASCADE'
 
       t.string :name, :limit => 100, :null => false
       t.text :content
       t.integer :position, :null => false
     end
+    add_index :rhinoart_page_contents, :page_id
     add_index :rhinoart_page_contents, :name
     add_index :rhinoart_page_contents, [:page_id, :name], :unique => true
 
 
     create_table :rhinoart_page_fields do |t|
       t.integer :page_id, :null => false
-      t.foreign_key :rhinoart_pages, column: 'page_id', options: 'ON DELETE CASCADE'
+      # t.foreign_key :rhinoart_pages, column: 'page_id', options: 'ON DELETE CASCADE'
 
       t.string :name, :limit  => 120, :null => false
       t.text :value
       t.string :ftype, :limit => 60
       t.integer :position, :null => false
     end
+    add_index :rhinoart_page_fields, :page_id
     add_index :rhinoart_page_fields, [:page_id, :name], :unique => true, name: 'page_fields_page_id_and_name'
 
 
