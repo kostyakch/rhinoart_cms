@@ -34,8 +34,6 @@ Rhinoart::Engine.routes.draw do
         resources :settings
         resources :dashboard
 
-        resources :galleries
-
         #upload files
         scope :fileworks do
             match 'upload_image' => 'fileworks#upload_image', via: [:get, :post]#, via: :js

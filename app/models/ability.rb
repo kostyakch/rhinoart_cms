@@ -17,33 +17,9 @@ class Ability
                     end
                     if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_CONTENT_MANAGER)
                         can :manage, :content
+                        can :manage, :gallery
                         # can :manage, :settings
                     end
-                    
-                    begin
-                        # Content managers
-                        if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_CONTENT_CREATOR)
-                            can :manage, :create_docs
-                            can :manage, :books
-                        end
-                        if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_CONTENT_EDITOR)
-                            can :manage, :edit_docs
-                            can :manage, :books
-                        end
-                        if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_CONTENT_PUBLISHER)
-                            can :manage, :public_docs
-                            can :manage, :books
-                        end
-                    rescue                        
-                    end
-
-                    begin
-                        if user.has_admin_role?(Rhinoart::User::ADMIN_PANEL_ROLE_CATALOG_MANAGER)
-                            can :manage, :catalog
-                        end
-                    rescue                        
-                    end
-
                 end
             else    
                 if user.frontend_user?

@@ -22,7 +22,7 @@ module Rhinoart
         icon: 'fa-icon-comments',
         link: proc{ rhinoart.page_comments_path },
         label: :_COMMENTS,
-        allowed: proc{ can?(:manage, :content) and Rails.configuration.try(:show_comments) },
+        allowed: proc{ can?(:manage, :content) },
         active: proc{ controller_name == 'page_comments' }
       })
 
