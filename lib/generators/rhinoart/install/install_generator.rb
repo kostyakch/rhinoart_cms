@@ -5,12 +5,15 @@ module Rhinoart
 
     def copy_files
       copy_file "controllers/pages_controller.rb", "app/controllers/pages_controller.rb"
-      copy_file "views/layouts/application.html.haml", "app/views/layouts/application.html.haml"
 
+      copy_file "views/layouts/application.html.haml", "app/views/layouts/application.html.haml"
       copy_file "views/pages/index.html.haml", "app/views/pages/index.html.haml"
       copy_file "views/pages/internal.html.haml", "app/views/pages/internal.html.haml"
+      copy_file "views/shared/not_found.html.haml", "app/views/shared/not_found.html.haml"
 
+      copy_file "helpers/application_helper.rb", "app/helpers/application_helper.rb"
       copy_file "helpers/pages_helper.rb", "app/helpers/pages_helper.rb"
+      copy_file "helpers/settings_helper.rb", "app/helpers/settings_helper.rb"
     end
 
     def add_route
