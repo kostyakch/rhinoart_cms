@@ -3,7 +3,9 @@
   %head
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title= full_title(yield(:title))
-    = stylesheet_link_tag "rhinoart/application", :media => "all"
+    = stylesheet_link_tag 'rhinoart/application', media: 'all'
+    - Rhinoart.stylesheets.each do |style, options|
+      = stylesheet_link_tag style, options
     = appended_stylesheets
     %link{href: "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext", rel: "stylesheet", type: "text/css"}/
     %meta{content: "RhinoArtCMS", name: "generator"}/
@@ -20,7 +22,9 @@
           .row-fluid
             = yield
       = render 'layouts/rhinoart/footer'
-    = javascript_include_tag "rhinoart/application"
+    = javascript_include_tag 'rhinoart/application'
+    - Rhinoart.javascripts.each do |path|
+      = javascript_include_tag path
     = appended_javascripts
     = raw yield(:javascript)
     - if Rails.env.development?

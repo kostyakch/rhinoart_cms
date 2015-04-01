@@ -9,15 +9,15 @@ module Rhinoart
 					params[:redirect_to] || root_path
 				else
 					main_app.root_path
-				end				
+				end
 			end
 
 			def after_sign_out_path_for(resource)
 				if params[:redirect_to].present?
-					params[:redirect_to] 
+					params[:redirect_to]
 				else
 					main_app.root_path
-				end				
-			end		
+				end
+			end
 	end
 end
