@@ -86,9 +86,9 @@ module Rhinoart
 
 		def children(active = true)
 			if active
-				Page.where('parent_id = ? AND active = true', self.id)
+				Page.where(parent_id: self.id, active: true)
 			else
-				Page.where('parent_id = ?', self.id)
+				Page.where(parent_id: self.id)
 			end
 		end
 
@@ -110,9 +110,9 @@ module Rhinoart
 
 		def self.article_list(id = nil)
 			if id.present?
-				self.where("ptype != 'article' AND id != ?", id).order('name')
+				self.where("ptype != ? AND id != ?", 'article', id).order('name')
 			else
-				self.where("ptype != 'article'").order('name')        
+				self.where("ptype != ?", 'article').order('name')        
 			end        
 		end 
 
