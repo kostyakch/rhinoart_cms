@@ -13,14 +13,12 @@ module Rhinoart
         app.config.assets.precompile << path
       end
 
-      app.config.assets.paths << root.join('app', 'assets', 'fonts')
-
       app.config.assets.precompile += %w[
         jquery.tablesorter.js
         redactor/redactor.css
         redactor/redactor.js
       ]
-      app.config.assets.precompile += %w( .svg .eot .woff .ttf)
+
     end
 
   end
