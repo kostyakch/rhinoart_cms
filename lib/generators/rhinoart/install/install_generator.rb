@@ -22,11 +22,26 @@ module Rhinoart
       route 'mount Rhinoart::Engine, at: "/admin"'
     end
 
+    def add_route
+      route "match '*url' => 'pages#internal', :as => :page, via: [:get]"
+      route "root 'pages#index'"
+      route 'mount Rhinoart::Engine, at: "/admin"'
+    end
+
     def create_tables
       rake 'rhinoart:install:migrations'
       rake 'db:create'
       rake 'db:migrate'
       rake 'db:populate'
+    end
+
+    def create_config
+      inject_into_file 'config/environments/development.rb', before: /end$/ do
+        "\n  config.redirect_to_www = false\n"
+      end          
+      inject_into_file 'config/environments/production.rb', before: /end$/ do
+        "\n  config.redirect_to_www = true\n"
+      end          
     end
   end
 end
