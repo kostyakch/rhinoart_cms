@@ -118,7 +118,8 @@ module Rhinoart
     end  
 
     def self.user_manager_emails  
-        where("#{quoted_table_name}.admin_role LIKE ?", "%#{ADMIN_PANEL_ROLE_USERS_MANAGER}%").pluck(:email) #.join(',') #map(&:inspect)
+        with_role(ADMIN_PANEL_ROLE_USERS_MANAGER).pluck(:email)
+        # where("#{quoted_table_name}.admin_role LIKE ?", "%#{ADMIN_PANEL_ROLE_USERS_MANAGER}%").pluck(:email) #.join(',') #map(&:inspect)
     end
 
     def active_for_authentication? 
