@@ -137,7 +137,16 @@ module Rhinoart
         @ability ||= Ability.new(self)
     end
     delegate :can?, :cannot?, :to => :ability
-    
+
+    def clear_roles(roles)
+        roles.each do |r|
+            begin
+                self.remove_role r    
+            rescue                    
+            end                
+        end
+    end    
+
     private
 
         def create_remember_token
@@ -146,25 +155,24 @@ module Rhinoart
 
 
         def update_roles
-            # Clear all admin roles
-            clear_roles ADMIN_PANEL_ROLES
+            if admin_roles.present? && admin_roles.any?
+                clear_roles ADMIN_PANEL_ROLES
 
-            # Clear all frontend roles
-            clear_roles FRONTEND_ROLES
-            
-            admin_roles.each{|r| self.add_role r} if admin_roles.present? && admin_roles.any?
+                admin_roles.each do |r| 
+                    self.add_role r 
+                end 
+            end
 
-            frontend_roles.each{|r| self.add_role r} if frontend_roles.present? && frontend_roles.any?
-        end
-
-        def clear_roles(roles)
-            roles.each do |r|
-                begin
-                    self.remove_role r    
-                rescue                    
-                end                
+            if frontend_roles.present? && frontend_roles.any?
+                clear_roles FRONTEND_ROLES
+                
+                frontend_roles.each do |r| 
+                    self.add_role r 
+                end 
             end
         end
+
+
 
         def notify_about_new_user        
             User.user_manager_emails.each do |mail_to|

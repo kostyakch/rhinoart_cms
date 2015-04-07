@@ -63,6 +63,9 @@ module Rhinoart
 			  end			  
 			end 
 			
+			@user.clear_roles User::ADMIN_PANEL_ROLES if !user_attributes[:admin_roles].present?
+			@user.clear_roles User::FRONTEND_ROLES if !user_attributes[:frontend_roles].present?
+
 			if @user.update_attributes(new_attributes)
 			  redirect_to (params[:redirect_to] || :users), success: "User created"
 			else
