@@ -62,7 +62,7 @@ module Rhinoart
 			  rescue			  	
 			  end			  
 			end 
-
+			
 			if @user.update_attributes(new_attributes)
 			  redirect_to (params[:redirect_to] || :users), success: "User created"
 			else

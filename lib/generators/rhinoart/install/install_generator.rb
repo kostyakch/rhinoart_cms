@@ -4,6 +4,7 @@ module Rhinoart
     desc 'Rhinoart CMS installation'
 
     def copy_files
+      copy_file "controllers/application_controller.rb", "app/controllers/application_controller.rb"
       copy_file "controllers/pages_controller.rb", "app/controllers/pages_controller.rb"
 
       copy_file "views/layouts/application.html.haml", "app/views/layouts/application.html.haml"
