@@ -27,7 +27,7 @@
 module Rhinoart
   class User < ActiveRecord::Base
     include UserRoles
-    # rolify
+    rolify
     attr_accessor :admin_roles, :frontend_roles
 
     belongs_to :userable, polymorphic: true #iln 24.07.14
@@ -186,7 +186,7 @@ module Rhinoart
         end 
         
         def set_default_frontend_role
-            self.frontend_role = FRONTEND_ROLES.first if !self.frontend_role.present?
+            self.add_role FRONTEND_ROLES.first
         end
   end
 end
