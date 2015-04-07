@@ -56,6 +56,6 @@
 		= f.submit 'Save', class: 'btn btn-primary', data: { disable_with: 'Saving...'}
 		- if f.object.persisted?
 			%span.muted or
-			= link_to 'Clear all access rights', [f.object], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+			= link_to 'Clear all access rights', user_path(f.object, clear_rights: true), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
 
 

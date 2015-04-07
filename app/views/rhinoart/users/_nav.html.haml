@@ -19,13 +19,13 @@
 
 						%li.nav-sub-item{ class: params[:role] == 'admin' ? 'active' : '' }
 							%a.action-switch-section{ href: "#{users_path role: 'admin'}" }
-								Admin users
-								%span.badge.stat-draft= Rhinoart::User.where('approved = 1 and (admin_role is not null or admin_role != "")').count
+								Admin users								
+								%span.badge.stat-draft= Rhinoart::User::admin_users.pluck(:id).count
 
 						%li.nav-sub-item{ class: !params[:role].present? ? 'active' : '' }
 							%a.action-switch-section{ href: "#{users_path}" }
 								All
-								%span.badge.stat-published= Rhinoart::User.all.count
+								%span.badge.stat-published= Rhinoart::User.count
 
 					%ul.nav.pull-right
 						%li.nav-item

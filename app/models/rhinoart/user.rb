@@ -93,6 +93,10 @@ module Rhinoart
         has_role? role.to_s #if admin_role.present?    
     end  
 
+    def self.admin_users
+        joins(:rhinoart_users_roles, :roles).where(approved: true, roles: {name: ADMIN_PANEL_ROLES}).group('rhinoart_users.id')
+    end
+
     def has_access_to_frontend?
         FRONTEND_ROLES.each do |role|
             res = has_role? role
