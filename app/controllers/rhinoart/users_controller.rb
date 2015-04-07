@@ -53,18 +53,19 @@ module Rhinoart
 			new_attributes = user_attributes.to_hash.symbolize_keys
 			new_attributes.delete(:password) if new_attributes[:password].blank?
 
-			if new_attributes[:approved] && !new_attributes[:email].present?
-			else
-			  new_attributes[:admin_role] = nil if !new_attributes[:admin_role].present? && can?(:manage, :all)
-			  begin
-			  		@user.api_role
-			  		new_attributes[:api_role] = nil if !new_attributes[:api_role].present? && can?(:manage, :all)
-			  rescue			  	
-			  end			  
-			end 
+			# if new_attributes[:approved] && !new_attributes[:email].present?
+			# else
+			#   new_attributes[:admin_roles] = nil if !new_attributes[:admin_roles].present? && can?(:manage, :all)
+			#   begin
+			#   		@user.api_role
+			#   		new_attributes[:api_role] = nil if !new_attributes[:api_role].present? && can?(:manage, :all)
+			#   rescue			  	
+			#   end			  
+			# end 
+
 			
-			@user.clear_roles User::ADMIN_PANEL_ROLES if !user_attributes[:admin_roles].present?
-			@user.clear_roles User::FRONTEND_ROLES if !user_attributes[:frontend_roles].present?
+			@user.clear_roles User::ADMIN_PANEL_ROLES if !user_attributes[:admin_roles].present? && new_attributes[:email].present?
+			@user.clear_roles User::FRONTEND_ROLES if !user_attributes[:frontend_roles].present? && new_attributes[:email].present?
 
 			if @user.update_attributes(new_attributes)
 			  redirect_to (params[:redirect_to] || :users), success: "User created"
@@ -77,7 +78,9 @@ module Rhinoart
 			if params[:hard_delete]
 				@user.destroy
 			else
-				@user.update(admin_role: nil, frontend_role: nil, approved: false)
+				@user.clear_roles User::ADMIN_PANEL_ROLES
+				@user.clear_roles User::FRONTEND_ROLES
+				@user.update(approved: false)
 			end
 
 			redirect_to (params[:redirect_to] || :users), success: "User soft deleted"
