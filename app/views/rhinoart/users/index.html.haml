@@ -44,7 +44,7 @@
 					%td= link_to user.name, edit_user_path(user, redirect_to: request.fullpath)
 					%td= user.email
 					%td
-						%small= [user.admin_role, user.frontend_role].map(&:presence).compact.join(", ")
+						%small= user.roles.map(&:name).compact.join(", ")
 
 					%td{ nowrap: 'nowrap' }
 						%small

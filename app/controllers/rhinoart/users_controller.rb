@@ -14,8 +14,15 @@ module Rhinoart
 					@users = User.where(approved: false).paginate(page: params[:page], per_page: 30).order(order_str)
 				
 				when 'admin'
-					@users = User.where("approved = 1 and (admin_role is not null or admin_role != '')").paginate(page: params[:page], per_page: 30).order(order_str)
+					# @users = []
+					# User::ADMIN_PANEL_ROLES.each do |r|
+					# 	@users << User.with_any_role(r)
+					# end
+					# @users = @users[0]
+					# @users = User.where("approved = 1 and (admin_role is not null or admin_role != '')").paginate(page: params[:page], per_page: 30).order(order_str)
 				
+					@users = User::admin_users.paginate(page: params[:page], per_page: 30).order(order_str)
+					# User.joins(:rhinoart_users_roles, :roles).where(approved: true, roles: {name: User::ADMIN_PANEL_ROLES}).group(:email).paginate(page: params[:page], per_page: 30).order(order_str)
 				else
 					@users = User.all.paginate(page: params[:page], per_page: 30).order(order_str)
 				end
@@ -53,15 +60,19 @@ module Rhinoart
 			new_attributes = user_attributes.to_hash.symbolize_keys
 			new_attributes.delete(:password) if new_attributes[:password].blank?
 
-			if new_attributes[:approved] && !new_attributes[:email].present?
-			else
-			  new_attributes[:admin_role] = nil if !new_attributes[:admin_role].present? && can?(:manage, :all)
-			  begin
-			  		@user.api_role
-			  		new_attributes[:api_role] = nil if !new_attributes[:api_role].present? && can?(:manage, :all)
-			  rescue			  	
-			  end			  
-			end 
+			# if new_attributes[:approved] && !new_attributes[:email].present?
+			# else
+			#   new_attributes[:admin_roles] = nil if !new_attributes[:admin_roles].present? && can?(:manage, :all)
+			#   begin
+			#   		@user.api_role
+			#   		new_attributes[:api_role] = nil if !new_attributes[:api_role].present? && can?(:manage, :all)
+			#   rescue			  	
+			#   end			  
+			# end 
+
+			
+			@user.clear_roles User::ADMIN_PANEL_ROLES if !user_attributes[:admin_roles].present? && new_attributes[:email].present?
+			@user.clear_roles User::FRONTEND_ROLES if !user_attributes[:frontend_roles].present? && new_attributes[:email].present?
 
 			if @user.update_attributes(new_attributes)
 			  redirect_to (params[:redirect_to] || :users), success: "User created"
@@ -74,7 +85,9 @@ module Rhinoart
 			if params[:hard_delete]
 				@user.destroy
 			else
-				@user.update(admin_role: nil, frontend_role: nil, approved: false)
+				@user.clear_roles User::ADMIN_PANEL_ROLES if params[:clear_rights].present?
+				@user.clear_roles User::FRONTEND_ROLES if params[:clear_rights].present?
+				@user.update(approved: false)
 			end
 
 			redirect_to (params[:redirect_to] || :users), success: "User soft deleted"

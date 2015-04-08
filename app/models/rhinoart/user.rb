@@ -27,6 +27,8 @@
 module Rhinoart
   class User < ActiveRecord::Base
     include UserRoles
+    rolify
+    attr_accessor :admin_roles, :frontend_roles
 
     belongs_to :userable, polymorphic: true #iln 24.07.14
 
@@ -35,11 +37,13 @@ module Rhinoart
     
     before_save { |user| user.email = email.downcase }
     before_save :create_remember_token
-    before_save :join_admin_roles
-    after_initialize :split_admin_role
+    before_save :update_roles
+    # after_initialize :split_admin_role
     after_create :notify_about_new_user
     after_update :notify_after_change_approved
 
+
+    # serialize :admin_role, Array
 
     SAFE_INFO_ACCESSORS = [:locales]
     store :info, accessors: SAFE_INFO_ACCESSORS, coder: JSON
@@ -77,42 +81,49 @@ module Rhinoart
     end
     
     def has_access_to_admin_panel?
-        res = false
-        begin
-            ADMIN_PANEL_ROLES.each do |role|
-                #db_roles = admin_role.split(',')
-                return (admin_role.include? role) if (admin_role.include? role) == true
-            end
-        rescue
-            return false
+        ADMIN_PANEL_ROLES.each do |role|
+            res = has_role? role
+            return res if res == true
         end
-        return res
+        false
     end
     alias_method :admin?, :has_access_to_admin_panel?
 
     def has_admin_role?(role)
-        admin_role.include? role.to_s if admin_role.present?    
+        has_role? role.to_s #if admin_role.present?    
     end  
 
+    def self.admin_users
+        joins(:rhinoart_users_roles, :roles).where(approved: true, roles: {name: ADMIN_PANEL_ROLES}).group('rhinoart_users.id')
+    end
+
     def has_access_to_frontend?
-        res = false
-        begin
-            FRONTEND_ROLES.each do |role|
-                return (frontend_role.include? role) if (frontend_role.include? role) == true
-            end
-        rescue
-            return false
+        FRONTEND_ROLES.each do |role|
+            res = has_role? role
+            return res if res == true
         end
-        return res
+        false
+
+        # res = false
+        # begin
+        #     FRONTEND_ROLES.each do |role|
+        #         return (frontend_role.include? role) if (frontend_role.include? role) == true
+        #     end
+        # rescue
+        #     return false
+        # end
+        # return res
     end
     alias_method :frontend_user?, :has_access_to_frontend?
 
     def has_frontend_role?(role)
-        frontend_role.include? role.to_s if frontend_role.present?    
+        has_role? role
+        # frontend_role.include? role.to_s if frontend_role.present?    
     end  
 
     def self.user_manager_emails  
-        where("#{quoted_table_name}.admin_role LIKE ?", "%#{ADMIN_PANEL_ROLE_USERS_MANAGER}%").pluck(:email) #.join(',') #map(&:inspect)
+        with_role(ADMIN_PANEL_ROLE_USERS_MANAGER).pluck(:email)
+        # where("#{quoted_table_name}.admin_role LIKE ?", "%#{ADMIN_PANEL_ROLE_USERS_MANAGER}%").pluck(:email) #.join(',') #map(&:inspect)
     end
 
     def active_for_authentication? 
@@ -131,23 +142,42 @@ module Rhinoart
         @ability ||= Ability.new(self)
     end
     delegate :can?, :cannot?, :to => :ability
-    
+
+    def clear_roles(roles)
+        roles.each do |r|
+            begin
+                self.remove_role r    
+            rescue                    
+            end                
+        end
+    end    
+
     private
 
         def create_remember_token
             self.remember_token = SecureRandom.urlsafe_base64 if !self.remember_token.present?
         end
 
-        def join_admin_roles
-            if self.admin_role.kind_of?(Array)
-                self.admin_role.reject! { |ar| ar.empty? }
-                self.admin_role = self.admin_role.join(',')
+
+        def update_roles
+            if admin_roles.present? && admin_roles.any?
+                clear_roles ADMIN_PANEL_ROLES
+
+                admin_roles.each do |r| 
+                    self.add_role r 
+                end 
+            end
+
+            if frontend_roles.present? && frontend_roles.any?
+                clear_roles FRONTEND_ROLES
+                
+                frontend_roles.each do |r| 
+                    self.add_role r 
+                end 
             end
         end
 
-        def split_admin_role
-            self.admin_role = self.admin_role.split(',') if self.admin_role.present?
-        end
+
 
         def notify_about_new_user        
             User.user_manager_emails.each do |mail_to|
@@ -161,7 +191,7 @@ module Rhinoart
         end 
         
         def set_default_frontend_role
-            self.frontend_role = FRONTEND_ROLES.first if !self.frontend_role.present?
+            self.add_role FRONTEND_ROLES.first
         end
   end
 end
