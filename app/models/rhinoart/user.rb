@@ -28,7 +28,6 @@ module Rhinoart
   class User < ActiveRecord::Base
     include UserRoles
     rolify
-    attr_accessor :admin_roles, :admin_roles_changed, :frontend_roles, :frontend_roles_changed
 
     belongs_to :userable, polymorphic: true #iln 24.07.14
 
@@ -37,13 +36,8 @@ module Rhinoart
     
     before_save { |user| user.email = email.downcase }
     before_save :create_remember_token
-    before_save :update_roles
-    # after_initialize :split_admin_role
     after_create :notify_about_new_user
     after_update :notify_after_change_approved
-
-
-    # serialize :admin_role, Array
 
     SAFE_INFO_ACCESSORS = [:locales]
     store :info, accessors: SAFE_INFO_ACCESSORS, coder: JSON
@@ -90,7 +84,7 @@ module Rhinoart
     alias_method :admin?, :has_access_to_admin_panel?
 
     def has_admin_role?(role)
-        has_role? role.to_s #if admin_role.present?    
+        has_role? role.to_s
     end  
 
     def self.admin_users
@@ -103,27 +97,15 @@ module Rhinoart
             return res if res == true
         end
         false
-
-        # res = false
-        # begin
-        #     FRONTEND_ROLES.each do |role|
-        #         return (frontend_role.include? role) if (frontend_role.include? role) == true
-        #     end
-        # rescue
-        #     return false
-        # end
-        # return res
     end
     alias_method :frontend_user?, :has_access_to_frontend?
 
     def has_frontend_role?(role)
         has_role? role
-        # frontend_role.include? role.to_s if frontend_role.present?    
     end  
 
     def self.user_manager_emails  
         with_role(ADMIN_PANEL_ROLE_USERS_MANAGER).pluck(:email)
-        # where("#{quoted_table_name}.admin_role LIKE ?", "%#{ADMIN_PANEL_ROLE_USERS_MANAGER}%").pluck(:email) #.join(',') #map(&:inspect)
     end
 
     def active_for_authentication? 
@@ -157,25 +139,6 @@ module Rhinoart
         def create_remember_token
             self.remember_token = SecureRandom.urlsafe_base64 if !self.remember_token.present?
         end
-
-
-        def update_roles
-            clear_roles ADMIN_PANEL_ROLES if admin_roles_changed.present? && admin_roles_changed
-            if admin_roles.present? && admin_roles.any?
-                admin_roles.each do |r| 
-                    self.add_role r 
-                end 
-            end
-
-            clear_roles FRONTEND_ROLES if frontend_roles_changed.present? && frontend_roles_changed
-            if frontend_roles.present? && frontend_roles.any?
-                frontend_roles.each do |r| 
-                    self.add_role r 
-                end 
-            end
-        end
-
-
 
         def notify_about_new_user        
             User.user_manager_emails.each do |mail_to|

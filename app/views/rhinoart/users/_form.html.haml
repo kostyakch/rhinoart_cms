@@ -1,8 +1,6 @@
 = form_for @user, {html: {class: 'form-horizontal'}} do |f|
 	= render 'rhinoart/shared/error_messages', object: f.object
 	= hidden_field_tag :redirect_to, params[:redirect_to] if params[:redirect_to].present?
-	= f.hidden_field :admin_roles_changed, value: true
-	= f.hidden_field :frontend_roles_changed, value: true
 	
 
 	.control-group
@@ -27,21 +25,20 @@
 		.control-group
 			= f.label :admin_role, class: 'control-label'
 			.controls
-				- Rhinoart::User::ADMIN_PANEL_ROLES.each do |ar| 
-					= f.fields_for :roles do |ff| 
-						= label_tag ar do			
-							= check_box_tag "user[admin_roles][]", ar, @user.has_role?(ar) ? true : nil
-							= ar
+				- Role.where(name: Rhinoart::User::ADMIN_PANEL_ROLES).each do |role| 
+					= f.label :role do	
+						= check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id), id: dom_id(role) 
+						= role.name
 
 	- if can? :manage, :users
 		.control-group
 			= f.label :frontend_role, class: 'control-label'
 			.controls
-				- Rhinoart::User::FRONTEND_ROLES.each do |ar| 
-					= f.fields_for :roles do |ff| 
-						= label_tag ar do			
-							= check_box_tag "user[frontend_roles][]", ar, @user.has_role?(ar) ? true : nil
-							= ar
+				- Role.where(name: Rhinoart::User::FRONTEND_ROLES).each do |role| 
+					= f.label :role do	
+						= check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id), id: dom_id(role) 
+						= role.name
+
 
 	.control-group
 		= f.label :approved, class: 'control-label'
