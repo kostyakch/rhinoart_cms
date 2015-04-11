@@ -28,7 +28,7 @@ module Rhinoart
   class User < ActiveRecord::Base
     include UserRoles
     rolify
-    attr_accessor :admin_roles, :frontend_roles
+    attr_accessor :admin_roles, :admin_roles_changed, :frontend_roles, :frontend_roles_changed
 
     belongs_to :userable, polymorphic: true #iln 24.07.14
 
@@ -160,17 +160,15 @@ module Rhinoart
 
 
         def update_roles
+            clear_roles ADMIN_PANEL_ROLES if admin_roles_changed.present? && admin_roles_changed
             if admin_roles.present? && admin_roles.any?
-                clear_roles ADMIN_PANEL_ROLES
-
                 admin_roles.each do |r| 
                     self.add_role r 
                 end 
             end
 
+            clear_roles FRONTEND_ROLES if frontend_roles_changed.present? && frontend_roles_changed
             if frontend_roles.present? && frontend_roles.any?
-                clear_roles FRONTEND_ROLES
-                
                 frontend_roles.each do |r| 
                     self.add_role r 
                 end 
