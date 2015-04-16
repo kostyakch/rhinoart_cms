@@ -3,7 +3,6 @@ namespace :rhinoart do
 	task update_user_roles: :environment do
 		Rhinoart::User.all.each do |user|
 			roles = user.admin_role.split(',') if user.admin_role.present?
-
 			roles.each do |r|
 				user.add_role r
 			end if roles.present? && roles.any?
