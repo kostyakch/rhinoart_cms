@@ -13,4 +13,15 @@ namespace :rhinoart do
 			end if roles.present? && roles.any?
 		end
 	end
+
+	desc "Load user roles"
+	task load_user_roles: :environment do
+		Rhinoart::User::ADMIN_PANEL_ROLES.each do |role|
+			Role.create!(name: role) if !Role.find_by_name(role)
+		end
+
+		Rhinoart::User::FRONTEND_ROLES.each do |role|
+			Role.create!(name: role) if !Role.find_by_name(role)
+		end
+	end
 end
