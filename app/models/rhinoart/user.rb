@@ -81,11 +81,7 @@ module Rhinoart
     end
     
     def has_access_to_admin_panel?
-        ADMIN_PANEL_ROLES.each do |role|
-            res = has_role? role
-            return res if res == true
-        end
-        false
+      ADMIN_PANEL_ROLES.any?{ |role| has_role?(role) }
     end
     alias_method :admin?, :has_access_to_admin_panel?
 

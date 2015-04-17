@@ -1,8 +1,6 @@
 module Rhinoart
   class Railtie < Rails::Railtie
 
-    VIEW_HELPERS_PATH = 'lib/rhinoart/view_helpers/'
-
     initializer "rhinoart_railtie.add_precompile_assets" do |app|
 
       Rhinoart.stylesheets.each do |path, _|
