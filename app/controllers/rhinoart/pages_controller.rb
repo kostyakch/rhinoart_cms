@@ -26,7 +26,11 @@ module Rhinoart
 			store_location
 
 			@parent = Page.find(params[:id])
-			@pages = Page.unscoped.where("parent_id = ?", params[:id]).order('publish_date DESC, position asc')
+			if Rails.configuration.order_in_list.present? && Rails.configuration.order_in_list.to_s == 'by_date'
+				@pages = Page.unscoped.where("parent_id = ?", params[:id]).order('publish_date DESC, position asc')
+			else
+				@pages = Page.unscoped.where("parent_id = ?", params[:id]).order('position asc')
+			end
 			@level = params[:level]
 			
 			respond_to do |format|
@@ -40,7 +44,7 @@ module Rhinoart
 
 	    	if params[:id].present?
 		    	@page.parent_id = params[:id]
-		       	@page.ptype = Page.find(@page.parent_id).ptype
+		       	@page.ptype = Page.find(@page.parent_id).ptype		       	
 	    	end
 
 	    	if !@page.ptype.present?
@@ -73,7 +77,7 @@ module Rhinoart
 			@page = Page.new		
 
 			if @page.update_attributes(admin_pages_params)
-
+				@page.move_to_top if @page.ptype == 'article'
 				flash[:info] = t('_PAGE_SUCCESSFULLY_CREATED')
 				if params[:continue].present? 
 					#redirect_to structure_path([@page, :edit])
@@ -128,6 +132,18 @@ module Rhinoart
 				Page.update_all(['position=?', index+1], ['id=?', id])
 			end
 			render :nothing => true
+		end
+
+		def up				
+			@page = Page.find(params[:page_id])	
+			@page.move_higher
+			redirect_to children_page_path(@page.parent)
+		end
+
+		def down
+			@page = Page.find(params[:page_id])	
+			@page.move_lower
+			redirect_to children_page_path(@page.parent)
 		end
 
 		def field_page_add

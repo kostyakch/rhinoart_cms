@@ -2,9 +2,8 @@ namespace :db do
 	desc "Fill database with admin user data"
 	task populate: :environment do
 		user = Rhinoart::User.create!(
-			name: "Admin",
-			email: "admin@test.com",
 			name: "Admin User",
+			email: "admin@test.com",
 			admin_role: "Super User",
 			approved: 1,
 			password: "admin",

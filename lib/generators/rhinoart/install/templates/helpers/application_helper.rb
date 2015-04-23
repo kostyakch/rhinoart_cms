@@ -18,7 +18,7 @@ module ApplicationHelper
 	end
 
 	def meta_tags(page)
-		res = ''		
+		res = "<!-- (c) RhinoArt | http://www.rhinoart.ru/ / -->\n"
 		if page and page.page_field
 			page.page_field.where("ftype = 'meta' and ftype is not null").each do |meta|
 				res += "<meta name=\"#{meta.name}\" content=\"#{meta.value}\" />\n"
