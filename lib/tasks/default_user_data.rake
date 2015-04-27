@@ -4,18 +4,14 @@ namespace :db do
 		user = Rhinoart::User.create!(
 			name: "Admin User",
 			email: "admin@test.com",
-			admin_role: "Super User",
 			approved: 1,
 			password: "admin",
 			password_confirmation: "admin",
 		)
 
-		# add admin roles
 		Rhinoart::User::ADMIN_PANEL_ROLES.each do |role|
 			Role.create!(name: role) if !Role.find_by_name(role)
 		end
-
-		# add frontend roles
 		Rhinoart::User::FRONTEND_ROLES.each do |role|
 			Role.create!(name: role) if !Role.find_by_name(role)
 		end
