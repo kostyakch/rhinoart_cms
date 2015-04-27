@@ -2,7 +2,9 @@ Rhinoart::Engine.routes.draw do
     devise_for Rhinoart.device_namespace, Rhinoart.devise_routes
 
     scope "(:locale)", locale: /ru|en/ do 
-        resources :users
+        scope :manage do
+            resources :users
+        end
 
         root :to => 'dashboard#index'
 
