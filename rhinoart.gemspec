@@ -38,7 +38,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'delayed_job_active_record', "~> 4.0.0.beta2" # for background email sending
   s.add_dependency 'daemons' 
 
-  s.add_dependency 'globalize', '4.0.2'
+  # s.add_dependency 'globalize', '4.0.2'
+  s.add_dependency 'globalize', '~> 5.0.0'
   s.add_dependency 'globalize-accessors'
   s.add_dependency 'paper_trail', '~> 3.0.3'
   s.add_dependency 'globalize-versioning' 

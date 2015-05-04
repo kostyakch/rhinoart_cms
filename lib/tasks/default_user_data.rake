@@ -16,8 +16,7 @@ namespace :db do
 			Role.create!(name: role) if !Role.find_by_name(role)
 		end
 
-		# append admin roles
-		user.add_role = Rhinoart::User::ADMIN_PANEL_ROLE_SUPER_USER
-		user.add_role = Rhinoart::User::ADMIN_PANEL_ROLE_USERS_MANAGER
+		user.add_role Rhinoart::User::ADMIN_PANEL_ROLE_SUPER_USER
+		user.add_role Rhinoart::User::ADMIN_PANEL_ROLE_USERS_MANAGER
 	end
 end
