@@ -127,7 +127,10 @@ form {
 	}	
 }
 
-
+label {
+	display: inline-block;
+	font-weight: bold;
+}
 
 /* Table sort */
 table.tablesorter thead tr .header {
