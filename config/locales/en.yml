@@ -187,7 +187,6 @@ en:
         email: E-mail
         comment: Comment
 
-
     errors:
       models:
         page:
