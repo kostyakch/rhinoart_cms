@@ -30,7 +30,8 @@ ru:
   _BTN_HIDDEN: Hidden
   _BTN_MENU: Menu  
   _BTN_DELETE: Удалить
-  _SIGN_IN: Пожалуйста авторизуйтесь.
+  _SIGN_IN: Авторизоваться
+  _SIGN_UP: Sign Up
   _NO_MAIN_CONTENT: "Таб для контента на установлен."
   _CONTENTS: Контент
   _COMMENTS: Комментарии  
@@ -165,6 +166,7 @@ ru:
   Page Content: Контент страницы
   Page Field: Поле страницы
   Setting: Настройки
+  recent_activity: Активность пользователей
 
   created_at:
       formats:

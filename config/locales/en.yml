@@ -28,7 +28,8 @@ en:
   _BTN_HIDDEN: Hidden
   _BTN_MENU: Menu
   _BTN_DELETE: Delete
-  _SIGN_IN: "Sign in, please."
+  _SIGN_IN: "Sign in"
+  _SIGN_UP: Sign Up
   _NO_MAIN_CONTENT: "No content tab. You may set it manually."
   _CONTENTS: Content
   _COMMENTS: Comments
@@ -130,6 +131,7 @@ en:
   Page Content: Page content 
   Page Field: Page field
   Setting: Setting
+  recent_activity: Recent Activity
   
   created_at:
       formats:

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
 	before_filter :check_uri
 	before_action :set_locale
+	before_filter :update_sanitized_params, if: :devise_controller?
 
 	def check_uri
 		if Rails.configuration.redirect_to_www
@@ -18,4 +19,11 @@ class ApplicationController < ActionController::Base
 			I18n.locale = params[:locale] || I18n.default_locale
 		end
 	end	
+
+	private
+
+		# To permit simple scalar values, use this
+		def update_sanitized_params
+			devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:name, :email, :password, :password_confirmation)}
+		end
 end

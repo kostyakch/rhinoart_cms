@@ -104,6 +104,7 @@ module Rhinoart
 			# Never trust parameters from the scary internet, only allow the white list through.
 			def user_attributes
 				params.require(:user).permit! #(:name, :email, :password, :approved, :admin_role, :frontend_role)
+				# params.require(:user).permit(:name, :email, :password )
 			end 
 	end
 end
