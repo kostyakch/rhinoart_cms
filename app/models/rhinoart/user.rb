@@ -39,7 +39,7 @@ module Rhinoart
     after_create :notify_about_new_user
     after_update :notify_after_change_approved
 
-    SAFE_INFO_ACCESSORS = [:locales]
+    SAFE_INFO_ACCESSORS = [:locales, :token]
     store :info, accessors: SAFE_INFO_ACCESSORS, coder: JSON
 
     # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -142,6 +142,7 @@ module Rhinoart
           name: data["name"],
           email: data["email"],
           password: Devise.friendly_token[0,20],
+          token: access_token['credentials']['token'],
           approved: true
         )
       end

@@ -2,7 +2,7 @@ module Rhinoart
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     def google_oauth2
-      binding.pry
+      # binding.pry
       @user = Rhinoart::User.from_omniauth(request.env["omniauth.auth"])
 
       if @user.persisted?

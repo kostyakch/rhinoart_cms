@@ -230,7 +230,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :google_oauth2, '636786400582-0odmft24j94oioksb1eujlsk2s8ua6sc.apps.googleusercontent.com', 'OthOt3eWTBHKTwq6o7gm9uh6', {
+  config.omniauth :google_oauth2, ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_CLIENT_SECRET"], {
       scope: 'userinfo.profile,email,youtube,youtube.force-ssl',
       path_prefix: '/admin/users/auth'
     }
