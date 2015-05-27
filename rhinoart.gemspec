@@ -43,5 +43,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'globalize-accessors'
   s.add_dependency 'paper_trail', '~> 3.0.3'
   s.add_dependency 'globalize-versioning' 
+  s.add_dependency 'omniauth-google-oauth2'
   s.add_development_dependency 'pry'
 end
