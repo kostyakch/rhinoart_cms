@@ -135,7 +135,7 @@ module Rhinoart
 
     def self.from_omniauth(access_token)
       data = access_token.info
-      user = where(:email => data["email"]).first
+      user = find_by(:email => data["email"])
 
       unless user
         user = create(
