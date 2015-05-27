@@ -13,6 +13,7 @@ require 'globalize'
 require 'globalize-accessors'
 require 'globalize-versioning'
 require 'paper_trail'
+require 'omniauth-google-oauth2'
 
 module Rhinoart
   class Engine < ::Rails::Engine
