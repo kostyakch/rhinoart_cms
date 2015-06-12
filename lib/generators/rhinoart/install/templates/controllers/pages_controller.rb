@@ -7,9 +7,7 @@ class PagesController < ApplicationController
 
         if !@page = Rhinoart::Page.find_by_path('index')
             render :template => 'shared/not_found', :status => 404
-        end  
-
-        redirect_to @page.field('redirect_to'), status: :moved_permanently if @page.field('redirect_to').present?
+        end          
     end 
 
     def internal
@@ -21,7 +19,9 @@ class PagesController < ApplicationController
         if !@page = Rhinoart::Page.find_by_path(params[:url])
             render :template => 'shared/not_found', :status => 404
             return
-        end        
+        end    
+
+        redirect_to @page.field('redirect_to'), status: :moved_permanently if @page.field('redirect_to').present?    
     end
 
 end
