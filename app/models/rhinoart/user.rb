@@ -138,8 +138,6 @@ module Rhinoart
 		user = find_by(:email => data["email"])
 
 		if user.present?
-			user.name = data["name"]
-			user.email = data["email"]
 			user.password = Devise.friendly_token[0,20]
 			user.token = access_token['credentials']['token']
 		else
