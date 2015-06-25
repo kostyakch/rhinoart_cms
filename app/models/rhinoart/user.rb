@@ -36,7 +36,7 @@ module Rhinoart
 	
 	before_save { |user| user.email = email.downcase }
 	before_save :create_remember_token
-	after_create :notify_about_new_user
+	after_create :notify_about_new_user, :set_default_frontend_role
 	after_update :notify_after_change_approved
 
 	SAFE_INFO_ACCESSORS = [:locales, :token]
