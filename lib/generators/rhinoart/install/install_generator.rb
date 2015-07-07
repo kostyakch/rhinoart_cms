@@ -15,6 +15,8 @@ module Rhinoart
       copy_file "helpers/application_helper.rb", "app/helpers/application_helper.rb"
       copy_file "helpers/pages_helper.rb", "app/helpers/pages_helper.rb"
       copy_file "helpers/settings_helper.rb", "app/helpers/settings_helper.rb"
+
+      copy_file "files/help.pdf", "public/help.pdf"
     end
 
     def add_route
@@ -31,6 +33,10 @@ module Rhinoart
     end
 
     def create_config
+      inject_into_file 'config/application.rb', before: /end$/ do
+        "\n  # Replace of yours\n"
+        "\n  config.help_file_path = \"#{Rails.public_path}/help.pdf\"\n"
+      end          
       inject_into_file 'config/environments/development.rb', before: /end$/ do
         "\n  config.redirect_to_www = false\n"
       end          

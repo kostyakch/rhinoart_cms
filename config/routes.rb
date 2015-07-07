@@ -1,4 +1,4 @@
-Rhinoart::Engine.routes.draw do
+Rhinoart::Engine.routes.draw do  
     devise_for Rhinoart.device_namespace, Rhinoart.devise_routes
 
     scope "(:locale)", locale: /ru|en/ do 
@@ -45,6 +45,8 @@ Rhinoart::Engine.routes.draw do
         end
 
         get 'caches/clear' => 'caches#clear'
+
+        resources :helps, only: :index
     end
 end
 

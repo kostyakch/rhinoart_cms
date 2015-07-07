@@ -92,7 +92,7 @@ module Rhinoart
 
 	def has_access_to_frontend?
 		FRONTEND_ROLES.each do |role|
-			res = has_role? role
+			res = has_role? role.to_s
 			return res if res == true
 		end
 		false
