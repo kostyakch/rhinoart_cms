@@ -1,9 +1,10 @@
 - provide(:title, t(:_AUTORIZATION))
-.col-sm-offset-2.col-sm-8
+.col-sm-offset-3.col-sm-6
   %h2 Authorization
   .loginForm
     = render 'rhinoart/shared/flash_messages'
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = hidden_field_tag :redirect_to, params[:redirect_to] if params[:redirect_to].present?
       .form-group
         = f.label :email
         = f.email_field :email, class: 'form-control'

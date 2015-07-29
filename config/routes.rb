@@ -1,8 +1,8 @@
-Rhinoart::Engine.routes.draw do
+Rhinoart::Engine.routes.draw do  
     devise_for Rhinoart.device_namespace, Rhinoart.devise_routes
 
     scope "(:locale)", locale: /ru|en/ do 
-        scope "manage" do 
+        scope :manage do
             resources :users
         end
 
@@ -17,6 +17,9 @@ Rhinoart::Engine.routes.draw do
             end  
             get 'tree', on: :collection
             get 'field_page_add', on: :collection
+
+            get 'up'
+            get 'down'
         end
 
         # Page structures
@@ -42,6 +45,8 @@ Rhinoart::Engine.routes.draw do
         end
 
         get 'caches/clear' => 'caches#clear'
+
+        resources :helps, only: :index
     end
 end
 

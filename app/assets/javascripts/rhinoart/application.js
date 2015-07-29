@@ -19,6 +19,7 @@
 //= require acme/jquery.cookie
 //= require acme/jquery.masonry.min
 
+
 // require gallery_images
 
 //= require_tree .

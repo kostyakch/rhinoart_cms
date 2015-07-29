@@ -4,7 +4,6 @@ module Rhinoart
 		include ViewHelpers::SessionHelper
 
 		before_action :set_locale
-		before_filter :configure_permitted_parameters, if: :devise_controller?
 		before_filter :set_current_user
 
 		#before_filter :check_uri if Rails.configuration.redirect_to_www
@@ -42,19 +41,11 @@ module Rhinoart
     end
 
 		private     
-
 			def correct_user
 				if params[:id]
 					@user = User.find(params[:id])
 					redirect_to(root_path) unless current_user?(@user)   
 				end
 			end
-
-		protected
-			def configure_permitted_parameters
-				# params.require(:post).permit(:title, :text)
-				devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:name, :email, :admin_role) }
-				# devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:password, :password_confirmation, :email, :name) }
-			end  			
 	end
 end

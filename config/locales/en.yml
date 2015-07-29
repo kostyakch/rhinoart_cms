@@ -28,7 +28,8 @@ en:
   _BTN_HIDDEN: Hidden
   _BTN_MENU: Menu
   _BTN_DELETE: Delete
-  _SIGN_IN: "Sign in, please."
+  _SIGN_IN: "Sign in"
+  _SIGN_UP: Sign Up
   _NO_MAIN_CONTENT: "No content tab. You may set it manually."
   _CONTENTS: Content
   _COMMENTS: Comments
@@ -36,7 +37,7 @@ en:
   _BTN_IMG: Select file
   _BTN_CLEAR_CACHE: Clear cache
 
-  _DELETE_CONFIRM: "Are you sure?"
+  _DELETE_CONFIRM: "Are you sure you want to delete this item?"
 
   _SUBJECT_SEND_EMAIL: "Message from \"%{user_name}\""
   _EMAIL_SUCCESS_SEND: "Message is sent."
@@ -66,19 +67,20 @@ en:
   _NEWS_ARTICLES: News/Articles
   _BLOGS: Blogs
   _COMMENT: Comments
+  _IMAGES: Images
 
   _BOOKS: Books
   _CATALOG: Catalog
 
 
   # Admin menu
-  Settings: Настройки
-  Profile: Профиль пользователя
+  Settings: Settings
+  Profile: User Profile
   Sign in: "Sign in"
   Sign out: "Sign out"
-  Users: Пользователи
-  Help: Справка
-  Content: Контент
+  Users: Users
+  Help: Help
+  Content: Content
   _ERROR_AUTHENTICATE: Unable to login. Try again.
 
   # User
@@ -103,8 +105,8 @@ en:
   show: show
   hide: hide
   delete: delete
-  _MORE: more
-  _LESS: less
+  _MORE: Click here to learn more
+  _LESS: Less
 
   _SETTING_NAME_FORMAT: "Can contain numbers and symbols - and _"
 
@@ -130,6 +132,7 @@ en:
   Page Content: Page content 
   Page Field: Page field
   Setting: Setting
+  recent_activity: Recent Activity
   
   created_at:
       formats:
@@ -187,14 +190,8 @@ en:
         email: E-mail
         comment: Comment
 
-
     errors:
       models:
-        page:
-          attributes:            
-            slug:
-              invalid: "Can contain numbers and symbols \"-\" or \"_\""
-
         vote_question:
           attributes:            
             description:
@@ -204,4 +201,3 @@ en:
           attributes:            
             name:
               invalid: "Can contain numbers and symbols \"-\" or \"_\""
-

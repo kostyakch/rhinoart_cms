@@ -5,6 +5,6 @@
   %br/
   User name is: #{@user.name}
   %br/
-  User role: #{@user.api_role.join(' / ')}
+  User role: #{@user.roles.map{|r| r['name']}}
 %p
   Please grant access to this user or delete him at #{link_to 'user page', rhinoart.edit_user_url(id: @user.id)}

@@ -23,7 +23,8 @@ module Rhinoart
 
   setting('devise_controllers', {
     sessions: 'rhinoart/sessions',
-    passwords: 'rhinoart/passwords'
+    passwords: 'rhinoart/passwords',
+    omniauth_callbacks: 'rhinoart/omniauth_callbacks'
   })
 
   setting('devise_routes', {

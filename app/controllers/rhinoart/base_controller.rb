@@ -1,8 +1,7 @@
 # encoding: utf-8
 module Rhinoart
 	class BaseController < Rhinoart::ApplicationController
-		before_filter :check_if_user_has_admin_role
-		
+		before_filter :check_if_user_has_admin_role		
 
 		rescue_from CanCan::AccessDenied, :with => :access_denied_handler
 
@@ -23,6 +22,5 @@ module Rhinoart
 			def check_if_user_has_admin_role
 				authorize! :access, :admin_panel
 			end
-
 	end
 end

@@ -45,7 +45,7 @@ module Rhinoart
 		validates :name, :slug, :menu, :publish_date, presence: true
 
 		validates :name, length: { maximum: 255 }
-		validates :slug, length: { maximum: 100 }
+		validates :slug, length: { maximum: 255 }
 
 		#VALID_SLUG_REGEX = %r{^([-_/.A-Za-z0-9А-Яа-я]*|/)$}
 		VALID_SLUG_REGEX = /\A[-_.\/A-Za-z0-9А-Яа-я]+\z/i
@@ -67,7 +67,7 @@ module Rhinoart
 		alias_method :content, :content_by_name
 
 		def field_by_name(name)
-			field = self.page_field.find_by(name: name)
+			field = self.page_field.find_by(name: name.downcase)
 			if field.present?
 				if field.ftype != PageField::FIELD_TYPES[:file].downcase
 					field.value 
@@ -81,7 +81,7 @@ module Rhinoart
 		alias_method :field, :field_by_name
 
 		def field_obj(name)
-			self.page_field.find_by(name: name) if self.page_field.find_by(name: name).present?
+			self.page_field.find_by(name: name.downcase) if self.page_field.find_by(name: name.downcase).present?
 		end
 
 		def children(active = true)

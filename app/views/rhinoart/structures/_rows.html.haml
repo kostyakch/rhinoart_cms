@@ -1,8 +1,8 @@
 %tr{class: "content-t level_#{level}", id: "cat_#{p.id}"}
   %td{style: "padding-left: #{10 + (level*25)}px;"}
     - if page_items(p).present?
-      = link_to '', children_structure_path(p, level: level), remote: true, class: "toogle icon-plus", style: "margin-left: -18px;"
-    = link_to p.name, edit_structure_path(p), class: 'title'
+      = link_to '', children_structure_path(id: p, level: level), remote: true, class: "toogle icon-plus", style: "margin-left: -18px;"
+    = link_to p.name, edit_structure_path(id: p), class: 'title'
     %i
       %sup= p.id
     %img.loading{src: "/assets/spinner.gif", style: "display: none;"}/
@@ -15,12 +15,12 @@
         = t :_ACTIONS
         %span.caret
       %ul.dropdown-menu
-        %li= link_to t('add subpage'), new_child_structure_path(p) if p.ptype != 'article'
-        %li= link_to t('edit'), edit_structure_path(p)
-        %li= link_to p.active? ? t('hide') : t('show'), showhide_structure_path(p)
+        %li= link_to t('add subpage'), new_child_structure_path(id: p) if p.ptype != 'article'
+        %li= link_to t('edit'), edit_structure_path(id: p)
+        %li= link_to p.active? ? t('hide') : t('show'), showhide_structure_path(id: p)
         - if !disabled_page?(p)
           %li.divider
-          %li= link_to t('delete'), structure_path(p), :method => :delete, :data => { :confirm => t('_DELETE_CONFIRM') }
+          %li= link_to t('delete'), structure_path(id: p), :method => :delete, :data => { :confirm => t('_DELETE_CONFIRM') }
 - if @tree_ids.present? && @tree_ids.include?(p.id)
   - pages = page_structure_tree(p)
   - if pages.present?

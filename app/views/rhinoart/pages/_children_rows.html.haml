@@ -9,7 +9,17 @@
   %td
     = (p.active?) ? "#{ t(:_BTN_PUBLIC) }" : "<span class=\"label label-important\">#{ t(:_BTN_HIDDEN) }</span>".html_safe
   %td
+    = link_to page_up_path(p), class: 'btn btn-success' do
+      %i.halflings-icon.arrow-up
+
+    = link_to page_down_path(p), class: 'btn btn-success' do
+      %i.halflings-icon.arrow-down
+
     = link_to edit_page_path(p, mode: 'show_sidebar'), class: 'btn btn-success' do
-      %i.halflings-icon.edit.halflings-icon
-    = link_to p.active? ? raw('<i class="icon-eye-close"></i>') : raw('<i class="icon-eye-open"></i>'), showhide_page_path(p), class: 'btn btn-success'
-    = link_to raw('<i class="halflings-icon trash halflings-icon"></i>'), page_path(p), class: 'btn btn-danger', :method => :delete, :data => { :confirm => t('_DELETE_CONFIRM') }
+      %i.halflings-icon.edit
+
+    = link_to showhide_page_path(p), class: 'btn btn-success' do
+      %i{ class: p.active? ? 'icon-eye-close' : 'icon-eye-open' }
+
+    = link_to page_path(p), class: 'btn btn-danger', :method => :delete, :data => { :confirm => t('_DELETE_CONFIRM') } do
+      %i.halflings-icon.trash

@@ -1,3 +1,3 @@
 module Rhinoart
-  VERSION = "0.2.3"
+  VERSION = "0.4.5"
 end
