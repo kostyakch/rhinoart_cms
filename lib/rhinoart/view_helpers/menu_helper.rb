@@ -15,6 +15,11 @@ module Rhinoart
         item.link.is_a?(Proc) ? instance_eval(&item.link.to_proc) : item.link
       end
 
+      def work_link(work)
+        link = Rhinoart::WORK_LINKS[work.item_type] || Rhinoart::WORK_LINKS['Default']
+        (link.is_a?(Proc) ? instance_exec(work, &link.to_proc) : link).to_s.html_safe
+      end
+
     end
   end
 end

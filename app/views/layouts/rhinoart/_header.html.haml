@@ -1,4 +1,4 @@
-.navbar
+.navbar.navbar-header
     .navbar-inner
         .container-fluid
             = link_to '#', class: 'btn btn-navbar', data: {toggle: "collapse", target: ".top-nav.nav-collapse,.sidebar-nav.nav-collapse"} do
@@ -8,7 +8,7 @@
 
             = link_to rhinoart.root_path, class: 'brand' do
                 %span Rhino CMS
-                            
+            = yield :header
             .nav-no-collapse.header-nav
                 %ul.nav.pull-right
                     - begin

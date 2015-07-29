@@ -94,7 +94,7 @@ module Rhinoart
 			FRONTEND_ROLES.any?{ |role| has_role?(role.to_s) }
 		end
 		alias_method :frontend_user?, :has_access_to_frontend?
-		alias_method :has_frontend_role, :has_role
+		alias_method :has_frontend_role?, :has_role?
 
 		def self.user_manager_emails
 			with_role(ADMIN_PANEL_ROLE_USERS_MANAGER).pluck(:email)
