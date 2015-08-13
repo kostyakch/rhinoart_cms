@@ -1,0 +1,37 @@
+- if can?(:manage, :users)			
+	- versions = @user.versions.where(whodunnit: nil).order(created_at: :desc)
+	.row-fluid
+		.box.span12
+			.box-header
+				%h2
+					%i.halflings-icon.lock
+					%span.break
+					= t('user_login')				
+
+			.box-content
+				- if versions.any?
+					%table.table.table-striped
+						%thead
+							%tr
+								%th{ width: '' } Sign in count
+								%th Current sign in at
+								%th Last sign in at
+								%th Current sign in ip
+								%th Last sign in ip
+						
+						- versions.reverse_each do |version| 
+							- if !version.reify.present? || version.reify.sign_in_count == 0
+								%tr
+									%td= @user.sign_in_count
+									%td= l @user.current_sign_in_at, format: :short
+									%td= l @user.last_sign_in_at, format: :short
+									%td= @user.current_sign_in_ip
+									%td= @user.last_sign_in_ip
+							- else
+								%tr
+									%td= version.reify.sign_in_count
+									%td= l version.reify.current_sign_in_at, format: :short
+									%td= l version.reify.last_sign_in_at, format: :short
+									%td= version.reify.current_sign_in_ip
+									%td= version.reify.last_sign_in_ip
+

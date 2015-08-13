@@ -54,6 +54,8 @@
 								Never        
 
 					%td
+						= link_to user_path(user, redirect_to: request.fullpath), class: "btn btn-danger btn-small" do
+							%i.icon-exclamation-sign
 						= link_to user_path(user, hard_delete: true, redirect_to: request.fullpath), method: :delete, data: { confirm: "Are you sure that you want to delete that user?" }, class: "btn btn-danger btn-small" do
 							%i.icon-trash
 							
