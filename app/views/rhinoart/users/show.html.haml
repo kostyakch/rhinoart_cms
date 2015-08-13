@@ -9,10 +9,43 @@
 
 .clearfix
 .row-fluid
-	.span1
+	.span2
 		Email:
 	.span5
 		= @user.email
+.row-fluid
+	.span2
+		updated_at:
+	.span5
+		= @user.updated_at.strftime("%m/%d/%Y %H:%M")
+.row-fluid
+	.span2
+		sign_in_count:
+	.span5
+		= @user.sign_in_count
+.row-fluid
+	.span2
+		current_sign_in_at:
+	.span5
+		= @user.current_sign_in_at.strftime("%m/%d/%Y %H:%M")
+.row-fluid
+	.span2
+		last_sign_in_at:
+	.span5
+		= @user.last_sign_in_at.strftime("%m/%d/%Y %H:%M")
+
+.row-fluid
+	.span2
+		current_sign_in_ip:
+	.span5
+		= @user.current_sign_in_ip
+
+.row-fluid
+	.span2
+		last_sign_in_ip:
+	.span5
+		= @user.last_sign_in_ip
+
 
 %br
 %br

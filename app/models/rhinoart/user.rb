@@ -53,8 +53,11 @@ module Rhinoart
 		add_admin_role 'Content Manager'
 
 		FRONTEND_ROLES = RhinoartConfig.config.frontend_roles
-		has_paper_trail :ignore => [:api_token, :updated_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip]
-
+		if (Rails.configuration.paper_trail_ignore rescue nil).present?
+			has_paper_trail ignore: Rails.configuration.paper_trail_ignore
+		else
+			has_paper_trail ignore: [:api_token, :updated_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip]
+		end
 
 		def self.current
 			Thread.current[:user]

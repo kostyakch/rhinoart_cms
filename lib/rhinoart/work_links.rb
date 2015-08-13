@@ -42,6 +42,12 @@ module Rhinoart
       end
     end,
 
+    'Rhinoart::User' => proc do |work|
+      cur_object = work.item_type.constantize.find(work.item_id)
+      short_class_name = cur_object.class.name.gsub(/(.*)::/, '')
+      "#{t short_class_name} #{link_to cur_object.name, send("#{short_class_name}_path".downcase, cur_object, redirect_to: request.fullpath)}"
+    end,
+
     'Default' => proc do |work|
       cur_object = work.item_type.constantize.find(work.item_id)
       short_class_name = cur_object.class.name.gsub(/(.*)::/, '')

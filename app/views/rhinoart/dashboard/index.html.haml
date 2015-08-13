@@ -7,7 +7,7 @@
 			%h2
 				%i.halflings-icon.signal
 				%span.break
-				= t('recent_activity')
+				= t('recent_activity')				
 
 		.box-content
 			- if @users.present?
@@ -17,3 +17,38 @@
 					= render 'user_activity', works: works
 			- else
 				= t('no_activity')		
+
+
+- if can?(:manage, :users)
+	.row-fluid
+		.box.span12
+			.box-header
+				%h2
+					%i.halflings-icon.signal
+					%span.break
+					= t('users_login')				
+
+			.box-content
+				- items = PaperTrail::Version.where(whodunnit: nil).order(:created_at)
+				- if items.count > 0
+					%table.table.table-striped
+						%thead
+							%tr
+								%th{ width: '20%' } User
+								%th{ width: '' } Sign in count
+								%th Current sign in at
+								%th Last sign in at
+								%th Current sign in ip
+								%th Last sign in ip
+
+						- items.each do |work| 
+							- if work.item_type == 'Rhinoart::User'
+								- cache("user_login_#{work.id}_#{work.reify.sign_in_count}") do
+									%tr
+										%td= work_link work
+										%td= work.reify.sign_in_count
+										%td= l work.reify.current_sign_in_at, format: :short
+										%td= l work.reify.last_sign_in_at, format: :short
+										%td= work.reify.current_sign_in_ip
+										%td= work.reify.last_sign_in_ip
+
