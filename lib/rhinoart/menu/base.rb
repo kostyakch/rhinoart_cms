@@ -5,20 +5,25 @@ module Rhinoart
 
       attr_accessor :items
 
-      def add_item(params = {})
-        self.items ||= []
-        self.items << item_class.new(params)
+      def self.add_item(params = {})
+        self.instance.items ||= []
+        self.instance.items << self.instance.item_class.new(params)
       end
 
-      def self.add_item(params)
-        self.instance.add_item(params)
+      def self.unshift_item(params = {})
+        self.items ||= []
+        self.items.unshift self.instance.item_class.new(params)
+      end
+
+      def self.insert(index = 0, params = {})
+        self.instance.items ||= []
+        index = self.items[index].present? ? index : self.items.size
+        self.items.insert index, self.instance.item_class.new(params)
       end
 
       def self.items
-        self.instance.items || []
+        self.instance.items ||= []
       end
-
-      private
 
       def item_class
         Rhinoart::Menu::Item

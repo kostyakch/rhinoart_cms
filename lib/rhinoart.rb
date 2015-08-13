@@ -1,5 +1,6 @@
 require 'rhinoart/engine'
 require 'rhinoart/asset_registration'
+require 'rhinoart/work_links'
 
 module Rhinoart
   extend ActiveSupport::Autoload

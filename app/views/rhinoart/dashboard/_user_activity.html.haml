@@ -7,14 +7,14 @@
 				%th{ nowrap: :nowrap } Date
 
 		- works.each do |work|
-			- begin 
+			- begin
 				%tr
-					%td= render 'rhinoart/shared/work_links', work: work
+					%td= work_link work
 					%td= work.event
 					%td{ nowrap: :nowrap }= l work.created_at, format: :short
 			- rescue Exception => e
 				%tr
-					%td= "#{work.item_type} (#{work.item_id})"
+					%td= "#{work.item_type.safe_constantize.try(:model_name).try(:human) || work.item_type} (#{work.item_id})"
 					%td= work.event
 					%td= l work.created_at, format: :short
 

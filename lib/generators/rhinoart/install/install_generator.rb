@@ -19,12 +19,6 @@ module Rhinoart
       copy_file "files/help.pdf", "public/help.pdf"
     end
 
-    def add_route
-      route "match '*url' => 'pages#internal', :as => :page, via: [:get]"
-      route "root 'pages#index'"
-      route 'mount Rhinoart::Engine, at: "/admin"'
-    end
-
     def create_tables
       rake 'rhinoart:install:migrations'
       rake 'db:create'
