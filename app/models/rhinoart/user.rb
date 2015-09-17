@@ -32,7 +32,8 @@ module Rhinoart
 		belongs_to :userable, polymorphic: true #iln 24.07.14
 
 		# Include default devise modules. Others available are:
-		devise :database_authenticatable, :recoverable, :registerable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
+		# devise :database_authenticatable, :recoverable, :registerable, :trackable, :validatable #, :omniauthable, :omniauth_providers => [:google_oauth2]
+		devise *Rhinoart.devise_scopes
 
 		before_save { |user| user.email = email.downcase }
 		before_save :create_remember_token

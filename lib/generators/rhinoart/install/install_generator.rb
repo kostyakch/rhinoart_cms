@@ -17,6 +17,13 @@ module Rhinoart
       copy_file "helpers/settings_helper.rb", "app/helpers/settings_helper.rb"
 
       copy_file "files/help.pdf", "public/help.pdf"
+      copy_file "initializers/rhinoart.rb", "initializers/rhinoart.rb"
+    end
+
+    def add_route
+      route "match '*url' => 'pages#internal', :as => :page, via: [:get]"
+      route "root 'pages#index'"
+      route 'mount Rhinoart::Engine, at: "/admin"'
     end
 
     def create_tables

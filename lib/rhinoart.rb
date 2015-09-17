@@ -34,6 +34,15 @@ module Rhinoart
     controllers: Rhinoart.devise_controllers
   })
 
+  setting('devise_scopes', [
+    :database_authenticatable, 
+    :recoverable, 
+    :registerable, 
+    :trackable, 
+    :validatable, 
+    :omniauthable, 
+    :omniauth_providers => [:google_oauth2]
+  ])
 end
 
 require 'rhinoart/railtie' if defined?(Rails)

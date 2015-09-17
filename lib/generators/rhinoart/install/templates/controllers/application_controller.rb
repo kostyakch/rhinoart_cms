@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 	before_action :set_locale
 	before_filter :update_sanitized_params, if: :devise_controller?
 
+	include ApplicationHelper
+
 	def check_uri
 		if Rails.configuration.redirect_to_www
 			redirect_to request.protocol + "www." + request.host_with_port + request.fullpath if !/^www/.match(request.host)

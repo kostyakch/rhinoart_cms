@@ -6,9 +6,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = yield(:metatags)
-    = Rhinoart::Setting.get('head_tags')
+    = raw Rhinoart::Setting.get('head_tags')
   %body
-    = Rhinoart::Setting.get('analytics_code')
+    = raw Rhinoart::Setting.get('analytics_code')
     #wrapper
       %section#main
         .container-block

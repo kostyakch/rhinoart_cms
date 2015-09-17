@@ -22,4 +22,15 @@ module PagesHelper
 		end
 	end
 
+	def cache_key_for_page_list
+		count          = Rhinoart::Page.count
+		max_updated_at = Rhinoart::Page.maximum(:updated_at).try(:utc).try(:to_s, :number)
+		"pages/all-#{count}-#{max_updated_at}"
+	end
+
+	def cache_key_for_page(page)
+		max_updated_at = page.updated_at.try(:utc).try(:to_s, :number)
+		"page/#{page.id}/#{max_updated_at}"
+	end
+
 end

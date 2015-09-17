@@ -55,5 +55,9 @@ module ApplicationHelper
 
 	def devise_mapping
 		@devise_mapping ||= Devise.mappings[:user]
-	end		
+	end	
+
+	def resource_class
+		resource.class	
+	end			
 end
