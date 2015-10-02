@@ -17,7 +17,7 @@ module Rhinoart
       copy_file "helpers/settings_helper.rb", "app/helpers/settings_helper.rb"
 
       copy_file "files/help.pdf", "public/help.pdf"
-      copy_file "initializers/rhinoart.rb", "initializers/rhinoart.rb"
+      copy_file "initializers/rhinoart.rb", "config/initializers/rhinoart.rb"
     end
 
     def add_route
