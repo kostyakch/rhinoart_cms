@@ -19,14 +19,6 @@ module Rhinoart
       })
 
       add_item({
-        icon: 'fa-icon-comments',
-        link: proc{ rhinoart.page_comments_path },
-        label: :_COMMENTS,
-        allowed: proc{ can?(:manage, :content) },
-        active: proc{ controller_name == 'page_comments' }
-      })
-
-      add_item({
         icon: 'fa-icon-sitemap',
         link: proc{ rhinoart.structures_path },
         label: :_SITE_STRUCTURE,

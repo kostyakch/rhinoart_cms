@@ -23,13 +23,6 @@ module Rhinoart
         })
 
       add_item({
-          icon: 'fa-icon-comments-alt',
-          link: proc{ rhinoart.page_comments_path },
-          label: :_COMMENTS,
-          notification: ->{ Rhinoart::PageComment.count }
-        })
-
-      add_item({
           icon: 'fa-icon-group',
           link: proc{ rhinoart.users_path },
           label: :_USERS,
