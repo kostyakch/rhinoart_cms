@@ -43,6 +43,11 @@ module Rhinoart
     :omniauthable, 
     :omniauth_providers => [:google_oauth2]
   ])
+
+  setting :copyrights, {
+    name: 'RhinoArt',
+    url: 'http://www.rhinoart.ru',    
+  }
 end
 
 require 'rhinoart/railtie' if defined?(Rails)

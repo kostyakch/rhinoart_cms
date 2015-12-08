@@ -1,10 +1,4 @@
 %footer
 	%p
 		%span{ style: "text-align:left;float:left" }
-			© 
-			- begin
-				= link_to Rails.configuration.copyraghts[:name], Rails.configuration.copyraghts[:url], target: "_blank" if Rails.configuration.copyraghts.present?
-			- rescue Exception => e
-				= link_to 'RhinoArt', 'http://rhinoart.ru', target: "_blank"		
-				
-			= "2013 - #{Time.now.year}"
+			= "© #{link_to(Rhinoart.copyrights[:name], Rhinoart.copyrights[:url], target: "_blank")} 2013 - #{Time.now.year}"
