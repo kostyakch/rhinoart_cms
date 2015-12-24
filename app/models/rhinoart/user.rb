@@ -27,6 +27,7 @@
 module Rhinoart
   class User < ActiveRecord::Base
 		include UserRoles
+		include ApplicationHelper
 		rolify
 
 		belongs_to :userable, polymorphic: true #iln 24.07.14
@@ -78,16 +79,17 @@ module Rhinoart
 		end
 
 		def has_access_to_admin_panel?
-			ADMIN_PANEL_ROLES.each do |role|
-				res = has_role? role
-				return res if res == true
+			roles.map(&:name).each do |rol|
+				unless !ADMIN_PANEL_ROLES.include? rol					
+					return true					
+				end				
 			end
 			false
 		end
 		alias_method :admin?, :has_access_to_admin_panel?
 
 		def has_admin_role?(role)
-			has_role? role.to_s
+			roles.map(&:name).include? role
 		end
 
 		def self.admin_users
@@ -95,7 +97,7 @@ module Rhinoart
 		end
 
 		def has_access_to_frontend?
-			FRONTEND_ROLES.any?{ |role| has_role?(role.to_s) }
+			FRONTEND_ROLES.any?{ |role| roles.map(&:name).include?(role.to_s) }
 		end
 		alias_method :frontend_user?, :has_access_to_frontend?
 		alias_method :has_frontend_role?, :has_role?
