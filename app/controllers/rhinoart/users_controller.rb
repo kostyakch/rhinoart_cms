@@ -83,8 +83,11 @@ module Rhinoart
 			if params[:hard_delete]
 				@user.destroy
 			else
-				@user.clear_roles User::ADMIN_PANEL_ROLES if params[:clear_rights].present?
-				@user.clear_roles User::FRONTEND_ROLES if params[:clear_rights].present?
+				if params[:clear_rights].present?
+					@user.roles.each do |role|
+						@user.remove_role role.name rescue 1
+					end
+				end
 				@user.update(approved: false)
 			end
 
