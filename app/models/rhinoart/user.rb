@@ -166,5 +166,14 @@ module Rhinoart
 		def set_default_frontend_role
 			self.add_role FRONTEND_ROLES.first
 		end
+
+		def set_user_name
+			if name_changed?
+				self.first_name = self.name.split(' ').first
+				self.last_name = self.name.split(' ').last if self.first_name != self.name.split(' ').last
+			elsif first_name.present? && last_name.present?
+				self.name = "#{first_name} #{last_name}"
+			end
+		end
   end
 end
