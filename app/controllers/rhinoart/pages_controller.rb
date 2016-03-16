@@ -53,7 +53,10 @@ module Rhinoart
 	    	else
 		    	case @page.ptype
 		    	when Page::TUPES[:article].to_s.downcase
-		    		content_fields(@page)
+		    		additional = [
+		    			{ :name => "image", :ftype => "file", :position => 5 }
+		    		]
+		    		content_fields(@page, 'default', additional)
 		    		content_tabs(@page,  %w[preview main_content])
 		    	when Page::TUPES[:blog].to_s.downcase
 		    		fields =  [
@@ -201,7 +204,7 @@ module Rhinoart
 				end
 			end
 
-			def content_fields(page, fields = 'default')
+			def content_fields(page, fields = 'default', additional = nil)
 				if fields == 'default'
 					fields =  [
 							{ :name => "title", :ftype => "title", :position => 1 },
@@ -210,6 +213,8 @@ module Rhinoart
 							{ :name => "keywords", :ftype => "meta", :position => 4 }
 					]
 				end
+
+				fields.push(additional[0]) if additional
 
 				fields.each do |field|
 					field.assert_valid_keys(:name, :ftype, :position, :value) # валидация
