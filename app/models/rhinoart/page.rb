@@ -57,6 +57,12 @@ module Rhinoart
 
 		has_paper_trail
 
+		TUPES = {
+			page: 'Page',
+			article: 'Article', 
+			blog: 'Blog',
+			testimonial: 'Testimonial'
+		}
 		def content_by_name(name='main_content')
 			if self.page_content.find_by(name: name).present?
 				self.page_content.find_by(name: name).content 
@@ -110,9 +116,9 @@ module Rhinoart
 
 		def self.article_list(id = nil)
 			if id.present?
-				self.where("ptype != ? AND id != ?", 'article', id).order('name')
+				self.where("ptype != ? AND id != ?", Page::TUPES[:article].to_s.downcase, id).order('name')
 			else
-				self.where("ptype != ?", 'article').order('name')        
+				self.where("ptype != ?", Page::TUPES[:article].to_s.downcase).order('name')        
 			end        
 		end 
 

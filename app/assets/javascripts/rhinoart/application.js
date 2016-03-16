@@ -31,9 +31,7 @@ $(function(){
 		//$('#sidebar-left2').height( $('#content').height() + 40);
 	} else {
 		//$('#content').height( $('#sidebar-left2').height() - 40);
-	}	
-
-	
+	}		
 })
 
 

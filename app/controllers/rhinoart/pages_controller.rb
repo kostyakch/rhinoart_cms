@@ -52,10 +52,10 @@ module Rhinoart
 	    		content_tabs(@page)
 	    	else
 		    	case @page.ptype
-		    	when 'article'
+		    	when Page::TUPES[:article].to_s.downcase
 		    		content_fields(@page)
-		    		content_tabs(@page,  %w[main_content preview])
-		    	when 'blog'
+		    		content_tabs(@page,  %w[preview main_content])
+		    	when Page::TUPES[:blog].to_s.downcase
 		    		fields =  [
 							{ :name => "title", :ftype => "title", :position => 1 },
 							{ :name => "h1", :ftype => "title", :position => 2 },
@@ -65,6 +65,15 @@ module Rhinoart
 					]
 		    		content_fields(@page, fields)
 		    		content_tabs(@page,  %w[short full])
+		    	when Page::TUPES[:testimonial].to_s.downcase
+		    		fields =  [
+							{ :name => "title", :ftype => "title", :position => 1 },
+							{ :name => "h1", :ftype => "title", :position => 2 },
+							{ :name => "author", :ftype => "textarea", :position => 3 },
+							{ :name => "image", :ftype => "file", :position => 4 },
+					]
+		    		content_fields(@page, fields)
+		    		content_tabs(@page,  %w[preview main_content])
 		    	else
 		    		content_fields(@page)
 		    		content_tabs(@page)

@@ -129,8 +129,9 @@ ru:
   h1: Заголовок страницы
   title: Заголовок окна
   Page: Страница
-  Article: статья
-  Blog: блог
+  Article: Статья
+  Blog: Блог
+  Testimonial: Testimonial
   short: Краткий текст (short)
   full: Полный текст (full)
   add subpage: добавить подраздел

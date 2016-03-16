@@ -94,9 +94,10 @@ en:
   keywords: Meta keywords
   h1: Page title (h1)
   title: Window title
-  Page: page
-  Article: article
-  Blog: blog
+  Page: Page
+  Article: Article
+  Blog: Blog
+  Testimonial: Testimonial
 
   short: Short text
   full: Full text
