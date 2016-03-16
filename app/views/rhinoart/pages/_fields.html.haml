@@ -28,7 +28,7 @@
           $('#page_publish_date').datepicker({
               format: 'mm/dd/yyyy'
           });
-    - if f.object.ptype == 'article' || f.object.ptype == 'blog'
+    - if f.object.ptype.downcase == Rhinoart::Page::TUPES[:article].to_s.downcase || f.object.ptype.downcase == Rhinoart::Page::TUPES[:blog].to_s.downcase
       .span3
         = f.label :user
         = f.collection_select :user_id, Rhinoart::User.where('frontend_role is not null'), :id, :name_email, {include_blank: true}, {class: 'span12'}

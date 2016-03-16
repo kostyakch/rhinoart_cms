@@ -22,6 +22,8 @@
               = link_to t("_BTN_IMG"), '#', class: "btn", onclick: "$(this).parent().find('input:file').trigger('click');return false;"
               = c.fields_for :attachment do |a|
                 = a.file_field :file, class: 'hide'
+          - when 'boolean'
+            = c.check_box :value, class: 'span11'
           - else
             = c.text_field :value, class: 'span11', readonly: disabled_page?(@page)
           - if !disabled_page?(@page)

@@ -54,26 +54,26 @@ module Rhinoart
 		    	case @page.ptype
 		    	when Page::TUPES[:article].to_s.downcase
 		    		additional = [
-		    			{ :name => "image", :ftype => "file", :position => 5 }
+		    			{ name: "image", ftype: "file", position: 5 }
 		    		]
 		    		content_fields(@page, 'default', additional)
 		    		content_tabs(@page,  %w[preview main_content])
 		    	when Page::TUPES[:blog].to_s.downcase
 		    		fields =  [
-							{ :name => "title", :ftype => "title", :position => 1 },
-							{ :name => "h1", :ftype => "title", :position => 2 },
-							{ :name => "description", :ftype => "meta", :position => 3 },
-							{ :name => "keywords", :ftype => "meta", :position => 4 },
-							{ :name => "comment", :ftype => "boolean", :position => 5, :value => 'no' },
+						{ name: "title", ftype: "title", position: 1 },
+						{ name: "h1", ftype: "title", position: 2 },
+						{ name: "description", ftype: "meta", position: 3 },
+						{ name: "keywords", ftype: "meta", position: 4 },
+						{ name: "comment", ftype: "boolean", position: 5, value: 1 },
 					]
 		    		content_fields(@page, fields)
 		    		content_tabs(@page,  %w[short full])
 		    	when Page::TUPES[:testimonial].to_s.downcase
 		    		fields =  [
-							{ :name => "title", :ftype => "title", :position => 1 },
-							{ :name => "h1", :ftype => "title", :position => 2 },
-							{ :name => "author", :ftype => "textarea", :position => 3 },
-							{ :name => "image", :ftype => "file", :position => 4 },
+						{ name: "title", ftype: "title", position: 1 },
+						{ name: "h1", ftype: "title", position: 2 },
+						{ name: "author", ftype: "textarea", position: 3 },
+						{ name: "image", ftype: "file", position: 4 },
 					]
 		    		content_fields(@page, fields)
 		    		content_tabs(@page,  %w[preview main_content])
