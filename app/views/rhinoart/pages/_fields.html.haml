@@ -5,11 +5,11 @@
   .control-group
     = f.label :name, class: 'control-label'
     .controls
-      = f.text_field :name, class: 'span11'
+      = f.text_field :name, readonly: disabled_page?(f.object), class: 'span11'
   .control-group
     = f.label :slug, class: 'control-label'
     .controls
-      = f.text_field :slug, class: 'span11'
+      = f.text_field :slug, readonly: disabled_page?(f.object), class: 'span11'
       = link_to '<span class="icon-plus-sign"></span>'.html_safe, '#mdFieldAdd', data: {toggle: "modal"}
   / Page fields
   = render "page_fields", f: f

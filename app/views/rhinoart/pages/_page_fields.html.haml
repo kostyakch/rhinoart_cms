@@ -25,7 +25,7 @@
           - when 'boolean'
             = c.check_box :value, class: 'span11'
           - else
-            = c.text_field :value, class: 'span11', readonly: disabled_page?(@page)
+            = c.text_field :value, class: 'span11' #, readonly: disabled_page?(@page)
           - if !disabled_page?(@page)
             = link_to '<span class="icon-plus-sign"></span>'.html_safe, '#mdFieldAdd', data: { toggle: "modal" }
             = link_to '<span class="icon-remove-sign"></span>'.html_safe,   |
