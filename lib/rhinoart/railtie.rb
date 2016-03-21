@@ -15,6 +15,8 @@ module Rhinoart
         jquery.tablesorter.js
         redactor/redactor.css
         redactor/redactor.js
+        rhinoart/*.jpg
+        rhinoart/*.png
       ]
 
     end

@@ -2,6 +2,14 @@
 	= render 'rhinoart/shared/error_messages', object: f.object
 	= hidden_field_tag :redirect_to, params[:redirect_to] if params[:redirect_to].present?
 	
+	.avatar
+		- if f.object.avatar.present?
+			= image_tag f.object.avatar.try(:thumb), width: 84, height: 84
+		- else
+			= image_tag 'rhinoart/bg-noimage.png'
+
+		.image_field
+			= f.file_field :avatar
 
 	.control-group
 		= f.label :email, class: 'control-label'
@@ -12,7 +20,6 @@
 		= f.label :name, class: 'control-label'
 		.controls
 			= f.text_field :name
-
 
 	.control-group
 		= f.label :password, class: 'control-label'

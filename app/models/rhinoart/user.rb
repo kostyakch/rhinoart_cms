@@ -54,6 +54,8 @@ module Rhinoart
 		add_admin_role 'Users Manager'
 		add_admin_role 'Content Manager'
 
+		mount_uploader :avatar, ImageUploader
+
 		FRONTEND_ROLES = RhinoartConfig.config.frontend_roles
 		if (Rails.configuration.paper_trail_ignore rescue nil).present?
 			has_paper_trail ignore: Rails.configuration.paper_trail_ignore
