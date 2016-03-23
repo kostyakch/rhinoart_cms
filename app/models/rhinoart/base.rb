@@ -4,7 +4,10 @@ module Rhinoart
 
 		def last_version_change_user
 			if translation.versions.last.present?
-				User.find translation.versions.last.whodunnit.to_i
+				begin
+					User.find translation.versions.last.whodunnit.to_i	
+				rescue
+				end				
 			end
 		end
 
