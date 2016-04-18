@@ -20,9 +20,10 @@ module Rhinoart
 
       def page_tree(parent = nil)
         if parent.blank?
-          Page.where("parent_id IS NULL and active = ?", true).order(:position)
+          # Page.where("parent_id IS NULL and active = ?", true).order(:position)
+          Page.where("parent_id IS NULL").order(:position)
         else
-          Page.where('parent_id = ? and active = ?', parent.id, true).order(:position) if parent.ptype == 'page'
+          Page.where(parent_id: parent.id).order(:position) if parent.ptype == 'page'
         end
       end
 

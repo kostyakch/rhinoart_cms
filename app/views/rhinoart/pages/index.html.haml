@@ -14,9 +14,15 @@
         = succeed "Quick" do
           %span.break
     .box-content
-      - Rhinoart::Menu::ContentMenu.items.each do |item|
-        %a.quick-button.span2{href: "#{menu_item_link(item)}"}
-          %i{class: "#{item.icon}"}
-          %p= t item.label
-          %span.notification= item.notification.try(:call)
+      - Rhinoart::Menu::ContentMenu.items.each do |item| 
+        - if can?(:manage, :all)
+          %a.quick-button{href: "#{menu_item_link(item)}", class: "span#{12/Rhinoart::Menu::ContentMenu.items.count}" }
+            %i{class: "#{item.icon}"}
+            %p= t item.label
+            %span.notification= item.notification.try(:call)
+        - else 
+          %span.quick-button{ class: "span#{12/Rhinoart::Menu::ContentMenu.items.count}", style: 'cursor: default' }
+            %i{class: "#{item.icon}"}
+            %p= t item.label
+            %span.notification= item.notification.try(:call)
       .clearfix

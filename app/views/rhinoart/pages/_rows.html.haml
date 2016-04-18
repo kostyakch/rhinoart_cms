@@ -3,11 +3,19 @@
     %span
       = link_to '', pages_path(parent: p.id), remote: true, class: "toogle icon-plus" if page_tree(p).present?
       - if p.ptype != Rhinoart::Page::TUPES[:page].to_s.downcase
-        = link_to p.name, children_page_path(p), class: page_tree(p).present? ? '' : 'children'
+        = link_to children_page_path(p), class: page_tree(p).present? ? '' : 'children' do
+          = p.name
+          - if !p.active
+            %span.label.label-important Hidden
+
         = link_to edit_page_path(p), class: 'edit-article-item' do
           %span.halflings-icon.edit
+
       - else
-        = link_to p.name, edit_page_path(p), class: page_tree(p).present? ? '' : 'children'
+        = link_to edit_page_path(p), class: page_tree(p).present? ? '' : 'children' do
+          = p.name
+          - if !p.active
+            %span.label.label-important Hidden
     %hr/
     - if @tree_ids.present? && @tree_ids.include?(p.id)
       - pages = page_tree(p)
