@@ -9,7 +9,7 @@ module Rhinoart
 			def access_denied_handler(exception)
 				if user_signed_in?
 					if !can? :access, :admin_panel
-					redirect_to main_app.root_path, alert: exception.message
+						redirect_to main_app.root_path, alert: exception.message
 					else
 						flash.now[:info] = "Access denied."
 						render :template => 'rhinoart/shared/no_approved', :status => 403
