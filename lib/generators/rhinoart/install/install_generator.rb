@@ -23,7 +23,7 @@ module Rhinoart
     def add_route
       route "match '*url' => 'pages#internal', :as => :page, via: [:get]"
       route "root 'pages#index'"
-      route 'mount Rhinoart::Engine, at: "/admin"'
+      route 'mount Rhinoart::Engine, at: "/"'
     end
 
     def create_tables

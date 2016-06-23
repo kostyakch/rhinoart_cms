@@ -2,6 +2,7 @@
 = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
   = devise_error_messages!
   = f.hidden_field :reset_password_token
+  = hidden_field_tag :redirect_to, params[:redirect_to] if params[:redirect_to].present?
   %div
     = f.label :password, "New password"
     %br/
