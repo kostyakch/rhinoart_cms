@@ -4,7 +4,6 @@ module Rhinoart
 
 		protected
 			def after_resetting_password_path_for(resource)
-				binding.pry
 				params[:redirect_to] || root_path
 			end
 			# def after_sign_in_path_for(resource)
