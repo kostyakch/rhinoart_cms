@@ -5,7 +5,7 @@ module Rhinoart
         # include Sprockets::Helpers::RailsHelper
         # include Sprockets::Helpers::IsolatedHelper
 
-        include CarrierWave::MimeTypes
+        # include CarrierWave::MimeTypes
 
         process :set_content_type
         process :save_content_type_in_model        

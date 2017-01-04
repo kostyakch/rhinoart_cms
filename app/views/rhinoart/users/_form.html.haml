@@ -27,7 +27,7 @@
 			= f.password_field :password
 			%small.help-inline
 				8+ characters
-
+	
 	- if can? :manage, :user_roles
 		.control-group
 			= f.label :admin_role, class: 'control-label'

@@ -1,4 +1,4 @@
-#encoding: utf-8
+# encoding: utf-8
 # == Schema Information
 #
 # Table name: rhinoart_pages
@@ -20,138 +20,131 @@
 #
 
 module Rhinoart
-	class Page < Rhinoart::Base
-		require "rhinoart/utils"
-		
-		before_validation :name_to_slug
-		after_initialize :set_publish_date   
+  class Page < Rhinoart::Base
+    require "rhinoart/utils"
 
-		# Associations
-		#has_many :page_content, :order => 'position', :autosave => true, :dependent => :destroy  
-		has_many :page_content, -> { order 'position' }, :autosave => true, :dependent => :destroy  
-		accepts_nested_attributes_for :page_content, :allow_destroy => true
+    before_validation :name_to_slug
+    after_initialize :set_publish_date
 
-		#has_many :page_field, :order => 'position', :autosave => true, :dependent => :destroy
-		has_many :page_field, -> { order 'position' }, :autosave => true, :dependent => :destroy
-		accepts_nested_attributes_for :page_field, :allow_destroy => true
+    # Associations
+    # has_many :page_content, :order => 'position', :autosave => true, :dependent => :destroy
+    has_many :page_content, -> { order 'position' }, :autosave => true, :dependent => :destroy
+    accepts_nested_attributes_for :page_content, :allow_destroy => true
 
-		has_many :page_comment,  -> { order 'id' }, :autosave => true, :dependent => :destroy
-		accepts_nested_attributes_for :page_comment, :allow_destroy => true 
+    # has_many :page_field, :order => 'position', :autosave => true, :dependent => :destroy
+    has_many :page_field, -> { order 'position' }, :autosave => true, :dependent => :destroy
+    accepts_nested_attributes_for :page_field, :allow_destroy => true
 
-		belongs_to :user#, polymorphic: true
-		accepts_nested_attributes_for :user #, :allow_destroy => true
+    has_many :page_comment, -> { order 'id' }, :autosave => true, :dependent => :destroy
+    accepts_nested_attributes_for :page_comment, :allow_destroy => true
 
-		# Validations
-		validates :name, :slug, :menu, :publish_date, presence: true
+    belongs_to :user # , polymorphic: true
+    accepts_nested_attributes_for :user # , :allow_destroy => true
 
-		validates :name, length: { maximum: 255 }
-		validates :slug, length: { maximum: 255 }
+    # Validations
+    validates :name, :slug, :menu, :publish_date, presence: true
 
-		#VALID_SLUG_REGEX = %r{^([-_/.A-Za-z0-9А-Яа-я]*|/)$}
-		VALID_SLUG_REGEX = /\A[-_.\/A-Za-z0-9А-Яа-я]+\z/i
-		validates :slug, uniqueness: { case_sensitive: false }, format: { with: VALID_SLUG_REGEX }
-		validates_uniqueness_of :slug, :scope => :parent_id
+    validates :name, length: { maximum: 255 }
+    validates :slug, length: { maximum: 255 }
 
-		# default_scope { order 'position asc' }
-		acts_as_list  :scope => [:parent_id] #, :publish_date
+    # VALID_SLUG_REGEX = %r{^([-_/.A-Za-z0-9А-Яа-я]*|/)$}
+    VALID_SLUG_REGEX = /\A[-_.\/A-Za-z0-9А-Яа-я]+\z/i
+    validates :slug, uniqueness: { case_sensitive: false }, format: { with: VALID_SLUG_REGEX }
+    validates_uniqueness_of :slug, :scope => :parent_id
 
-		has_paper_trail
+    # default_scope { order 'position asc' }
+    acts_as_list :scope => [:parent_id] # , :publish_date
 
-		TUPES = {
-			page: 'Page',
-			article: 'Article', 
-			blog: 'Blog',
-			testimonial: 'Testimonial'
-		}
-		def content_by_name(name='main_content')
-			if self.page_content.find_by(name: name).present?
-				self.page_content.find_by(name: name).content 
-			else
-				''
-			end
-		end
-		alias_method :content, :content_by_name
+    has_paper_trail
 
-		def field_by_name(name)
-			field = self.page_field.find_by(name: name.downcase)
-			if field.present?
-				if field.ftype != PageField::FIELD_TYPES[:file].downcase
-					field.value 
-				else
-					field.attachment.try(:file_url)
-				end
-			else
-				''
-			end
-		end
-		alias_method :field, :field_by_name
+    TUPES = {
+      page: 'Page',
+      article: 'Article',
+      blog: 'Blog',
+      testimonial: 'Testimonial'
+    }.freeze
+    def content_by_name(name='main_content')
+      if page_content.find_by(name: name).present?
+        page_content.find_by(name: name).content
+      else
+        ''
+      end
+    end
+    alias content content_by_name
 
-		def field_obj(name)
-			self.page_field.find_by(name: name.downcase) if self.page_field.find_by(name: name.downcase).present?
-		end
+    def field_by_name(name)
+      field = page_field.find_by(name: name.downcase)
+      if field.present?
+        if field.ftype != PageField::FIELD_TYPES[:file].downcase
+          field.value
+        else
+          field.attachment.try(:file_url)
+        end
+      else
+        ''
+      end
+    end
+    alias field field_by_name
 
-		def children(active = true)
-			if active
-				Page.where(parent_id: self.id, active: true)
-			else
-				Page.where(parent_id: self.id)
-			end
-		end
+    def field_obj(name)
+      page_field.find_by(name: name.downcase) if page_field.find_by(name: name.downcase).present?
+    end
 
-		def title
-			if self.field_by_name('title').present?
-				self.field_by_name('title')
-			else
-				self.name
-			end
-		end
+    def children(active = true)
+      if active
+        Page.where(parent_id: id, active: true)
+      else
+        Page.where(parent_id: id)
+      end
+    end
 
-		def parent
-			Page.find(self.parent_id) if self.parent_id.present?
-		end
+    def title
+      if field_by_name('title').present?
+        field_by_name('title')
+      else
+        name
+      end
+    end
 
-		def comment_count
-			PageComment.where('page_id = ? AND approved = true', self.id).count
-		end 
+    def parent
+      Page.find(parent_id) if parent_id.present?
+    end
 
-		def self.article_list(id = nil)
-			if id.present?
-				self.where("ptype != ? AND id != ?", Page::TUPES[:article].to_s.downcase, id).order('name')
-			else
-				self.where("ptype != ?", Page::TUPES[:article].to_s.downcase).order('name')        
-			end        
-		end 
+    def comment_count
+      PageComment.where('page_id = ? AND approved = true', id).count
+    end
 
+    def self.article_list(id = nil)
+      if id.present?
+        where("ptype != ? AND id != ?", Page::TUPES[:article].to_s.downcase, id).order('name')
+      else
+        where("ptype != ?", Page::TUPES[:article].to_s.downcase).order('name')
+      end
+    end
 
-		protected
-			def set_publish_date
-				self.publish_date = Time.now if !self.publish_date.present?
-			end
+    protected
 
-			def name_to_slug
-				if !self.slug.present?
-					if self.parent_id.present?
-						parent = Page.find_by_id(self.parent_id)
-						self.slug = parent.slug + "/" + Rhinoart::Utils.to_slug(self.name)
-					else
-						self.slug = Rhinoart::Utils.to_slug(self.name)
-					end
-				else
-					self.slug = Rhinoart::Utils.to_slug(self.slug)
-				end
-			end
+    def set_publish_date
+      self.publish_date = Time.now unless publish_date.present?
+      end
 
-		class << self
+    def name_to_slug
+      if !slug.present?
+        if parent_id.present?
+          parent = Page.find_by(id: parent_id)
+          self.slug = parent.slug + "/" + Rhinoart::Utils.to_slug(name)
+        else
+          self.slug = Rhinoart::Utils.to_slug(name)
+        end
+      else
+        self.slug = Rhinoart::Utils.to_slug(slug)
+        end
+      end
 
-			def find_by_path(path)
-				self.where('slug = ? and active = ? and publish_date <= ?', path, true, Time.now).first
-			end
-
-
-
-
-		end
-
-
-	end
+    class << self
+      def find_by_path(path)
+        where('slug = ? and active = ? and publish_date <= ?', path, true, Time.now).first
+      end
+    end
+  end
 end
