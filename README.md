@@ -13,7 +13,7 @@ gem 'rhinoart', github: 'kostyakch/rhinoart_cms', branch: 'rails_42'
 
 ### Add in Your Gemfile line like this:
 ``` ruby
-gem 'rhinoart', github: 'kostyakch/rhinoart_cms'
+gem 'rhinoart', github: 'kostyakch/rhinoart_cms', branch: 'rails_42'
 ```
 
 After it:
