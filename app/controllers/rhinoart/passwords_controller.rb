@@ -1,17 +1,19 @@
 module Rhinoart
-	class PasswordsController < Devise::PasswordsController
-		protect_from_forgery
+  class PasswordsController < Devise::PasswordsController
+    protect_from_forgery
 
-		protected
-			def after_resetting_password_path_for(resource)
-				params[:redirect_to] || root_path
-			end
-			# def after_sign_in_path_for(resource)
-			# 	if params[:redirect_to].present? || can?(:access, :admin_panel)
-			# 		params[:redirect_to] || root_path
-			# 	else
-			# 		main_app.root_path
-			# 	end				
-			# end		
-	end
+    protected
+
+    def after_resetting_password_path_for(_resource)
+      params[:redirect_to] || root_path
+    end
+
+    def after_sign_in_path_for(_resource)
+      if params[:redirect_to].present? || can?(:access, :admin_panel)
+        params[:redirect_to] || root_path
+      else
+        main_app.root_path
+      end
+    end
+  end
 end
