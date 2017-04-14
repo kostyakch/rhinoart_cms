@@ -6,14 +6,14 @@ Rhinoart is a admin engine system. This a CMS backend
 
 ``` ruby
 # Gemfile for Rails 4
-gem 'rhinoart', git: 'https://github.com/kostyakch/rhinoart_cms.git'
+gem 'rhinoart', github: 'kostyakch/rhinoart_cms', branch: 'rails_42'
 ```
 
 ## Basic rhinoart use
 
 ### Add in Your Gemfile line like this:
 ``` ruby
-gem 'rhinoart', github: 'kostyakch/rhinoart_cms'
+gem 'rhinoart', github: 'kostyakch/rhinoart_cms', branch: 'rails_42'
 ```
 
 After it:
