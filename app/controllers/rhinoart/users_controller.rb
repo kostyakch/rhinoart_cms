@@ -11,7 +11,7 @@ module Rhinoart
 			if params[:role].present?
 				case params[:role]
 				when 'new'
-					@users = User.where(approved: false).paginate(page: params[:page], per_page: 30).order(order_str)
+					@users = Rhinoart::User.where(approved: false).paginate(page: params[:page], per_page: 30).order(order_str)
 				
 				when 'admin'
 					# @users = []
@@ -21,16 +21,16 @@ module Rhinoart
 					# @users = @users[0]
 					# @users = User.where("approved = 1 and (admin_role is not null or admin_role != '')").paginate(page: params[:page], per_page: 30).order(order_str)
 				
-					@users = User::admin_users.paginate(page: params[:page], per_page: 30).order(order_str)
+					@users = Rhinoart::User::admin_users.paginate(page: params[:page], per_page: 30).order(order_str)
 					# User.joins(:rhinoart_users_roles, :roles).where(approved: true, roles: {name: User::ADMIN_PANEL_ROLES}).group(:email).paginate(page: params[:page], per_page: 30).order(order_str)
 				else
-					@users = User.all.paginate(page: params[:page], per_page: 30).order(order_str)
+					@users = Rhinoart::User.all.paginate(page: params[:page], per_page: 30).order(order_str)
 				end
 			else
 				if params[:q].present?
-					@users = User.where('email LIKE ? or info LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%").paginate(page: params[:page], per_page: 30).order(order_str)
+					@users = Rhinoart::User.where('email LIKE ? or info LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%").paginate(page: params[:page], per_page: 30).order(order_str)
 				else
-					@users = User.paginate(page: params[:page], per_page: 30).order(order_str)
+					@users = Rhinoart::User.paginate(page: params[:page], per_page: 30).order(order_str)
 				end
 			end 
 		end
@@ -40,7 +40,7 @@ module Rhinoart
 		end	
 
 		def new
-			@user = User.new
+			@user = Rhinoart::User.new
 		end
 
 		def create
@@ -97,8 +97,9 @@ module Rhinoart
 		private
 			# Use callbacks to share common setup or constraints between actions.
 			def set_user
+				binding.pry
 				begin
-					@user = User.find(params[:id])
+					@user = Rhinoart::User.find(params[:id])
 				rescue
 					render template: 'rhinoart/shared/error404', status: :not_found
 				end                 
