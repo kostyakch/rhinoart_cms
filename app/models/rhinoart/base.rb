@@ -18,10 +18,10 @@ module Rhinoart
 		end
 
 		def can_edit?(locale=nil)
-			if locale.present?
-				exists_statuses = self.statuses.where(locale: locale )
+			exists_statuses = if locale.present?
+				self.statuses.where(locale: locale )
 			else
-				exists_statuses = self.statuses
+				self.statuses
 			end
 
 			if exists_statuses.count == 0 && (Rhinoart::User.current.can?(:manage, :create_docs) || Rhinoart::User.current.can?(:manage, :edit_docs) || Rhinoart::User.current.can?(:manage, :public_docs))
