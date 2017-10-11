@@ -105,7 +105,7 @@ module Rhinoart
 		def edit
 		end
 
-		def update			
+		def update
 			if @page.update(admin_pages_params)
 				update_page_content(@page, params[:page])		
 
@@ -189,9 +189,12 @@ module Rhinoart
 	        end
 
 	        # Never trust parameters from the scary internet, only allow the white list through.
-	        def admin_pages_params
+					def admin_pages_params
+						page_params = params[:page].permit!
+						page_params[:publish_date] = Date.strptime(page_params[:publish_date], "%m/%d/%Y")
+						page_params
 	            #params.require(:page).permit!
-	            params[:page].permit! # TODO
+	             # TODO
 	        end
 
 	        def set_tree_ids

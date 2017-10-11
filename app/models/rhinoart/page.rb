@@ -126,7 +126,7 @@ module Rhinoart
 
     def set_publish_date
       self.publish_date = Time.now unless publish_date.present?
-      end
+    end
 
     def name_to_slug
       if !slug.present?
