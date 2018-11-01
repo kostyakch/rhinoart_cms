@@ -1,4 +1,4 @@
-class CreateRhinoartFiles < ActiveRecord::Migration
+class CreateRhinoartFiles < ActiveRecord::Migration[5.1]
   def change
     create_table :rhinoart_files do |t|
     	t.references :attachable, polymorphic: true

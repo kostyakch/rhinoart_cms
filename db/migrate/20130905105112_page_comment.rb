@@ -1,4 +1,4 @@
-class PageComment < ActiveRecord::Migration
+class PageComment < ActiveRecord::Migration[5.1]
   def change
     create_table :rhinoart_page_comments do |t|
       t.integer :user_id
@@ -10,8 +10,8 @@ class PageComment < ActiveRecord::Migration
       t.integer :parent_id
       # t.foreign_key :rhinoart_page_comments, column: 'parent_id', options: 'ON DELETE CASCADE'
 
-      t.text :comment, :null => false
-      t.boolean :approved, :default => false
+      t.text :comment, null: false
+      t.boolean :approved, default: false
 
       t.timestamps
     end

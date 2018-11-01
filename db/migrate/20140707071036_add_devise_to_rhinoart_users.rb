@@ -1,9 +1,9 @@
-class AddDeviseToRhinoartUsers < ActiveRecord::Migration
+class AddDeviseToRhinoartUsers < ActiveRecord::Migration[5.1]
   def self.up
     change_table(:rhinoart_users) do |t|
       ## Database authenticatable
       # t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :encrypted_password, null: false, default: ''
 
       ## Recoverable
       t.string   :reset_password_token
@@ -30,22 +30,16 @@ class AddDeviseToRhinoartUsers < ActiveRecord::Migration
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
       # Uncomment below if timestamps were not included in your original model.
       # t.timestamps
 
-      t.string :admin_role
-      t.string :frontend_role
-      t.boolean :approved, default: 0, null: false      
+      t.boolean :approved, default: 0, null: false
     end
 
     # add_index :rhinoart_users, :email,                unique: true
     add_index :rhinoart_users, :reset_password_token, unique: true
     # add_index :rhinoart_users, :confirmation_token,   unique: true
     # add_index :rhinoart_users, :unlock_token,         unique: true
-
-    remove_column :rhinoart_users, :roles
-    remove_column :rhinoart_users, :active
   end
 
   def self.down
@@ -54,4 +48,3 @@ class AddDeviseToRhinoartUsers < ActiveRecord::Migration
     raise ActiveRecord::IrreversibleMigration
   end
 end
-

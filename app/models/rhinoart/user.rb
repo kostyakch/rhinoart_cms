@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: rhinoart_users
@@ -25,12 +27,10 @@
 #
 
 module Rhinoart
-  class User < ActiveRecord::Base
+  class User < ApplicationRecord
     include UserRoles
     include ApplicationHelper
     rolify
-
-    belongs_to :userable, polymorphic: true # iln 24.07.14
 
     # Include default devise modules. Others available are:
     # devise :database_authenticatable, :recoverable, :registerable, :trackable, :validatable #, :omniauthable, :omniauth_providers => [:google_oauth2]
@@ -41,7 +41,7 @@ module Rhinoart
     after_create :notify_about_new_user, :set_default_frontend_role
     after_update :notify_after_change_approved
 
-    SAFE_INFO_ACCESSORS = [:locales, :token].freeze
+    SAFE_INFO_ACCESSORS = %i[locales token].freeze
     store :info, accessors: SAFE_INFO_ACCESSORS, coder: JSON
 
     # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -57,10 +57,14 @@ module Rhinoart
     mount_uploader :avatar, ImageUploader
 
     FRONTEND_ROLES = RhinoartConfig.config.frontend_roles
-    if (Rails.configuration.paper_trail_ignore rescue nil).present?
+    if (begin
+          Rails.configuration.paper_trail_ignore
+        rescue StandardError
+          nil
+        end).present?
       has_paper_trail ignore: Rails.configuration.paper_trail_ignore
     else
-      has_paper_trail ignore: [:api_token, :updated_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip]
+      has_paper_trail ignore: %i[api_token updated_at sign_in_count current_sign_in_at last_sign_in_at current_sign_in_ip last_sign_in_ip]
     end
 
     def self.current
@@ -82,9 +86,7 @@ module Rhinoart
 
     def has_access_to_admin_panel?
       roles.map(&:name).each do |rol|
-        if ADMIN_PANEL_ROLES.include? rol
-          return true
-        end
+        return true if ADMIN_PANEL_ROLES.include? rol
       end
       false
     end
@@ -114,31 +116,36 @@ module Rhinoart
 
     def inactive_message
       return :not_approved unless approved?
+
       super # Use whatever other message
     end
 
     def ability
       @ability ||= Ability.new(self)
     end
-    delegate :can?, :cannot?, :to => :ability
+    delegate :can?, :cannot?, to: :ability
 
     def clear_roles(roles)
       roles.each do |r|
-        relf.remove_role(r) rescue nil
+        begin
+          relf.remove_role(r)
+        rescue StandardError
+          nil
+        end
       end
     end
 
     def self.from_omniauth(access_token)
       data = access_token.info
-      user = find_by(:email => data["email"])
+      user = find_by(email: data['email'])
 
       if user.present?
         user.password = Devise.friendly_token[0, 20]
         user.token = access_token['credentials']['token']
       else
         user = create(
-          name: data["name"],
-          email: data["email"],
+          name: data['name'],
+          email: data['email'],
           password: Devise.friendly_token[0, 20],
           token: access_token['credentials']['token'],
           approved: true
@@ -151,18 +158,18 @@ module Rhinoart
     private
 
     def create_remember_token
-      self.remember_token = SecureRandom.urlsafe_base64 unless remember_token.present?
+      self.remember_token = SecureRandom.urlsafe_base64 if remember_token.blank?
     end
 
     def notify_about_new_user
       User.user_manager_emails.each do |mail_to|
-        NotificationsMailer.delay.new_user_notification(self, mail_to)
+        NotificationsMailer.new_user_notification(self, mail_to).deliver_later
       end
-      NotificationsMailer.delay.new_user_welcome(self)
+      NotificationsMailer.new_user_welcome(self).deliver_later
     end
 
     def notify_after_change_approved
-      NotificationsMailer.delay.user_grant_access_notification(self) if approved_changed? && approved == true
+      NotificationsMailer.user_grant_access_notification(self).deliver_later if approved_changed? && approved == true
     end
 
     def set_default_frontend_role
